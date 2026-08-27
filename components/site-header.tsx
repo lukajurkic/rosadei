@@ -1,10 +1,10 @@
 import { RoseMark } from '@/components/rosa-marks'
 
 const links = [
-  { label: 'Collections', href: '#collections' },
-  { label: 'Customization', href: '#customization' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Ponuda', href: '#collections' },
+  // { label: 'Personaliziraj', href: '#customization' },
+  { label: 'Kako naručiti', href: '#how-it-works' },
+  { label: 'Kontakt', href: '#contact' },
 ]
 
 export function SiteHeader() {
@@ -15,10 +15,15 @@ export function SiteHeader() {
           href="#top"
           className="flex items-center gap-2.5 text-foreground transition-opacity hover:opacity-70"
         >
-          <RoseMark className="size-7 text-foreground sm:size-8" />
-          <span className="font-serif text-xl leading-none font-medium tracking-[0.18em] uppercase sm:text-2xl">
-            Rosa Dei
-          </span>
+          {/* Keep RoseMark if the logo image is just the text, or remove it if your logo image already has the icon */}
+          {/* <RoseMark className="size-7 text-foreground sm:size-8" /> */}
+
+          {/* Logo Image */}
+          <img
+            src="/images/rosadei_logo.png"
+            alt="Rosa Dei"
+            className="h-30 w-auto object-contain sm:h-22"
+          />
         </a>
 
         <nav aria-label="Main" className="hidden md:block">
@@ -47,7 +52,7 @@ export function SiteHeader() {
             href="#contact"
             className="text-[0.65rem] tracking-[0.2em] text-foreground/70 uppercase"
           >
-            Contact
+            Kontakt
           </a>
         </nav>
       </div>

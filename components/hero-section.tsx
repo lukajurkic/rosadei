@@ -17,7 +17,7 @@ export function HeroSection() {
 
         <h1 className="font-serif text-4xl leading-[1.1] font-light tracking-tight text-balance text-foreground sm:text-6xl lg:text-7xl">
           Po slici prirode
-          <span className="block italic">Napravljeno daupdate header and add nre images to gallerz traje</span>
+          <span className="block italic">Napravljeno da traje</span>
         </h1>
 
         <p className="mt-7 max-w-xl leading-relaxed text-pretty text-foreground/70 sm:text-lg">

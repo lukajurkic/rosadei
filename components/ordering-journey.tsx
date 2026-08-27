@@ -3,21 +3,21 @@ import { MessagesSquare, PackageCheck, Palette } from 'lucide-react'
 const steps = [
   {
     number: 'I',
-    title: 'Select & Customize',
+    title: 'Odaberi i Zamislis',
     icon: Palette,
-    copy: 'Browse our designs and choose your preferred style, color palette, and bespoke accents.',
+    copy: 'Pregledajte naše proizvode na stranici ili na društvenim mrežama, izaberite stil kojoi vam se sviđa, boje i dodatke.',
   },
   {
     number: 'II',
-    title: 'Connect & Confirm',
+    title: 'Kontaktirajte nas i potvrdite s nama',
     icon: MessagesSquare,
-    copy: 'Reach out via our contact channels with your selections for date and size confirmation.',
+    copy: 'Kontaktirajte nas putem naših kontaktnih kanala s vašim izborima za potvrdu datuma i proizvoda.',
   },
   {
     number: 'III',
-    title: 'Handcrafted Delivery',
+    title: 'Ručni rad i iščekivanje',
     icon: PackageCheck,
-    copy: 'We hand-tie and package your arrangement with care for scheduled pickup or white-glove local delivery.',
+    copy: 'Ručno izrađujemo vaš personalizirani proizvod, na vama je da se opustite i čekate da vam javimo da je spreman.',
   },
 ]
 
@@ -30,10 +30,10 @@ export function OrderingJourney() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">
           <p className="text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase">
-            How It Works
+            Kako radimo
           </p>
           <h2 className="mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl">
-            The Ordering Journey
+            Put do narudžbe
           </h2>
         </div>
 

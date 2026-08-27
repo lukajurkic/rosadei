@@ -13,7 +13,7 @@ export default function Page() {
         <main>
           <HeroSection />
           <CategoryGalleries />
-          <CustomizationOptions />
+          {/* <CustomizationOptions /> */}
           <OrderingJourney />
           <ContactFooter />
         </main>

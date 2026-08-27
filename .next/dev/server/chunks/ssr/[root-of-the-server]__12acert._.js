@@ -15,11 +15,9 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$category$2d$galleries$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/category-galleries.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$contact$2d$footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/contact-footer.tsx [app-rsc] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$customization$2d$options$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/customization-options.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$hero$2d$section$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/hero-section.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ordering$2d$journey$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ordering-journey.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$site$2d$header$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/site-header.tsx [app-rsc] (ecmascript)");
-;
 ;
 ;
 ;
@@ -48,11 +46,6 @@ function Page() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$category$2d$galleries$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CategoryGalleries"], {}, void 0, false, {
                             fileName: "[project]/app/page.tsx",
                             lineNumber: 15,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$customization$2d$options$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CustomizationOptions"], {}, void 0, false, {
-                            fileName: "[project]/app/page.tsx",
-                            lineNumber: 16,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ordering$2d$journey$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["OrderingJourney"], {}, void 0, false, {
@@ -136,6 +129,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Mail$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/mail.mjs [app-rsc] (ecmascript) <export default as Mail>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/map-pin.mjs [app-rsc] (ecmascript) <export default as MapPin>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/phone.mjs [app-rsc] (ecmascript) <export default as Phone>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/info.mjs [app-rsc] (ecmascript) <export default as Info>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$rosa$2d$marks$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/rosa-marks.tsx [app-rsc] (ecmascript)");
 ;
 ;
@@ -185,7 +179,7 @@ function ContactFooter() {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                             className: "mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-4xl",
-                                            children: "Javite nam se i započnimo razgovor o vašoj želji poklona"
+                                            children: "Javite nam se i započnimo razgovor"
                                         }, void 0, false, {
                                             fileName: "[project]/components/contact-footer.tsx",
                                             lineNumber: 36,
@@ -229,16 +223,34 @@ function ContactFooter() {
                                                             lineNumber: 49,
                                                             columnNumber: 21
                                                         }, this),
-                                                        "Ponedjeljak - Petak: 09:00 - 20:00 ",
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
-                                                            fileName: "[project]/components/contact-footer.tsx",
-                                                            lineNumber: 50,
-                                                            columnNumber: 56
-                                                        }, this)
+                                                        "Ponedjeljak - Subota: 08:00 - 21:00"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/contact-footer.tsx",
                                                     lineNumber: 48,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "flex items-start gap-2.5",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"], {
+                                                            className: "mt-0.5 size-4 shrink-0 text-gold"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/contact-footer.tsx",
+                                                            lineNumber: 53,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            children: "Narudžbe isključivo po dogovoru. Upiti nisu narudžbe."
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/contact-footer.tsx",
+                                                            lineNumber: 54,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/contact-footer.tsx",
+                                                    lineNumber: 52,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
@@ -267,7 +279,7 @@ function ContactFooter() {
                                                             className: "size-4 shrink-0 text-foreground/60"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/contact-footer.tsx",
-                                                            lineNumber: 64,
+                                                            lineNumber: 70,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -278,7 +290,7 @@ function ContactFooter() {
                                                                     children: channel.label
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/contact-footer.tsx",
-                                                                    lineNumber: 66,
+                                                                    lineNumber: 72,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -286,24 +298,24 @@ function ContactFooter() {
                                                                     children: channel.value
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/contact-footer.tsx",
-                                                                    lineNumber: 69,
+                                                                    lineNumber: 75,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/contact-footer.tsx",
-                                                            lineNumber: 65,
+                                                            lineNumber: 71,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/contact-footer.tsx",
-                                                    lineNumber: 60,
+                                                    lineNumber: 66,
                                                     columnNumber: 23
                                                 }, this)
                                             }, channel.label, false, {
                                                 fileName: "[project]/components/contact-footer.tsx",
-                                                lineNumber: 59,
+                                                lineNumber: 65,
                                                 columnNumber: 21
                                             }, this);
                                         }),
@@ -315,18 +327,18 @@ function ContactFooter() {
                                                 children: "Započni razgovor"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/contact-footer.tsx",
-                                                lineNumber: 79,
+                                                lineNumber: 85,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/contact-footer.tsx",
-                                            lineNumber: 78,
+                                            lineNumber: 84,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/contact-footer.tsx",
-                                    lineNumber: 55,
+                                    lineNumber: 61,
                                     columnNumber: 15
                                 }, this)
                             ]
@@ -362,12 +374,12 @@ function ContactFooter() {
                                 children: "Rosa Dei"
                             }, void 0, false, {
                                 fileName: "[project]/components/contact-footer.tsx",
-                                lineNumber: 96,
+                                lineNumber: 102,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/contact-footer.tsx",
-                            lineNumber: 94,
+                            lineNumber: 100,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -379,18 +391,18 @@ function ContactFooter() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/contact-footer.tsx",
-                            lineNumber: 100,
+                            lineNumber: 106,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/contact-footer.tsx",
-                    lineNumber: 93,
+                    lineNumber: 99,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/contact-footer.tsx",
-                lineNumber: 92,
+                lineNumber: 98,
                 columnNumber: 7
             }, this)
         ]
@@ -400,42 +412,6 @@ function ContactFooter() {
         columnNumber: 5
     }, this);
 }
-}),
-"[project]/components/customization-options.tsx [app-rsc] (client reference proxy)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "CustomizationOptions",
-    ()=>CustomizationOptions
-]);
-// This file is generated by next-core EcmascriptClientReferenceModule.
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-server-dom-turbopack-server.js [app-rsc] (ecmascript)");
-;
-const CustomizationOptions = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
-    throw new Error("Attempted to call CustomizationOptions() from the server but CustomizationOptions is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
-}, "[project]/components/customization-options.tsx", "CustomizationOptions");
-}),
-"[project]/components/customization-options.tsx [app-rsc] (client reference proxy) <module evaluation>", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "CustomizationOptions",
-    ()=>CustomizationOptions
-]);
-// This file is generated by next-core EcmascriptClientReferenceModule.
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-server-dom-turbopack-server.js [app-rsc] (ecmascript)");
-;
-const CustomizationOptions = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
-    throw new Error("Attempted to call CustomizationOptions() from the server but CustomizationOptions is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
-}, "[project]/components/customization-options.tsx <module evaluation>", "CustomizationOptions");
-}),
-"[project]/components/customization-options.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$customization$2d$options$2e$tsx__$5b$app$2d$rsc$5d$__$28$client__reference__proxy$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i("[project]/components/customization-options.tsx [app-rsc] (client reference proxy) <module evaluation>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$customization$2d$options$2e$tsx__$5b$app$2d$rsc$5d$__$28$client__reference__proxy$29$__ = __turbopack_context__.i("[project]/components/customization-options.tsx [app-rsc] (client reference proxy)");
-;
-__turbopack_context__.n(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$customization$2d$options$2e$tsx__$5b$app$2d$rsc$5d$__$28$client__reference__proxy$29$__);
 }),
 "[project]/components/hero-section.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -580,21 +556,21 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 const steps = [
     {
         number: 'I',
-        title: 'Select & Customize',
+        title: 'Odaberi i Zamislis',
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__["Palette"],
-        copy: 'Browse our designs and choose your preferred style, color palette, and bespoke accents.'
+        copy: 'Pregledajte naše proizvode na stranici ili na društvenim mrežama, izaberite stil kojoi vam se sviđa, boje i dodatke.'
     },
     {
         number: 'II',
-        title: 'Connect & Confirm',
+        title: 'Kontaktirajte nas i potvrdite s nama',
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$messages$2d$square$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__MessagesSquare$3e$__["MessagesSquare"],
-        copy: 'Reach out via our contact channels with your selections for date and size confirmation.'
+        copy: 'Kontaktirajte nas putem naših kontaktnih kanala s vašim izborima za potvrdu datuma i proizvoda.'
     },
     {
         number: 'III',
-        title: 'Handcrafted Delivery',
+        title: 'Ručni rad i iščekivanje',
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2d$check$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__PackageCheck$3e$__["PackageCheck"],
-        copy: 'We hand-tie and package your arrangement with care for scheduled pickup or white-glove local delivery.'
+        copy: 'Ručno izrađujemo vaš personalizirani proizvod, na vama je da se opustite i čekate da vam javimo da je spreman.'
     }
 ];
 function OrderingJourney() {
@@ -609,7 +585,7 @@ function OrderingJourney() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase",
-                            children: "How It Works"
+                            children: "Kako radimo"
                         }, void 0, false, {
                             fileName: "[project]/components/ordering-journey.tsx",
                             lineNumber: 32,
@@ -617,7 +593,7 @@ function OrderingJourney() {
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                             className: "mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl",
-                            children: "The Ordering Journey"
+                            children: "Put do narudžbe"
                         }, void 0, false, {
                             fileName: "[project]/components/ordering-journey.tsx",
                             lineNumber: 35,
@@ -857,10 +833,7 @@ const links = [
         label: 'Ponuda',
         href: '#collections'
     },
-    {
-        label: 'Personaliziraj',
-        href: '#customization'
-    },
+    // { label: 'Personaliziraj', href: '#customization' },
     {
         label: 'Kako naručiti',
         href: '#how-it-works'
@@ -966,4 +939,4 @@ function SiteHeader() {
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__1y25bi7._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__12acert._.js.map
