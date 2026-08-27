@@ -1,0 +1,10 @@
+{"timestamp":"00:00:00.551","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:20.971","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:21.270","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:21.276","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:00:21.277","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:21.277","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:00:21.277","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:21.277","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:00:21.277","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:21.277","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
