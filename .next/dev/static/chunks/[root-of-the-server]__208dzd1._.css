@@ -893,8 +893,16 @@
     height: calc(var(--spacing) * 12);
   }
 
+  .h-15 {
+    height: calc(var(--spacing) * 15);
+  }
+
   .h-16 {
     height: calc(var(--spacing) * 16);
+  }
+
+  .h-20 {
+    height: calc(var(--spacing) * 20);
   }
 
   .h-24 {
@@ -1449,6 +1457,11 @@
   .tracking-\[0\.2em\] {
     --tw-tracking: .2em;
     letter-spacing: .2em;
+  }
+
+  .tracking-\[0\.15em\] {
+    --tw-tracking: .15em;
+    letter-spacing: .15em;
   }
 
   .tracking-\[0\.18em\] {
@@ -2053,8 +2066,20 @@
       height: calc(var(--spacing) * 28);
     }
 
+    .sm\:h-30 {
+      height: calc(var(--spacing) * 30);
+    }
+
     .sm\:h-32 {
       height: calc(var(--spacing) * 32);
+    }
+
+    .sm\:h-35 {
+      height: calc(var(--spacing) * 35);
+    }
+
+    .sm\:h-40 {
+      height: calc(var(--spacing) * 40);
     }
 
     .sm\:flex-row {

@@ -3,7 +3,7 @@ import { MessagesSquare, PackageCheck, Palette } from 'lucide-react'
 const steps = [
   {
     number: 'I',
-    title: 'Odaberi i Zamislis',
+    title: 'Odaberi i Zamisli',
     icon: Palette,
     copy: 'Pregledajte naše proizvode na stranici ili na društvenim mrežama, izaberite stil kojoi vam se sviđa, boje i dodatke.',
   },

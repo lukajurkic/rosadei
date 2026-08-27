@@ -104,7 +104,7 @@ export function ContactFooter() {
             </span>
           </div>
           <p className="text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase">
-            &copy; {new Date().getFullYear()} Rosa Dei Obrt Za Usluge
+            &copy; {new Date().getFullYear()} Rosa Dei Obrt Za Usluge, vl. Željka Jurkić, OIB: 76565059947
           </p>
         </div>
       </footer>

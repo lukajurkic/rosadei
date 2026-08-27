@@ -387,7 +387,7 @@ function ContactFooter() {
                             children: [
                                 "© ",
                                 new Date().getFullYear(),
-                                " Rosa Dei Obrt Za Usluge"
+                                " Rosa Dei Obrt Za Usluge, vl. Željka Jurkić, OIB: 76565059947"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/contact-footer.tsx",
@@ -556,7 +556,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 const steps = [
     {
         number: 'I',
-        title: 'Odaberi i Zamislis',
+        title: 'Odaberi i Zamisli',
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__["Palette"],
         copy: 'Pregledajte naše proizvode na stranici ili na društvenim mrežama, izaberite stil kojoi vam se sviđa, boje i dodatke.'
     },
@@ -847,7 +847,7 @@ function SiteHeader() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
         className: "sticky top-0 z-50 border-b border-rose-100/60 bg-white/40 backdrop-blur-md",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-5 sm:h-20 sm:px-8",
+            className: "mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:h-20 sm:px-8",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#top",
@@ -855,10 +855,10 @@ function SiteHeader() {
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                         src: "/images/rosadei_logo.png",
                         alt: "Rosa Dei",
-                        className: "h-30 w-auto object-contain sm:h-22"
+                        className: "h-12 w-auto object-contain sm:h-16"
                     }, void 0, false, {
                         fileName: "[project]/components/site-header.tsx",
-                        lineNumber: 22,
+                        lineNumber: 19,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
@@ -878,50 +878,39 @@ function SiteHeader() {
                                     children: link.label
                                 }, void 0, false, {
                                     fileName: "[project]/components/site-header.tsx",
-                                    lineNumber: 33,
+                                    lineNumber: 31,
                                     columnNumber: 17
                                 }, this)
                             }, link.href, false, {
                                 fileName: "[project]/components/site-header.tsx",
-                                lineNumber: 32,
+                                lineNumber: 30,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/site-header.tsx",
-                        lineNumber: 30,
+                        lineNumber: 28,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/site-header.tsx",
-                    lineNumber: 29,
+                    lineNumber: 27,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-                    "aria-label": "Main",
-                    className: "flex items-center gap-5 md:hidden",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                            href: "#collections",
-                            className: "text-[0.65rem] tracking-[0.2em] text-foreground/70 uppercase",
-                            children: "Collections"
-                        }, void 0, false, {
+                    "aria-label": "Main mobile",
+                    className: "flex items-center gap-4 md:hidden",
+                    children: links.map((link)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                            href: link.href,
+                            className: "text-[0.65rem] tracking-[0.15em] text-foreground/70 uppercase transition-colors hover:text-foreground",
+                            children: link.label
+                        }, link.href, false, {
                             fileName: "[project]/components/site-header.tsx",
                             lineNumber: 45,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                            href: "#contact",
-                            className: "text-[0.65rem] tracking-[0.2em] text-foreground/70 uppercase",
-                            children: "Kontakt"
-                        }, void 0, false, {
-                            fileName: "[project]/components/site-header.tsx",
-                            lineNumber: 51,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
+                            columnNumber: 13
+                        }, this))
+                }, void 0, false, {
                     fileName: "[project]/components/site-header.tsx",
-                    lineNumber: 44,
+                    lineNumber: 43,
                     columnNumber: 9
                 }, this)
             ]
