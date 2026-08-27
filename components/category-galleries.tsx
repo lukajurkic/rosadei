@@ -10,66 +10,65 @@ type Category = {
   slides: { src: string; alt: string }[]
 }
 
+const bouquetFiles = [
+  'bijeli_sa_jednom_zlatnom.jpg',
+  'bride_to_be.jpg',
+  'dva_crvena_zuti.jpg',
+  'krstenje_dva_kom.jpg',
+  'plavi_sljokice.jpg',
+  'plavi.jpg',
+  'rozi_sljokice.jpg',
+  'stich_plavo_rozi.jpg',
+  'sto_jedna_ruza_plavo_rozi.jpg',
+];
+
+const rosaryFiles = [
+  `krunica_1.webp`,
+  `krunica_2.webp`,
+  `krunica_3.webp`,
+  `krunica_4.webp`,
+  `krunica_5.webp`,
+  `krunica_6.jpeg`,
+  `krunica_7.jpeg`,
+  `krunica_8.jpeg`,
+  `krunica_9.jpeg`,
+  `krunica_10.jpeg`,
+  `krunica_11.jpg`,
+];
+
+const boxBouquetsFiles = [
+  `rozi_buket_drvo.jpg`,
+];
+
 const categories: Category[] = [
   {
-    id: 'signature-bouquets',
-    title: 'Signature Bouquets',
-    description:
-      'Our house style — loose, garden-gathered stems in blush and peach, tied by hand.',
-    slides: [
-      {
-        src: '/images/signature-1.webp',
-        alt: 'Hand-tied bouquet of blush garden roses and ranunculus wrapped in cream paper',
-      },
-      {
-        src: '/images/signature-2.webp',
-        alt: 'Asymmetric arrangement of peach roses and white anemones in a matte stone vase',
-      },
-      {
-        src: '/images/signature-3.webp',
-        alt: 'Close-up of pale pink peonies lit by soft golden sunlight',
-      },
-    ],
+    id: 'bouquets',
+    title: 'Buketi',
+    description: 'Naš prepoznatljivi stil izrade — čvrstoća, kvaliteta, kreativnost i ručna izrada.',
+    slides: bouquetFiles.map((file) => ({
+      src: `/images/bouquets/${file}`,
+      alt: 'Buket - Rosa Dei',
+    })),
   },
   {
-    id: 'bridal-ceremonial',
-    title: 'Bridal & Ceremonial',
+    id: 'krunice',
+    title: 'Krunice',
     description:
-      'Considered florals for the day itself — bouquets, arches, and low table settings.',
-    slides: [
-      {
-        src: '/images/bridal-1.webp',
-        alt: 'Bridal bouquet of ivory and blush roses with trailing silk ribbon',
-      },
-      {
-        src: '/images/bridal-2.webp',
-        alt: 'Ceremonial floral arch detail with white and peach roses and eucalyptus',
-      },
-      {
-        src: '/images/bridal-3.webp',
-        alt: 'Low ceremony centerpiece of blush roses and candles on cream linen',
-      },
-    ],
+      'Pogledajte krunice koje možete već danas naručiti zasebno ili kombinirati u paketu s buketom za predivan poklon za razne prilike. ',
+    slides: rosaryFiles.map((file) => ({
+      src: `/images/rosaries/${file}`,
+      alt: 'Krunica - Rosa Dei',
+    })),
   },
   {
-    id: 'everlasting-dried',
-    title: 'Everlasting Dried Florals',
+    id: 'box-bouquets',
+    title: 'Box Buketi',
     description:
-      'Preserved and dried compositions in muted earth tones, made to last for seasons.',
-    slides: [
-      {
-        src: '/images/dried-1.webp',
-        alt: 'Dried arrangement of pampas grass, bunny tails and preserved rose buds in a ceramic vessel',
-      },
-      {
-        src: '/images/dried-2.webp',
-        alt: 'Bundle of dried lavender, hydrangea and wheat tied with linen twine',
-      },
-      {
-        src: '/images/dried-3.webp',
-        alt: 'Everlasting dried posy in dusty pink and champagne tones on a plaster ledge',
-      },
-    ],
+      'Naši box buketi, slični kao buketi, ali zanimljiviji i drugačiji. Pogledajte našu ponudu box buketa i naručite svoj danas.',
+    slides: boxBouquetsFiles.map((file) => ({
+      src: `/images/box_bouquets/${file}`,
+      alt: 'Box Buket - Rosa Dei',
+    })),
   },
 ]
 
@@ -147,10 +146,10 @@ export function CategoryGalleries() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center sm:mb-20">
           <p className="text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase">
-            The Collections
+            Naši proizvodi
           </p>
           <h2 className="mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl">
-            Three ways to hold a season
+            Iskaži svoju ljubav i pažnju, mi ti u tome pomažemo
           </h2>
         </div>
 

@@ -1,10 +1,17 @@
-{"timestamp":"00:00:00.551","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:20.971","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
-{"timestamp":"00:00:21.270","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
-{"timestamp":"00:00:21.276","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
-{"timestamp":"00:00:21.277","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
-{"timestamp":"00:00:21.277","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
-{"timestamp":"00:00:21.277","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
-{"timestamp":"00:00:21.277","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
-{"timestamp":"00:00:21.277","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
-{"timestamp":"00:00:21.277","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:00:00.588","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:12.584","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:12.890","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:12.898","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:00:12.898","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:12.899","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:00:12.899","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:12.899","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:00:12.899","source":"Browser","level":"WARN","message":"ObjectMultiplex - orphaned data for stream \"metamask-multichain-provider\""}
+{"timestamp":"00:00:12.899","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mObjectMultiplex - orphaned data for stream \\\"metamask-multichain-provider\\\"\\u001b[39m\" \"\\u001b[2m(moz-extension://2173606a-29f5-43b5-b642-8548180ee880/scripts/inpage.js;:1:28380)\\u001b[22m\""}
+{"timestamp":"00:09:48.661","source":"Server","level":"LOG","message":"✓ Compiled in 30ms"}
+{"timestamp":"00:13:27.621","source":"Server","level":"LOG","message":"✓ Compiled in 24ms"}
+{"timestamp":"00:14:58.985","source":"Server","level":"LOG","message":"✓ Compiled in 21ms"}
+{"timestamp":"00:15:14.666","source":"Server","level":"LOG","message":"✓ Compiled in 20ms"}
+{"timestamp":"00:17:16.948","source":"Server","level":"LOG","message":"✓ Compiled in 22ms"}
+{"timestamp":"00:17:52.949","source":"Server","level":"LOG","message":"✓ Compiled in 22ms"}
+{"timestamp":"00:18:07.730","source":"Server","level":"LOG","message":"✓ Compiled in 21ms"}

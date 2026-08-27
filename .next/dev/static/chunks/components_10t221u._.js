@@ -1,4 +1,8 @@
 (globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/components/category-galleries.tsx (require.context ./assets/images/bouquets/*)", (function(__turbopack_context__){
+
+__turbopack_context__.v({});
+}),
 "[project]/components/category-galleries.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -14,60 +18,57 @@ var _s = __turbopack_context__.k.signature();
 'use client';
 ;
 ;
-const bouquetFiles = [
-    'bijeli_sa_jednom_zlatnom.jpg',
-    'bride_to_be.jpg',
-    'dva_crvena_zuti.jpg',
-    'krstenje_dva_kom.jpg',
-    'plavi_sljokice.jpg',
-    'plavi.jpg',
-    'rozi_sljokice.jpg',
-    'stich_plavo_rozi.jpg',
-    'sto_jedna_ruza_plavo_rozi.jpg'
-];
-const rosaryFiles = [
-    `krunica_1.webp`,
-    `krunica_2.webp`,
-    `krunica_3.webp`,
-    `krunica_4.webp`,
-    `krunica_5.webp`,
-    `krunica_6.jpeg`,
-    `krunica_7.jpeg`,
-    `krunica_8.jpeg`,
-    `krunica_9.jpeg`,
-    `krunica_10.jpeg`,
-    `krunica_11.jpg`
-];
-const boxBouquetsFiles = [
-    `rozi_buket_drvo.jpg`
-];
+const importAll = (r)=>r.keys().map((item)=>{
+        const mod = r(item);
+        return {
+            src: mod.default || mod,
+            alt: 'Buket - Rosa Dei'
+        };
+    });
 const categories = [
     {
         id: 'bouquets',
         title: 'Buketi',
         description: 'Naš prepoznatljivi stil izrade — čvrstoća, kvaliteta, kreativnost i ručna izrada.',
-        slides: bouquetFiles.map((file)=>({
-                src: `/images/bouquets/${file}`,
-                alt: 'Buket - Rosa Dei'
-            }))
+        slides: importAll(__turbopack_context__.f(__turbopack_context__.r("[project]/components/category-galleries.tsx (require.context ./assets/images/bouquets/*)")))
     },
     {
-        id: 'krunice',
-        title: 'Krunice',
-        description: 'Pogledajte krunice koje možete već danas naručiti zasebno ili kombinirati u paketu s buketom za predivan poklon za razne prilike. ',
-        slides: rosaryFiles.map((file)=>({
-                src: `/images/rosaries/${file}`,
-                alt: 'Krunica - Rosa Dei'
-            }))
+        id: 'bridal-ceremonial',
+        title: 'Bridal & Ceremonial',
+        description: 'Considered florals for the day itself — bouquets, arches, and low table settings.',
+        slides: [
+            {
+                src: '/images/bridal-1.webp',
+                alt: 'Bridal bouquet of ivory and blush roses with trailing silk ribbon'
+            },
+            {
+                src: '/images/bridal-2.webp',
+                alt: 'Ceremonial floral arch detail with white and peach roses and eucalyptus'
+            },
+            {
+                src: '/images/bridal-3.webp',
+                alt: 'Low ceremony centerpiece of blush roses and candles on cream linen'
+            }
+        ]
     },
     {
-        id: 'box-bouquets',
-        title: 'Box Buketi',
-        description: 'Naši box buketi, slični kao buketi, ali zanimljiviji i drugačiji. Pogledajte našu ponudu box buketa i naručite svoj danas.',
-        slides: boxBouquetsFiles.map((file)=>({
-                src: `/images/box_bouquets/${file}`,
-                alt: 'Box Buket - Rosa Dei'
-            }))
+        id: 'everlasting-dried',
+        title: 'Everlasting Dried Florals',
+        description: 'Preserved and dried compositions in muted earth tones, made to last for seasons.',
+        slides: [
+            {
+                src: '/images/dried-1.webp',
+                alt: 'Dried arrangement of pampas grass, bunny tails and preserved rose buds in a ceramic vessel'
+            },
+            {
+                src: '/images/dried-2.webp',
+                alt: 'Bundle of dried lavender, hydrangea and wheat tied with linen twine'
+            },
+            {
+                src: '/images/dried-3.webp',
+                alt: 'Everlasting dried posy in dusty pink and champagne tones on a plaster ledge'
+            }
+        ]
     }
 ];
 function CategorySlideshow({ category }) {
@@ -112,7 +113,7 @@ function CategorySlideshow({ category }) {
                             className: `object-cover transition-opacity duration-1000 ease-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`
                         }, slide.src, false, {
                             fileName: "[project]/components/category-galleries.tsx",
-                            lineNumber: 97,
+                            lineNumber: 95,
                             columnNumber: 11
                         }, this)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -120,7 +121,7 @@ function CategorySlideshow({ category }) {
                         className: "absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/components/category-galleries.tsx",
-                        lineNumber: 110,
+                        lineNumber: 108,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -128,13 +129,13 @@ function CategorySlideshow({ category }) {
                         children: `${currentSlide + 1} / ${total}`
                     }, void 0, false, {
                         fileName: "[project]/components/category-galleries.tsx",
-                        lineNumber: 114,
+                        lineNumber: 112,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/category-galleries.tsx",
-                lineNumber: 90,
+                lineNumber: 88,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -147,18 +148,18 @@ function CategorySlideshow({ category }) {
                         className: `h-1.5 rounded-full transition-all duration-500 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:outline-none ${index === currentSlide ? 'w-8 bg-gold' : 'w-1.5 bg-foreground/20 hover:bg-foreground/40'}`
                     }, slide.src, false, {
                         fileName: "[project]/components/category-galleries.tsx",
-                        lineNumber: 121,
+                        lineNumber: 119,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/category-galleries.tsx",
-                lineNumber: 119,
+                lineNumber: 117,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/category-galleries.tsx",
-        lineNumber: 89,
+        lineNumber: 87,
         columnNumber: 5
     }, this);
 }
@@ -176,24 +177,24 @@ function CategoryGalleries() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase",
-                            children: "Naši proizvodi"
+                            children: "The Collections"
                         }, void 0, false, {
                             fileName: "[project]/components/category-galleries.tsx",
-                            lineNumber: 148,
+                            lineNumber: 146,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                             className: "mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl",
-                            children: "Iskaži svoju ljubav i pažnju, mi ti u tome pomažemo"
+                            children: "Three ways to hold a season"
                         }, void 0, false, {
                             fileName: "[project]/components/category-galleries.tsx",
-                            lineNumber: 151,
+                            lineNumber: 149,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/category-galleries.tsx",
-                    lineNumber: 147,
+                    lineNumber: 145,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -210,7 +211,7 @@ function CategoryGalleries() {
                                             children: category.title
                                         }, void 0, false, {
                                             fileName: "[project]/components/category-galleries.tsx",
-                                            lineNumber: 160,
+                                            lineNumber: 158,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -218,42 +219,42 @@ function CategoryGalleries() {
                                             children: category.description
                                         }, void 0, false, {
                                             fileName: "[project]/components/category-galleries.tsx",
-                                            lineNumber: 163,
+                                            lineNumber: 161,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/category-galleries.tsx",
-                                    lineNumber: 159,
+                                    lineNumber: 157,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CategorySlideshow, {
                                     category: category
                                 }, void 0, false, {
                                     fileName: "[project]/components/category-galleries.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 165,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, category.id, true, {
                             fileName: "[project]/components/category-galleries.tsx",
-                            lineNumber: 158,
+                            lineNumber: 156,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/category-galleries.tsx",
-                    lineNumber: 156,
+                    lineNumber: 154,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/category-galleries.tsx",
-            lineNumber: 146,
+            lineNumber: 144,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/category-galleries.tsx",
-        lineNumber: 142,
+        lineNumber: 140,
         columnNumber: 5
     }, this);
 }
@@ -600,4 +601,4 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 ]);
 
-//# sourceMappingURL=components_1iy6cu_._.js.map
+//# sourceMappingURL=components_10t221u._.js.map

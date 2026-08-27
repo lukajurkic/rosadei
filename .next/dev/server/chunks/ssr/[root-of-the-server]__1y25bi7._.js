@@ -477,7 +477,7 @@ function HeroSection() {
                                 lineNumber: 14,
                                 columnNumber: 11
                             }, this),
-                            "Bespoke Floral Studio"
+                            "RosaDei obrt"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/hero-section.tsx",
@@ -487,10 +487,10 @@ function HeroSection() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "font-serif text-4xl leading-[1.1] font-light tracking-tight text-balance text-foreground sm:text-6xl lg:text-7xl",
                         children: [
-                            "Crafted by Nature,",
+                            "Po slici prirode",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "block italic",
-                                children: "Arranged with Grace"
+                                children: "Napravljeno da traje"
                             }, void 0, false, {
                                 fileName: "[project]/components/hero-section.tsx",
                                 lineNumber: 20,
@@ -504,7 +504,7 @@ function HeroSection() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "mt-7 max-w-xl leading-relaxed text-pretty text-foreground/70 sm:text-lg",
-                        children: "Every Rosa Dei arrangement is composed by hand from seasonal stems — bespoke bouquets shaped around your palette, your ribbon, and the quiet organic beauty of the flowers themselves."
+                        children: "Načini kako razveseliti velike i male, stare i mlade, žene i muškarce. Svaki od naših proizvoda je ručno izrađen od visokokvalitenih materijala. Razni pokloni za razne prigode."
                     }, void 0, false, {
                         fileName: "[project]/components/hero-section.tsx",
                         lineNumber: 23,
@@ -514,7 +514,7 @@ function HeroSection() {
                         href: "#collections",
                         className: "group mt-10 inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-3.5 text-[0.7rem] tracking-[0.22em] text-primary-foreground uppercase shadow-lg shadow-rose-900/10 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-rose-900/15",
                         children: [
-                            "Explore Collections",
+                            "Istraži ponudu",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 "aria-hidden": "true",
                                 className: "transition-transform group-hover:translate-x-1",
@@ -540,7 +540,7 @@ function HeroSection() {
                                 lineNumber: 43,
                                 columnNumber: 11
                             }, this),
-                            "Hand-tied daily in small batches",
+                            "Svaki pojedinačno i ručno rađen",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "h-px w-8 bg-foreground/20"
                             }, void 0, false, {
