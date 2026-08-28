@@ -100,7 +100,7 @@ export function ContactFooter() {
           <div className="flex items-center gap-2.5 text-foreground/70">
             {/* <RoseMark className="size-5" /> */}
             <span className="font-serif text-sm tracking-[0.2em] uppercase">
-              Rosa Dei
+              Rosa Dei, web  version 1.0.1
             </span>
           </div>
           <p className="text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase">
