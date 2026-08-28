@@ -148,7 +148,7 @@ export function CategoryGalleries() {
           <p className="text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase">
             Naši proizvodi
           </p>
-          <h2 className="mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl">
+          <h2 className="mt-4 font-serif text-[2.5rem] leading-tight font-light text-balance sm:text-5xl">
             Iskaži svoju ljubav i pažnju, mi ti u tome pomažemo
           </h2>
         </div>
@@ -157,7 +157,7 @@ export function CategoryGalleries() {
           {categories.map((category) => (
             <article key={category.id} id={category.id} className="scroll-mt-28">
               <div className="mb-8 text-center">
-                <h3 className="font-serif text-2xl leading-tight font-light sm:text-4xl">
+                <h3 className="font-serif text-4xl leading-tight font-light sm:text-4xl">
                   {category.title}
                 </h3>
                 <p className="mx-auto mt-3 max-w-md leading-relaxed text-pretty text-foreground/65">
