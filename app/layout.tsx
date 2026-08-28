@@ -17,9 +17,9 @@ const body = Jost({
 })
 
 export const metadata: Metadata = {
-  title: 'Rosa Dei — Bespoke Floral & Bouquet Studio',
+  title: 'Rosa Dei',
   description:
-    'Rosa Dei is a premium floral studio crafting bespoke bouquets, bridal arrangements and everlasting dried florals — hand-tied with care and delivered with grace.',
+    'Rosa Dei je obrt za izradu visokokvalitetnih poklona od satena. Svaki poklon se radi ručno.',
   generator: 'v0.app',
   keywords: [
     'floral studio',
@@ -29,27 +29,22 @@ export const metadata: Metadata = {
     'Rosa Dei',
   ],
   openGraph: {
-    title: 'Rosa Dei — Bespoke Floral & Bouquet Studio',
+    title: 'Rosa Dei',
     description:
-      'Crafted by nature, arranged with grace. Bespoke bouquets, bridal and ceremonial florals, and everlasting dried arrangements.',
+      'Po slici prirode; Napravljeno da traje. Načini kako razveseliti velike i male, stare i mlade, žene i muškarce. Svaki od naših proizvoda je ručno izrađen od visokokvalitenih materijala. Razni pokloni za razne prigode.',
     type: 'website',
   },
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/tab_icon_black.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/tab_icon_white.png',
         media: '(prefers-color-scheme: dark)',
       },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
     ],
-    apple: '/apple-icon.png',
   },
 }
 
