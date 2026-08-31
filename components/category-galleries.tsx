@@ -114,16 +114,16 @@ const categories: Category[] = [
       alt: 'Kopče i Mašne za kosu - Rosa Dei',
     })),
   },
-  {
-    id: 'wedding-lapels',
-    title: 'Reveri i Svadbeni Ukrasi',
-    description:
-      'Personalizirani reveri i cvjetni ukrasi za vjenčanja.',
-    slides: weddingLapelsFiles.map((file) => ({
-      src: `/images/wedding_lapels/${file}`,
-      alt: 'Reveri - Rosa Dei',
-    })),
-  },
+  // {
+  //   id: 'wedding-lapels',
+  //   title: 'Reveri i Svadbeni Ukrasi',
+  //   description:
+  //     'Personalizirani reveri i cvjetni ukrasi za vjenčanja.',
+  //   slides: weddingLapelsFiles.map((file) => ({
+  //     src: `/images/wedding_lapels/${file}`,
+  //     alt: 'Reveri - Rosa Dei',
+  //   })),
+  // },
 ]
 
 function CategorySlideshow({ category }: { category: Category }) {
