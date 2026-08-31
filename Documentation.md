@@ -109,7 +109,7 @@ rosadei/
    - Illustrates the three-step ordering process (*Odaberi i Zamisli*, *Kontaktirajte nas*, *Ručni rad*).
 
 6. **`ContactFooter` (`components/contact-footer.tsx`)**:
-   - Displays contact options (Email, Phone, Instagram), operating hours, business location (Garešnica), legal details (OIB), and footer copyright.
+   - Displays contact options (Email, Phone, Instagram), operating hours, business location (Garešnica), legal details (OIB), and updated 3-column footer (Left: web version & developer contact; Center: ROSA DEI title; Right: 2-row legal copyright).
 
 ---
 
