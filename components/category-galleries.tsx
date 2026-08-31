@@ -11,33 +11,57 @@ type Category = {
 }
 
 const bouquetFiles = [
-  'bijeli_sa_jednom_zlatnom.jpg',
-  'bride_to_be.jpg',
-  'dva_crvena_zuti.jpg',
-  'krstenje_dva_kom.jpg',
-  'plavi_sljokice.jpg',
-  'plavi.jpg',
-  'rozi_sljokice.jpg',
-  'stich_plavo_rozi.jpg',
-  'sto_jedna_ruza_plavo_rozi.jpg',
+  'bouquets_1.webp',
+  'bouquets_2.webp',
+  'bouquets_3.webp',
+  'bouquets_4.webp',
+  'bouquets_5.webp',
+  'bouquets_6.webp',
+  'bouquets_7.webp',
+  'bouquets_8.webp',
+  'bouquets_9.webp',
+  'bouquets_10.webp',
 ];
 
 const rosaryFiles = [
-  `krunica_1.webp`,
-  `krunica_2.webp`,
-  `krunica_3.webp`,
-  `krunica_4.webp`,
-  `krunica_5.webp`,
-  `krunica_6.jpeg`,
-  `krunica_7.jpeg`,
-  `krunica_8.jpeg`,
-  `krunica_9.jpeg`,
-  `krunica_10.jpeg`,
-  `krunica_11.jpg`,
+  'rosaries_1.webp',
+  'rosaries_2.webp',
+  'rosaries_3.webp',
+  'rosaries_4.webp',
+  'rosaries_5.webp',
+  'rosaries_6.webp',
+  'rosaries_7.webp',
+  'rosaries_8.webp',
+  'rosaries_9.webp',
+  'rosaries_10.webp',
 ];
 
 const boxBouquetsFiles = [
-  `rozi_buket_drvo.jpg`,
+  'box_bouquets_1.webp',
+  'box_bouquets_2.webp',
+  'box_bouquets_3.webp',
+  'box_bouquets_4.webp',
+  'box_bouquets_5.webp',
+  'box_bouquets_6.webp',
+  'box_bouquets_7.webp',
+];
+
+const comboFiles = [
+  'combo_1.webp',
+  'combo_2.webp',
+];
+
+const hairClipAndBowFiles = [
+  'hair_clip_and_bow_1.webp',
+  'hair_clip_and_bow_2.webp',
+  'hair_clip_and_bow_3.webp',
+  'hair_clip_and_bow_4.webp',
+];
+
+const weddingLapelsFiles = [
+  'wedding_lapels_1.webp',
+  'wedding_lapels_2.webp',
+  'wedding_lapels_3.webp',
 ];
 
 const categories: Category[] = [
@@ -68,6 +92,36 @@ const categories: Category[] = [
     slides: boxBouquetsFiles.map((file) => ({
       src: `/images/box_bouquets/${file}`,
       alt: 'Box Buket - Rosa Dei',
+    })),
+  },
+  {
+    id: 'combo',
+    title: 'Paketi',
+    description:
+      'Prekrasne kombinacije buketa, krunica i dodataka u usklađenim paketima.',
+    slides: comboFiles.map((file) => ({
+      src: `/images/combo/${file}`,
+      alt: 'Komplet - Rosa Dei',
+    })),
+  },
+  {
+    id: 'hair-clip-and-bow',
+    title: 'Kopče i Mašne za kosu',
+    description:
+      'Ručno rađene kopče i elegantne mašne za svečane prilike.',
+    slides: hairClipAndBowFiles.map((file) => ({
+      src: `/images/hair_clip_and_bow/${file}`,
+      alt: 'Kopče i Mašne za kosu - Rosa Dei',
+    })),
+  },
+  {
+    id: 'wedding-lapels',
+    title: 'Reveri i Svadbeni Ukrasi',
+    description:
+      'Personalizirani reveri i cvjetni ukrasi za vjenčanja.',
+    slides: weddingLapelsFiles.map((file) => ({
+      src: `/images/wedding_lapels/${file}`,
+      alt: 'Reveri - Rosa Dei',
     })),
   },
 ]
@@ -101,9 +155,8 @@ function CategorySlideshow({ category }: { category: Category }) {
             fill
             sizes="(max-width: 768px) 100vw, 672px"
             priority={index === 0}
-            className={`object-cover transition-opacity duration-1000 ease-out ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`object-cover transition-opacity duration-1000 ease-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
           />
         ))}
 
@@ -124,11 +177,10 @@ function CategorySlideshow({ category }: { category: Category }) {
             onClick={() => setCurrentSlide(index)}
             aria-label={`Go to image ${index + 1} of ${category.title}`}
             aria-current={index === currentSlide}
-            className={`h-1.5 rounded-full transition-all duration-500 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:outline-none ${
-              index === currentSlide
-                ? 'w-8 bg-gold'
-                : 'w-1.5 bg-foreground/20 hover:bg-foreground/40'
-            }`}
+            className={`h-1.5 rounded-full transition-all duration-500 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:outline-none ${index === currentSlide
+              ? 'w-8 bg-gold'
+              : 'w-1.5 bg-foreground/20 hover:bg-foreground/40'
+              }`}
           />
         ))}
       </div>

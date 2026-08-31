@@ -52,7 +52,7 @@ export function ContactFooter() {
                   <p className="flex items-start gap-2.5">
                     <Info className="mt-0.5 size-4 shrink-0 text-gold" />
                     <span>
-                      Narudžbe isključivo po dogovoru. Upiti nisu narudžbe.                      
+                      Narudžbe isključivo po dogovoru. Upiti nisu narudžbe.
                     </span>
                   </p>
                 </div>
@@ -96,16 +96,27 @@ export function ContactFooter() {
       </section>
 
       <footer className="border-t border-rose-200/50 px-5 py-8 sm:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
-          <div className="flex items-center gap-2.5 text-foreground/70">
-            {/* <RoseMark className="size-5" /> */}
-            <span className="font-serif text-sm tracking-[0.2em] uppercase">
-              Rosa Dei, web  version 1.0.1
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row sm:gap-4">
+          {/* Left section: 2 rows (same font & size as current right text) */}
+          <div className="flex flex-col text-center text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase sm:text-left">
+            <span>web version 1.1.0</span>
+            <span>
+              developer: <a href="mailto:lukajurkic1@gmail.com" className="transition-colors hover:text-foreground">lukajurkic1@gmail.com</a>
             </span>
           </div>
-          <p className="text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase">
-            &copy; {new Date().getFullYear()} Rosa Dei Obrt Za Usluge, vl. Željka Jurkić, OIB: 76565059947
-          </p>
+
+          {/* Middle section: ROSA DEI (same font & size as current left text) */}
+          <div className="flex items-center text-foreground/70">
+            <span className="font-serif text-sm tracking-[0.2em] uppercase">
+              ROSA DEI
+            </span>
+          </div>
+
+          {/* Right section: Same legal text in 2 rows */}
+          <div className="flex flex-col text-center text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase sm:text-right">
+            <span>&copy; {new Date().getFullYear()} Rosa Dei Obrt Za Usluge</span>
+            <span>vl. Željka Jurkić, OIB: 76565059947</span>
+          </div>
         </div>
       </footer>
     </>
