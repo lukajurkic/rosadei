@@ -94,36 +94,6 @@ const categories: Category[] = [
       alt: 'Box Buket - Rosa Dei',
     })),
   },
-  {
-    id: 'combo',
-    title: 'Paketi',
-    description:
-      'Prekrasne kombinacije buketa, krunica i dodataka u usklađenim paketima.',
-    slides: comboFiles.map((file) => ({
-      src: `/images/combo/${file}`,
-      alt: 'Komplet - Rosa Dei',
-    })),
-  },
-  {
-    id: 'hair-clip-and-bow',
-    title: 'Kopče i Mašne za kosu',
-    description:
-      'Ručno rađene kopče i elegantne mašne za svečane prilike.',
-    slides: hairClipAndBowFiles.map((file) => ({
-      src: `/images/hair_clip_and_bow/${file}`,
-      alt: 'Kopče i Mašne za kosu - Rosa Dei',
-    })),
-  },
-  {
-    id: 'wedding-lapels',
-    title: 'Reveri i Svadbeni Ukrasi',
-    description:
-      'Personalizirani reveri i cvjetni ukrasi za vjenčanja.',
-    slides: weddingLapelsFiles.map((file) => ({
-      src: `/images/wedding_lapels/${file}`,
-      alt: 'Reveri - Rosa Dei',
-    })),
-  },
 ]
 
 function CategorySlideshow({ category }: { category: Category }) {
@@ -156,7 +126,7 @@ function CategorySlideshow({ category }: { category: Category }) {
             sizes="(max-width: 768px) 100vw, 672px"
             priority={index === 0}
             className={`object-cover transition-opacity duration-1000 ease-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
+            }`}
           />
         ))}
 
@@ -178,9 +148,9 @@ function CategorySlideshow({ category }: { category: Category }) {
             aria-label={`Go to image ${index + 1} of ${category.title}`}
             aria-current={index === currentSlide}
             className={`h-1.5 rounded-full transition-all duration-500 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:outline-none ${index === currentSlide
-              ? 'w-8 bg-gold'
-              : 'w-1.5 bg-foreground/20 hover:bg-foreground/40'
-              }`}
+                ? 'w-8 bg-gold'
+                : 'w-1.5 bg-foreground/20 hover:bg-foreground/40'
+            }`}
           />
         ))}
       </div>
