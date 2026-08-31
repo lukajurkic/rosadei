@@ -52,7 +52,7 @@ export function ContactFooter() {
                   <p className="flex items-start gap-2.5">
                     <Info className="mt-0.5 size-4 shrink-0 text-gold" />
                     <span>
-                      Narudžbe isključivo po dogovoru. Upiti nisu narudžbe.                      
+                      Narudžbe isključivo po dogovoru. Upiti nisu narudžbe.
                     </span>
                   </p>
                 </div>
@@ -99,7 +99,7 @@ export function ContactFooter() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row sm:gap-4">
           {/* Left section: 2 rows (same font & size as current right text) */}
           <div className="flex flex-col text-center text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase sm:text-left">
-            <span>web version 1.0.1</span>
+            <span>web version 1.1.0</span>
             <span>
               developer: <a href="mailto:lukajurkic1@gmail.com" className="transition-colors hover:text-foreground">lukajurkic1@gmail.com</a>
             </span>
