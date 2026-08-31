@@ -177,13 +177,31 @@ The project utilizes two GitHub Actions workflows located in `.github/workflows/
 
 The project is currently in **Maintenance Phase**. Recommended operational procedures:
 
-### Adding New Product Images
-1. Place image files into appropriate subdirectory under `/public/images/`:
-   - `/public/images/bouquets/` for bouquet images.
-   - `/public/images/rosaries/` for rosary images.
-   - `/public/images/box_bouquets/` for box bouquet images.
-2. Update filename arrays in `components/category-galleries.tsx` (`bouquetFiles`, `rosaryFiles`, `boxBouquetsFiles`).
-3. Commit and push changes to `main` to trigger automatic deployment.
+### Image Processing & Optimization Script (`scripts/process-images.mjs`)
+
+The project includes an automated script (`scripts/process-images.mjs`) powered by `sharp` for batch image web optimization, standardized renaming, and component synchronization.
+
+#### Purpose & Functionality
+1. **WebP Conversion**: Scans subfolders under `public/images/` (`bouquets/`, `rosaries/`, `box_bouquets/`) and converts all raw image files (`.jpg`, `.jpeg`, `.png`, etc.) to lightweight `.webp` format for web optimization.
+2. **Standardized Renaming**: Renames images based on their subfolder name following the pattern `<subfolder_name>_<ID>.webp` (e.g. `rosaries_1.webp`, `rosaries_2.webp`, `bouquets_1.webp`).
+3. **Sequential ID Preservation**: Detects existing numbered files in a subfolder and continues numbering sequentially for new images (e.g. if `rosaries_11.webp` is the highest existing file, new images will automatically become `rosaries_12.webp`, `rosaries_13.webp`, etc.).
+4. **Automated Component Sync**: Automatically updates the image file arrays in `components/category-galleries.tsx` (`bouquetFiles`, `rosaryFiles`, `boxBouquetsFiles`) so new images appear in the site slideshows instantly.
+
+#### When to Use
+Run the script whenever you add new raw photos into any subfolder inside `/public/images/`.
+
+#### How to Use
+Run the following command from the project root:
+
+```bash
+npm run process-images
+```
+
+#### Step-by-Step Workflow for Adding New Images:
+1. Copy raw product photos (e.g., `my_new_bouquet.jpg`, `custom_rosary.jpeg`) into the appropriate subfolder (`public/images/bouquets/`, `public/images/rosaries/`, or `public/images/box_bouquets/`).
+2. Run `npm run process-images` in your terminal.
+3. Verify that the files were converted to `.webp`, renamed, and registered in `components/category-galleries.tsx`.
+4. Commit and push the changes to GitHub.
 
 ---
 
