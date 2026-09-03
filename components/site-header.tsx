@@ -17,7 +17,7 @@ export function SiteHeader() {
         >
           {/* Logo Image - prilagođena visina h-12 na mobitelu da stane u h-16 header */}
           <img
-            src="/images/rosadei_logo.png"
+            src="/rosadei_logo.png"
             alt="Rosa Dei"
             className="h-12 w-auto object-contain sm:h-16"
           />
