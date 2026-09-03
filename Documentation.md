@@ -1,6 +1,6 @@
 # Technical Documentation — Rosa Dei Web Presentation
 
-This document provides complete technical documentation for the Rosa Dei web application, including architecture decisions, component design, technology rationale, development setup, CI/CD pipeline, and future development roadmap.
+This document provides complete technical documentation for the Rosa Dei web application, including architecture decisions, subpage structure, component design, technology rationale, development setup, CI/CD pipeline, image management scripts, and future development roadmap.
 
 ---
 
@@ -10,106 +10,104 @@ This document provides complete technical documentation for the Rosa Dei web app
 2. [Technology Stack and Rationale](#technology-stack-and-rationale)
 3. [Architecture & Component Breakdown](#architecture--component-breakdown)
 4. [Development Environment & Setup](#development-environment--setup)
-5. [CI/CD Deployment Pipeline](#cicd-deployment-pipeline)
-6. [Maintenance & Operational Procedures](#maintenance--operational-procedures)
-7. [Future Features & Technical Roadmap](#future-features--technical-roadmap)
+5. [Image Processing & Optimization Pipeline](#image-processing--optimization-pipeline)
+6. [CI/CD Deployment Pipeline](#cicd-deployment-pipeline)
+7. [Maintenance & Operational Procedures](#maintenance--operational-procedures)
+8. [Future Features & Technical Roadmap](#future-features--technical-roadmap)
 
 ---
 
 ## Project Overview
 
-Rosa Dei (`rosadei.hr`) is an artisan business based in Garešnica, Croatia (Obrt Za Usluge, vl. Željka Jurkić), specializing in handcrafted floral arrangements, rosaries, and specialized gift items.
+Rosa Dei (`rosadei.hr`) is an artisan business based in Garešnica, Croatia (Obrt Za Usluge, vl. Željka Jurkić), specializing in handcrafted floral arrangements, rosaries, customized gift arrangements, and event favors.
 
-The web application serves as a single-page interactive showcase and customer inquiry portal. It is engineered as a static-exported web application hosted on GitHub Pages and served through Cloudflare for global caching, SSL security, and DNS resolution.
+The web application is engineered as a modern multi-page static application hosted on GitHub Pages and served through Cloudflare for global caching, SSL security, and DNS resolution.
 
 ---
 
 ## Technology Stack and Rationale
 
-The project leverages a modern web technology stack optimized for performance, maintainability, zero server overhead, and high visual standards.
+The project leverages a modern web technology stack optimized for speed, maintainability, zero server overhead, and high visual standards.
 
 | Layer | Technology | Rationale |
 | :--- | :--- | :--- |
-| **Framework** | Next.js 16 (App Router) | Enables static HTML export (`output: 'export'`), producing static HTML/CSS/JS assets that require no dynamic Node.js server. Provides optimal SEO performance, page load speed, and static optimization. |
-| **UI Library** | React 19 | Latest version of React delivering efficient state handling, client-side slideshow components, and smooth UI transitions. |
-| **Styling** | Tailwind CSS 4 | Modern utility-first CSS framework with custom color tokens (`gold`, `primary`, `card`), custom fonts, and responsive layout classes without CSS overhead. |
-| **Icons & UI** | Lucide React & Base UI | Lightweight, accessible SVG icon library providing clean iconography without inflating bundle size. |
+| **Framework** | Next.js 16 (App Router) | Enables static HTML export (`output: 'export'`), producing static HTML/CSS/JS assets for routes (`/`, `/personaliziraj`, `/kontakti-i-narudzbe`). Provides optimal SEO performance, page load speed, and static optimization. |
+| **UI Library** | React 19 | Latest version of React delivering efficient state handling, interactive lightbox modals, and client-side slideshow components. |
+| **Styling** | Tailwind CSS 4 | Utility-first CSS framework with custom design tokens (`gold`, `primary`), smooth glassmorphic backdrops, and responsive grid layouts. |
+| **Icons & UI** | Lucide React | Lightweight, accessible SVG icon library providing clean iconography (`Images`, `Sparkles`, `Palette`, `ArrowRight`, `X`, `ZoomIn`). |
+| **Image Engine** | Sharp | High-performance image processing library used in `scripts/process-images.mjs` for WebP conversion and automatic component array updates. |
 | **Hosting** | GitHub Pages | Zero-cost, high-reliability static hosting directly linked to the GitHub repository source code. |
-| **CDN & DNS** | Cloudflare | Provides free TLS/SSL encryption, edge caching, DDoS mitigation, and custom domain mapping (`rosadei.hr`) to GitHub Pages. |
-
-### Technical Rationale for Stack Selection
-
-1. **Next.js Static Export (`output: 'export'`)**:
-   - **Performance**: Pre-rendered static HTML is served instantly from edge nodes without server-side rendering latency.
-   - **Cost Efficiency**: Removes the need for hosting server instances (e.g. Vercel Pro, AWS EC2, VPS), resulting in 0 USD monthly infrastructure cost.
-   - **Security**: Eliminates backend attack surfaces, database vulnerabilities, and server-side code execution risks.
-
-2. **Tailwind CSS 4**:
-   - Compiles unused utility classes away during production build.
-   - Standardizes design tokens (colors, typography, spacing, border radii) across all presentation components.
-
-3. **Cloudflare CDN + GitHub Pages**:
-   - **Automated SSL/TLS**: Cloudflare automatically manages HTTPS certificates for `rosadei.hr`.
-   - **Global Caching**: Assets are cached worldwide, guaranteeing quick loading times for visitors across Croatia and Europe.
+| **CDN & DNS** | Cloudflare | Provides free TLS/SSL encryption, edge caching, DDoS mitigation, and custom domain mapping (`rosadei.hr`). |
 
 ---
 
 ## Architecture & Component Breakdown
 
-The codebase is organized following the Next.js App Router convention:
+The codebase is organized following the Next.js App Router structure with shared layouts and subpages:
 
 ```
 rosadei/
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml               # PR validation workflow
+│       ├── ci.yml               # PR build validation workflow
 │       └── deploy.yml           # GitHub Pages deployment workflow
 ├── app/
 │   ├── globals.css              # Custom styling, fonts, and theme tokens
-│   ├── layout.tsx               # Root layout wrapper
-│   └── page.tsx                 # Main entry page assembling core sections
+│   ├── layout.tsx               # Shared RootLayout (canvas styling, SiteHeader, ContactFooter)
+│   ├── page.tsx                 # Home page (HeroSection, CategoryGalleries, CTA Banners)
+│   ├── personaliziraj/
+│   │   └── page.tsx             # Personalization subpage (CustomizationOptions, CTA Banner)
+│   └── kontakti-i-narudzbe/
+│       └── page.tsx             # Ordering & Contact subpage (OrderingJourney, ContactSection)
 ├── components/
-│   ├── category-galleries.tsx   # Product galleries and slideshows
-│   ├── contact-footer.tsx       # Contact details, business hours, and legal footer
-│   ├── customization-options.tsx# Bespoke product customization preview
-│   ├── hero-section.tsx         # Hero section with primary brand message
+│   ├── category-galleries.tsx   # Product category slideshows (Buketi, Krunice, Box Buketi)
+│   ├── contact-footer.tsx       # ContactSection card & global ContactFooter bar
+│   ├── customization-options.tsx# Categorized customization options (Dodatci, Trake, Papir, Kutije)
+│   ├── gallery-modal.tsx        # Fullscreen 30-image randomized gallery overlay with lightbox
+│   ├── hero-section.tsx         # Hero section with primary brand message and gallery trigger
+│   ├── order-cta-banner.tsx     # Order call-to-action banner linking to /kontakti-i-narudzbe
 │   ├── ordering-journey.tsx     # 3-step order process section
+│   ├── personalize-cta-banner.tsx# Personalization call-to-action banner linking to /personaliziraj
 │   ├── rosa-marks.tsx           # SVG brand marks and social icons
-│   ├── site-header.tsx          # Sticky navigation header
+│   ├── site-header.tsx          # Sticky navigation header with active route highlighting
 │   └── ui/                      # Base reusable UI primitives
 ├── public/
-│   └── images/                  # Static product images organized by category
+│   └── images/                  # Product and customization images organized by subfolders
+├── scripts/
+│   └── process-images.mjs       # Image optimization and component array synchronization script
 ├── next.config.mjs              # Next.js configuration (static export enabled)
 ├── package.json                 # Node.js dependencies and scripts
 └── tsconfig.json                # TypeScript configuration
 ```
 
-### Key Components
+### Key Subpages & Components
 
-1. **`SiteHeader` (`components/site-header.tsx`)**:
-   - Sticky header with glassmorphism backdrop blur.
-   - Displays official logo (`/images/rosadei_logo.png`) and responsive navigation links.
+1. **Root Layout (`app/layout.tsx`)**:
+   - Wraps all subpages in a canvas background wrapper (`rosa-canvas rosa-grain relative min-h-screen`).
+   - Renders `SiteHeader` at top and `ContactFooter` bar at bottom globally across all pages.
 
-2. **`HeroSection` (`components/hero-section.tsx`)**:
-   - Primary hero area featuring the slogan *"Po slici prirode - Napravljeno da traje"*.
-   - Includes subtle ambient glow effects and call-to-action button linking to collections.
+2. **`SiteHeader` (`components/site-header.tsx`)**:
+   - Sticky glassmorphic navigation header.
+   - Client-side navigation (`Link` & `usePathname()`) connecting `/`, `/personaliziraj`, and `/kontakti-i-narudzbe`.
 
-3. **`CategoryGalleries` (`components/category-galleries.tsx`)**:
-   - Displays three product categories:
-     - **Buketi** (Bouquets)
-     - **Krunice** (Rosaries)
-     - **Box Buketi** (Box Bouquets)
-   - Features automated image rotation (4-second interval) with dot navigation indicators.
+3. **`HeroSection` (`components/hero-section.tsx`)**:
+   - Brand showcase featuring slogan *"Po slici prirode - Napravljeno da traje"*.
+   - Includes **"Istraži ponudu"** scroll button and **"Pogledaj galeriju"** modal trigger button.
 
-4. **`CustomizationOptions` (`components/customization-options.tsx`)**:
-   - Interactive options drawer showcasing customization categories: *Silk Ribbon Finishes*, *Wrapping Paper Tones*, and *Botanical Accents*.
-   - Includes hover tooltips displaying swatch previews and descriptions.
+4. **`GalleryModal` (`components/gallery-modal.tsx`)**:
+   - Fullscreen overlay modal displaying 30 gallery images in a 4:3 aspect ratio grid (`aspect-[4/3]`).
+   - Automatically randomizes image sequence on every open.
+   - Includes fullscreen lightbox viewer with previous/next image navigation and Escape key handling.
 
-5. **`OrderingJourney` (`components/ordering-journey.tsx`)**:
-   - Illustrates the three-step ordering process (*Odaberi i Zamisli*, *Kontaktirajte nas*, *Ručni rad*).
+5. **`CustomizationOptions` (`components/customization-options.tsx`)**:
+   - Categorized customization drawer on `/personaliziraj` covering *Dodatci*, *Boje traka*, *Papir za zamatanje*, and *Box kutije*.
+   - Includes interactive tab filtering and image lightbox preview.
 
-6. **`ContactFooter` (`components/contact-footer.tsx`)**:
-   - Displays contact options (Email, Phone, Instagram), operating hours, business location (Garešnica), legal details (OIB), and updated 3-column footer (Left: web version & developer contact; Center: ROSA DEI title; Right: 2-row legal copyright).
+6. **`OrderingJourney` & `ContactSection` (`app/kontakti-i-narudzbe/page.tsx`)**:
+   - 3-step customer guide explaining the ordering flow, accompanied by the `ContactSection` card with direct telephone, email, Instagram, operating hours, and location details.
+
+7. **CTA Banners (`PersonalizeCtaBanner` & `OrderCtaBanner`)**:
+   - Glassmorphic call-to-action cards connecting the homepage and personalization subpage seamlessly to ordering.
 
 ---
 
@@ -118,7 +116,7 @@ rosadei/
 ### Prerequisites
 
 - **Node.js**: Version 20.x or higher (LTS release recommended).
-- **Package Manager**: `npm` (v10+) or `pnpm`.
+- **Package Manager**: `npm` (v10+).
 
 ### Installation & Local Run
 
@@ -137,90 +135,77 @@ rosadei/
    ```bash
    npm run dev
    ```
-   The application will be accessible at `http://localhost:3001` (or `http://localhost:3000` depending on port availability).
+   The application will be accessible at `http://localhost:3001` (or `http://localhost:3000`).
 
 4. **Build Production Static Export**:
    ```bash
    npm run build
    ```
-   Output files will be generated in the `./out` directory.
+   Output static HTML routes (`/`, `/personaliziraj`, `/kontakti-i-narudzbe`) will be compiled in `./out`.
+
+---
+
+## Image Processing & Optimization Pipeline
+
+The project includes an automated script (`scripts/process-images.mjs`) powered by `sharp` for batch image optimization, standardized renaming, and component array synchronization.
+
+### Supported Formats & Naming Standards
+
+- **Supported Formats**: `.jpg`, `.jpeg`, `.png`, `.webp`, `.avif`, `.tiff`, `.bmp`, `.heic`, `.heif`.
+- **Image Conversion**: Converts all raw images to lightweight WebP format (`quality: 82`).
+- **Naming Pattern**:
+  - Main categories: `bouquets_1.webp`, `rosaries_1.webp`, `box_bouquets_1.webp`, `gallery_1.webp`.
+  - Nested subfolders: `customization-additions_1.webp`, `customization-boxes_1.webp`, etc.
+
+### Automated Component Synchronization
+
+Running `npm run process-images` automatically scans `/public/images/` and updates the following components:
+1. `components/category-galleries.tsx` (updates `bouquetFiles`, `rosaryFiles`, `boxBouquetsFiles`, etc.)
+2. `components/customization-options.tsx` (updates `additionsFiles`, `boxesFiles`, `ribbonsFiles`, `decorativePaperFiles`)
+3. `components/gallery-modal.tsx` (updates `galleryFiles`)
+
+### How to Add New Images
+
+1. Place raw photos inside the target directory:
+   - `public/images/bouquets/`
+   - `public/images/rosaries/`
+   - `public/images/gallery/`
+   - `public/images/customization/<additions|boxes|ribbons|decorative_paper>/`
+2. Run terminal command:
+   ```bash
+   npm run process-images
+   ```
+3. The script will convert, format, rename, delete original raw files, and update component arrays automatically.
 
 ---
 
 ## CI/CD Deployment Pipeline
 
-The project utilizes two GitHub Actions workflows located in `.github/workflows/`:
+1. **Continuous Integration (`.github/workflows/ci.yml`)**:
+   - Triggered on PRs targeting `main`.
+   - Runs `npm ci` and `npm run build` to validate TypeScript and static compilation.
 
-### 1. Continuous Integration (`ci.yml`)
-- **Triggers**: Pull requests targeting `main` or `develop` branches.
-- **Actions**:
-  - Sets up Node.js 20.
-  - Installs dependencies using `npm ci`.
-  - Runs `npm run build` to verify code compiles without TypeScript or build errors.
+2. **Continuous Deployment (`.github/workflows/deploy.yml`)**:
+   - Triggered on push to `main`.
+   - Builds static export `./out` and deploys directly to **GitHub Pages**.
 
-### 2. Continuous Deployment (`deploy.yml`)
-- **Triggers**: Pushes to `main` or `master` branch, or manual trigger (`workflow_dispatch`).
-- **Actions**:
-  - Checks out code and installs dependencies.
-  - Executes `npm run build` to compile the app into `./out`.
-  - Uploads the `./out` folder as a Pages artifact.
-  - Deploys static files directly to **GitHub Pages**.
-
-### 3. Cloudflare Routing Setup
-- **DNS**: Domain `rosadei.hr` DNS is managed by Cloudflare.
-- **Proxy**: Cloudflare proxies traffic to GitHub Pages backend servers (`<username>.github.io`).
-- **SSL**: Cloudflare handles SSL/TLS certificate issuing and automatic HTTPS redirection.
+3. **Cloudflare CDN**:
+   - Manages SSL/TLS for `rosadei.hr` and proxies traffic to GitHub Pages.
 
 ---
 
 ## Maintenance & Operational Procedures
 
-The project is currently in **Maintenance Phase**. Recommended operational procedures:
-
-### Image Processing & Optimization Script (`scripts/process-images.mjs`)
-
-The project includes an automated script (`scripts/process-images.mjs`) powered by `sharp` for batch image web optimization, standardized renaming, and component synchronization.
-
-#### Purpose & Functionality
-1. **WebP Conversion**: Scans subfolders under `public/images/` (`bouquets/`, `rosaries/`, `box_bouquets/`) and converts all raw image files (`.jpg`, `.jpeg`, `.png`, etc.) to lightweight `.webp` format for web optimization.
-2. **Standardized Renaming**: Renames images based on their subfolder name following the pattern `<subfolder_name>_<ID>.webp` (e.g. `rosaries_1.webp`, `rosaries_2.webp`, `bouquets_1.webp`).
-3. **Sequential ID Preservation**: Detects existing numbered files in a subfolder and continues numbering sequentially for new images (e.g. if `rosaries_11.webp` is the highest existing file, new images will automatically become `rosaries_12.webp`, `rosaries_13.webp`, etc.).
-4. **Automated Component Sync**: Automatically updates the image file arrays in `components/category-galleries.tsx` (`bouquetFiles`, `rosaryFiles`, `boxBouquetsFiles`) so new images appear in the site slideshows instantly.
-
-#### When to Use
-Run the script whenever you add new raw photos into any subfolder inside `/public/images/`.
-
-#### How to Use
-Run the following command from the project root:
-
-```bash
-npm run process-images
-```
-
-#### Step-by-Step Workflow for Adding New Images:
-1. Copy raw product photos (e.g., `my_new_bouquet.jpg`, `custom_rosary.jpeg`) into the appropriate subfolder (`public/images/bouquets/`, `public/images/rosaries/`, or `public/images/box_bouquets/`).
-2. Run `npm run process-images` in your terminal.
-3. Verify that the files were converted to `.webp`, renamed, and registered in `components/category-galleries.tsx`.
-4. Commit and push the changes to GitHub.
+- Run `npm run process-images` whenever new photos are added.
+- Run `npm run build` locally to verify static page generation before committing.
 
 ---
 
 ## Future Features & Technical Roadmap
 
-1. **New Content Sections**:
-   - Introduce dedicated *O nama* (About Us) and *Česta pitanja* (FAQ) sections.
-
-2. **Customization Module Activation**:
-   - Re-enable and integrate the `CustomizationOptions` component into the active layout in `app/page.tsx`.
-
-3. **Featured Products Section ("Novo u ponudi")**:
-   - Add a dedicated showcase section on the homepage highlighting new product releases.
-
-4. **Developer & Support Contact**:
-   - Include dedicated developer/technical support contact details in the footer.
-
-5. **Improved Lightbox Gallery**:
-   - Upgrade category slideshows to interactive, full-screen lightbox galleries with pinch-to-zoom support.
-
-6. **Image Management Pipeline**:
-   - Implement a lightweight image management solution or automated build script to register image files dynamically without manual code edits.
+1. **Content Expansion**:
+   - Add dedicated FAQ section (*Česta pitanja*) on `/kontakti-i-narudzbe`.
+2. **Interactive Customization Builder**:
+   - Enable interactive bouquet configuration preview in `/personaliziraj`.
+3. **Multi-language Support (i18n)**:
+   - Optional Croatian / English language toggle in header.

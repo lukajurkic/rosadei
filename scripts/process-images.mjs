@@ -4,18 +4,22 @@ import sharp from 'sharp'
 
 const IMAGES_DIR = path.join(process.cwd(), 'public', 'images')
 const GALLERY_COMPONENT_PATH = path.join(process.cwd(), 'components', 'category-galleries.tsx')
+const CUSTOMIZATION_COMPONENT_PATH = path.join(process.cwd(), 'components', 'customization-options.tsx')
+const GALLERY_MODAL_PATH = path.join(process.cwd(), 'components', 'gallery-modal.tsx')
 
 // Supported image extensions to convert
-const SUPPORTED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.tiff', '.bmp'])
+const SUPPORTED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.tiff', '.bmp', '.heic', '.heif'])
 
-async function processSubfolder(folderName) {
-  const folderPath = path.join(IMAGES_DIR, folderName)
+async function processSubfolder(folderName, subfolderName = null) {
+  const relativeFolderPath = subfolderName ? path.join(folderName, subfolderName) : folderName
+  const folderPath = path.join(IMAGES_DIR, relativeFolderPath)
 
   if (!fs.existsSync(folderPath) || !fs.statSync(folderPath).isDirectory()) {
     return null
   }
 
-  console.log(`\n📁 Processing subfolder: public/images/${folderName}`)
+  const displayName = subfolderName ? `public/images/${folderName}/${subfolderName}` : `public/images/${folderName}`
+  console.log(`\n📁 Processing subfolder: ${displayName}`)
 
   const files = fs.readdirSync(folderPath).filter((file) => {
     if (file.startsWith('.')) return false // skip hidden files
@@ -23,14 +27,14 @@ async function processSubfolder(folderName) {
     return SUPPORTED_EXTENSIONS.has(ext)
   })
 
-  if (files.length === 0) {
-    console.log(`   No supported images found in ${folderName}`)
-    return []
-  }
-
-  const targetPrefix = folderName
-  // Exact pattern for ALREADY formatted WebP files for this subfolder: <folderName>_<number>.webp
+  const targetPrefix = subfolderName ? `${folderName}-${subfolderName}` : folderName
+  // Exact pattern for ALREADY formatted WebP files: <targetPrefix>_<number>.webp
   const exactFormattedPattern = new RegExp(`^${targetPrefix}_(\\d+)\\.webp$`, 'i')
+
+  if (files.length === 0) {
+    console.log(`   No supported images found in ${relativeFolderPath}`)
+    return { folderName, subfolderName, files: [] }
+  }
 
   const formattedMap = new Map() // ID -> filename
   const unformattedFiles = []
@@ -86,8 +90,8 @@ async function processSubfolder(folderName) {
     return numA - numB
   })
 
-  console.log(`   ✅ Finished ${folderName}: ${uniqueFiles.length} .webp images ready.`)
-  return { folderName, files: uniqueFiles }
+  console.log(`   ✅ Finished ${relativeFolderPath}: ${uniqueFiles.length} .webp images ready.`)
+  return { folderName, subfolderName, files: uniqueFiles }
 }
 
 function updateGalleryComponent(folderResults) {
@@ -97,7 +101,7 @@ function updateGalleryComponent(folderResults) {
   let updated = false
 
   for (const res of folderResults) {
-    if (!res || !res.files) continue
+    if (!res || !res.files || res.subfolderName) continue
 
     const formatArray = res.files.map((f) => `  '${f}',`).join('\n')
 
@@ -146,6 +150,74 @@ function updateGalleryComponent(folderResults) {
   }
 }
 
+function updateCustomizationComponent(folderResults) {
+  if (!fs.existsSync(CUSTOMIZATION_COMPONENT_PATH)) return
+
+  let content = fs.readFileSync(CUSTOMIZATION_COMPONENT_PATH, 'utf-8')
+  let updated = false
+
+  for (const res of folderResults) {
+    if (!res || !res.files || res.folderName !== 'customization') continue
+
+    const formatArray = res.files.length > 0 ? res.files.map((f) => `  '${f}',`).join('\n') : ''
+
+    if (res.subfolderName === 'additions') {
+      content = content.replace(
+        /const additionsFiles = \[\s*[\s\S]*?\s*\];/m,
+        `const additionsFiles = [\n${formatArray}${formatArray ? '\n' : ''}];`
+      )
+      updated = true
+    } else if (res.subfolderName === 'ribbons') {
+      content = content.replace(
+        /const ribbonsFiles = \[\s*[\s\S]*?\s*\];/m,
+        `const ribbonsFiles = [\n${formatArray}${formatArray ? '\n' : ''}];`
+      )
+      updated = true
+    } else if (res.subfolderName === 'decorative_paper') {
+      content = content.replace(
+        /const decorativePaperFiles = \[\s*[\s\S]*?\s*\];/m,
+        `const decorativePaperFiles = [\n${formatArray}${formatArray ? '\n' : ''}];`
+      )
+      updated = true
+    } else if (res.subfolderName === 'boxes') {
+      content = content.replace(
+        /const boxesFiles = \[\s*[\s\S]*?\s*\];/m,
+        `const boxesFiles = [\n${formatArray}${formatArray ? '\n' : ''}];`
+      )
+      updated = true
+    }
+  }
+
+  if (updated) {
+    fs.writeFileSync(CUSTOMIZATION_COMPONENT_PATH, content, 'utf-8')
+    console.log(`\n✨ Automatically updated components/customization-options.tsx with clean, deduplicated webp paths.`)
+  }
+}
+
+function updateGalleryModalComponent(folderResults) {
+  if (!fs.existsSync(GALLERY_MODAL_PATH)) return
+
+  let content = fs.readFileSync(GALLERY_MODAL_PATH, 'utf-8')
+  let updated = false
+
+  for (const res of folderResults) {
+    if (!res || !res.files || res.subfolderName || res.folderName !== 'gallery') continue
+
+    const formatArray = res.files.length > 0 ? res.files.map((f) => `  '${f}',`).join('\n') : ''
+
+    content = content.replace(
+      /const galleryFiles = \[\s*[\s\S]*?\s*\];/m,
+      `const galleryFiles = [\n${formatArray}${formatArray ? '\n' : ''}];`
+    )
+    updated = true
+  }
+
+  if (updated) {
+    fs.writeFileSync(GALLERY_MODAL_PATH, content, 'utf-8')
+    console.log(`\n✨ Automatically updated components/gallery-modal.tsx with clean, deduplicated webp paths.`)
+  }
+}
+
 async function main() {
   console.log('🖼️  Starting Rosa Dei Image Optimization & Renaming Script...')
 
@@ -160,12 +232,24 @@ async function main() {
   for (const entry of entries) {
     const fullPath = path.join(IMAGES_DIR, entry)
     if (fs.statSync(fullPath).isDirectory()) {
-      const res = await processSubfolder(entry)
-      if (res) results.push(res)
+      const subEntries = fs.readdirSync(fullPath)
+      const subDirs = subEntries.filter((s) => fs.statSync(path.join(fullPath, s)).isDirectory())
+
+      if (subDirs.length > 0) {
+        for (const subDir of subDirs) {
+          const res = await processSubfolder(entry, subDir)
+          if (res) results.push(res)
+        }
+      } else {
+        const res = await processSubfolder(entry)
+        if (res) results.push(res)
+      }
     }
   }
 
   updateGalleryComponent(results)
+  updateCustomizationComponent(results)
+  updateGalleryModalComponent(results)
 
   console.log('\n🎉 Image processing completed successfully!')
 }
