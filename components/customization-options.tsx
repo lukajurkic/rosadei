@@ -1,216 +1,323 @@
 'use client'
 
-import { ChevronRight, Flower2, Leaf, Ribbon } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
+import Image from 'next/image'
+import { Sparkles, Ribbon, Layers, Box, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 import type { ComponentType } from 'react'
 
-type Option = {
-  name: string
-  swatch: string
-  descriptor: string
-}
+const additionsFiles = [
+  'customization-additions_1.webp',
+  'customization-additions_2.webp',
+  'customization-additions_3.webp',
+];
 
-type Group = {
+const ribbonsFiles = [
+];
+
+const decorativePaperFiles = [
+];
+
+const boxesFiles = [
+  'customization-boxes_1.webp',
+  'customization-boxes_2.webp',
+  'customization-boxes_3.webp',
+  'customization-boxes_4.webp',
+  'customization-boxes_5.webp',
+  'customization-boxes_6.webp',
+];
+
+type CustomizationCategory = {
   id: string
   title: string
+  subtitle: string
+  description: string
   icon: ComponentType<{ className?: string }>
-  options: Option[]
-}
-
-const groups: Group[] = [
-  {
-    id: 'ribbons',
-    title: 'Silk Ribbon Finishes',
-    icon: Ribbon,
-    options: [
-      {
-        name: 'Dusty Rose Satin',
-        swatch: 'linear-gradient(135deg, #e6b6bd 0%, #c98f9b 100%)',
-        descriptor:
-          'A heavyweight satin with a muted sheen that falls in long, soft tails.',
-      },
-      {
-        name: 'Champagne Gold',
-        swatch: 'linear-gradient(135deg, #f3e2b8 0%, #d4af37 100%)',
-        descriptor:
-          'Warm metallic silk reserved for celebrations and ceremonial pieces.',
-      },
-      {
-        name: 'Ivory Habotai',
-        swatch: 'linear-gradient(135deg, #fdf6ee 0%, #e8dbc9 100%)',
-        descriptor:
-          'Feather-light hand-torn silk with a delicate raw edge, our bridal default.',
-      },
-      {
-        name: 'Sage Velvet',
-        swatch: 'linear-gradient(135deg, #cbd6c1 0%, #94a389 100%)',
-        descriptor:
-          'A deeper, tactile ribbon that grounds pastel arrangements beautifully.',
-      },
-    ],
-  },
-  {
-    id: 'wrapping',
-    title: 'Wrapping Paper Tones',
-    icon: Flower2,
-    options: [
-      {
-        name: 'Raw Edge Linen',
-        swatch: 'linear-gradient(135deg, #efe6da 0%, #d8c9b6 100%)',
-        descriptor:
-          'Woven linen wrap with a frayed hem for an unhurried, organic finish.',
-      },
-      {
-        name: 'Blush Kraft',
-        swatch: 'linear-gradient(135deg, #f8d5e2 0%, #e3aec2 100%)',
-        descriptor:
-          'Matte recycled kraft in the softest rose — our most requested wrap.',
-      },
-      {
-        name: 'Warm Sand',
-        swatch: 'linear-gradient(135deg, #f6e7d3 0%, #dcc3a3 100%)',
-        descriptor:
-          'A sunlit neutral that lets peach and apricot stems lead the eye.',
-      },
-      {
-        name: 'Translucent Vellum',
-        swatch: 'linear-gradient(135deg, #fefbf6 0%, #eef0ea 100%)',
-        descriptor:
-          'A whisper-thin frosted sheet that softens the silhouette of every stem.',
-      },
-    ],
-  },
-  {
-    id: 'accents',
-    title: 'Botanical Accents',
-    icon: Leaf,
-    options: [
-      {
-        name: 'Dried Lavender Sprig',
-        swatch: 'linear-gradient(135deg, #ddd2e8 0%, #a294bd 100%)',
-        descriptor:
-          'Tucked at the collar for a quiet, lingering scent that lasts weeks.',
-      },
-      {
-        name: 'Eucalyptus Trail',
-        swatch: 'linear-gradient(135deg, #d5e0d6 0%, #8fa895 100%)',
-        descriptor:
-          'Long silvered branches that give the arrangement movement and air.',
-      },
-      {
-        name: 'Bleached Bunny Tails',
-        swatch: 'linear-gradient(135deg, #f7f0e2 0%, #e0d2b6 100%)',
-        descriptor:
-          'Soft dried plumes that add texture without weight or colour.',
-      },
-      {
-        name: 'Pressed Wax Seal',
-        swatch: 'linear-gradient(135deg, #f0cfa4 0%, #c08f4c 100%)',
-        descriptor:
-          'A hand-stamped seal on the card, monogrammed on request.',
-      },
-    ],
-  },
-]
-
-function OptionRow({ option }: { option: Option }) {
-  const [hoveredOption, setHoveredOption] = useState(false)
-
-  return (
-    <li
-      className="relative"
-      onMouseEnter={() => setHoveredOption(true)}
-      onMouseLeave={() => setHoveredOption(false)}
-      onFocus={() => setHoveredOption(true)}
-      onBlur={() => setHoveredOption(false)}
-    >
-      <button
-        type="button"
-        className="flex w-full cursor-pointer items-center justify-between gap-3 border-b border-rose-200/50 py-3.5 text-left transition-colors last:border-b-0 hover:text-foreground focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
-      >
-        <span className="flex items-center gap-3">
-          <span
-            aria-hidden="true"
-            className="size-4 shrink-0 rounded-full ring-1 ring-foreground/10"
-            style={{ backgroundImage: option.swatch }}
-          />
-          <span className="text-sm text-foreground/80">{option.name}</span>
-        </span>
-        <ChevronRight
-          className={`size-4 shrink-0 text-foreground/30 transition-transform duration-300 ${
-            hoveredOption ? 'translate-x-0.5 text-gold' : ''
-          }`}
-        />
-      </button>
-
-      {hoveredOption ? (
-        <div
-          role="tooltip"
-          className="pointer-events-none absolute -top-2 left-1/2 z-30 w-64 -translate-x-1/2 -translate-y-full rounded-2xl border border-rose-200/50 bg-card/95 p-4 shadow-xl shadow-rose-900/10 backdrop-blur-md"
-        >
-          <div className="flex items-start gap-3">
-            <span
-              aria-hidden="true"
-              className="mt-0.5 size-9 shrink-0 rounded-full ring-1 ring-foreground/10"
-              style={{ backgroundImage: option.swatch }}
-            />
-            <div>
-              <p className="font-serif text-base leading-snug">{option.name}</p>
-              <p className="mt-1 text-xs leading-relaxed text-pretty text-foreground/65">
-                {option.descriptor}
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : null}
-    </li>
-  )
+  subfolder: string
+  files: string[]
 }
 
 export function CustomizationOptions() {
+  const categories: CustomizationCategory[] = [
+    {
+      id: 'additions',
+      title: 'Dodatci',
+      subtitle: 'Bespoke Additions',
+      description: 'Posebni detalji i dodaci koji daju personalizirani i jedinstven pečat svakom aranžmanu.',
+      icon: Sparkles,
+      subfolder: 'additions',
+      files: additionsFiles,
+    },
+    {
+      id: 'ribbons',
+      title: 'Boje traka',
+      subtitle: 'Silk & Satin Ribbons',
+      description: 'Svilene, satenske i baršunaste trake u pažljivo odabranim nijansama za savršen finiš.',
+      icon: Ribbon,
+      subfolder: 'ribbons',
+      files: ribbonsFiles,
+    },
+    {
+      id: 'decorative-paper',
+      title: 'Papir za zamatanje',
+      subtitle: 'Wrapping Paper',
+      description: 'Ukrasni papiri i omoti u suptilnim tonovima koji ističu ljepotu cvijeća.',
+      icon: Layers,
+      subfolder: 'decorative_paper',
+      files: decorativePaperFiles,
+    },
+    {
+      id: 'boxes',
+      title: 'Box kutije',
+      subtitle: 'Flower Boxes',
+      description: 'Elegantne kutije u raznim oblicima i dimenzijama za luksuzan dojam.',
+      icon: Box,
+      subfolder: 'boxes',
+      files: boxesFiles,
+    },
+  ]
+
+  const [activeTab, setActiveTab] = useState<string>('all')
+  const [lightboxState, setLightboxState] = useState<{
+    categoryTitle: string
+    images: { src: string; alt: string }[]
+    currentIndex: number
+  } | null>(null)
+
+  const openLightbox = (categoryTitle: string, images: { src: string; alt: string }[], index: number) => {
+    setLightboxState({ categoryTitle, images, currentIndex: index })
+  }
+
+  const closeLightbox = () => {
+    setLightboxState(null)
+  }
+
+  const nextImage = useCallback(() => {
+    if (!lightboxState) return
+    setLightboxState((prev) =>
+      prev
+        ? {
+            ...prev,
+            currentIndex: (prev.currentIndex + 1) % prev.images.length,
+          }
+        : null
+    )
+  }, [lightboxState])
+
+  const prevImage = useCallback(() => {
+    if (!lightboxState) return
+    setLightboxState((prev) =>
+      prev
+        ? {
+            ...prev,
+            currentIndex: (prev.currentIndex - 1 + prev.images.length) % prev.images.length,
+          }
+        : null
+    )
+  }, [lightboxState])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxState) return
+      if (e.key === 'Escape') closeLightbox()
+      if (e.key === 'ArrowRight') nextImage()
+      if (e.key === 'ArrowLeft') prevImage()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxState, nextImage, prevImage])
+
+  const filteredCategories = activeTab === 'all'
+    ? categories
+    : categories.filter((c) => c.id === activeTab)
+
   return (
-    <section
-      id="customization"
-      className="scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24"
-    >
+    <section id="customization" className="scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-14 text-center">
+        {/* Section Header */}
+        <div className="mb-12 text-center">
           <p className="text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase">
-            Bespoke Details
+            Personalizacija
           </p>
           <h2 className="mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl">
-            Personalize Your Arrangement
+            Opcije Personalizacije
           </h2>
-          <p className="mx-auto mt-4 max-w-md leading-relaxed text-pretty text-foreground/65">
-            Choose bespoke details for a personalized touch — hover any finish to
-            preview it.
+          <p className="mx-auto mt-4 max-w-lg leading-relaxed text-pretty text-foreground/65">
+            Svaki aranžman možete prilagoditi svojim željama. Odaberite trake, pakiranja i posebne dodatke.
           </p>
+
+          {/* Category Filter Tabs */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => setActiveTab('all')}
+              className={`rounded-full px-4 py-2 text-xs tracking-wider transition-all duration-300 ${
+                activeTab === 'all'
+                  ? 'bg-gold text-white shadow-md shadow-amber-900/10 font-medium'
+                  : 'bg-white/60 text-foreground/70 hover:bg-white hover:text-foreground border border-rose-200/40'
+              }`}
+            >
+              Sve Opcije
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveTab(cat.id)}
+                className={`rounded-full px-4 py-2 text-xs tracking-wider transition-all duration-300 ${
+                  activeTab === cat.id
+                    ? 'bg-gold text-white shadow-md shadow-amber-900/10 font-medium'
+                    : 'bg-white/60 text-foreground/70 hover:bg-white hover:text-foreground border border-rose-200/40'
+                }`}
+              >
+                {cat.title}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {groups.map((group) => {
-            const Icon = group.icon
+        {/* Categories Grid */}
+        <div className="flex flex-col gap-12 sm:gap-16">
+          {filteredCategories.map((category) => {
+            const Icon = category.icon
+            const imageList = category.files.map((file, idx) => ({
+              src: `/images/customization/${category.subfolder}/${file}`,
+              alt: `${category.title} opcija ${idx + 1} - Rosa Dei`,
+            }))
+
             return (
               <div
-                key={group.id}
-                className="rounded-2xl border border-rose-200/50 bg-white/45 p-6 shadow-sm shadow-rose-900/5 backdrop-blur-sm sm:p-7"
+                key={category.id}
+                id={category.id}
+                className="rounded-3xl border border-rose-200/50 bg-white/40 p-6 shadow-sm shadow-rose-900/5 backdrop-blur-sm sm:p-8"
               >
-                <div className="mb-5 flex items-center gap-3">
-                  <Icon className="size-5 text-gold" />
-                  <h3 className="font-serif text-xl leading-none font-normal">
-                    {group.title}
-                  </h3>
+                {/* Category Card Header */}
+                <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-rose-200/40 pb-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-2xl bg-rose-100/60 text-gold shadow-inner">
+                      <Icon className="size-5" />
+                    </div>
+                    <div>
+                      <span className="text-[0.6rem] tracking-[0.2em] text-foreground/45 uppercase font-medium">
+                        {category.subtitle}
+                      </span>
+                      <h3 className="font-serif text-2xl font-light text-foreground sm:text-3xl">
+                        {category.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="max-w-md text-xs leading-relaxed text-foreground/65 sm:text-right">
+                    {category.description}
+                  </p>
                 </div>
-                <ul>
-                  {group.options.map((option) => (
-                    <OptionRow key={option.name} option={option} />
-                  ))}
-                </ul>
+
+                {/* Category Options Gallery / Placeholders */}
+                {imageList.length > 0 ? (
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                    {imageList.map((img, index) => (
+                      <button
+                        key={img.src}
+                        type="button"
+                        onClick={() => openLightbox(category.title, imageList, index)}
+                        className="group relative aspect-square w-full overflow-hidden rounded-2xl border border-rose-200/60 bg-rose-50/50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-lg hover:shadow-rose-900/10 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+                      >
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <div className="flex size-9 items-center justify-center rounded-full bg-white/90 text-foreground shadow-md">
+                            <ZoomIn className="size-4 text-gold" />
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-rose-200/80 bg-rose-50/30 px-6 py-10 text-center">
+                    <div className="mb-3 flex size-12 items-center justify-center rounded-full bg-white/80 text-gold/80 shadow-sm">
+                      <Icon className="size-6" />
+                    </div>
+                    <h4 className="font-serif text-lg font-normal text-foreground/80">
+                      Nove opcije dolaze uskoro
+                    </h4>
+                    <p className="mt-1 max-w-sm text-xs text-foreground/55">
+                      Uskoro dodajemo nove nijanse i varijacije za kategoriju {category.title.toLowerCase()}.
+                    </p>
+                  </div>
+                )}
               </div>
             )
           })}
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxState && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Pregled - ${lightboxState.categoryTitle}`}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8"
+        >
+          {/* Close button */}
+          <button
+            type="button"
+            onClick={closeLightbox}
+            aria-label="Zatvori pregled"
+            className="absolute top-4 right-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+          >
+            <X className="size-6" />
+          </button>
+
+          {/* Previous Image Button */}
+          {lightboxState.images.length > 1 && (
+            <button
+              type="button"
+              onClick={prevImage}
+              aria-label="Prethodna slika"
+              className="absolute left-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:left-8"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+          )}
+
+          {/* Image Container */}
+          <div className="relative flex max-h-[85vh] max-w-[90vw] flex-col items-center justify-center">
+            <div className="relative aspect-auto max-h-[75vh] w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl">
+              <Image
+                src={lightboxState.images[lightboxState.currentIndex].src}
+                alt={lightboxState.images[lightboxState.currentIndex].alt}
+                width={1200}
+                height={900}
+                className="max-h-[75vh] w-auto rounded-2xl object-contain"
+              />
+            </div>
+            <div className="mt-4 flex flex-col items-center text-center text-white">
+              <span className="text-[0.65rem] tracking-[0.2em] uppercase text-white/60 font-medium">
+                {lightboxState.categoryTitle}
+              </span>
+              <p className="mt-1 text-xs text-white/80">
+                {`${lightboxState.currentIndex + 1} / ${lightboxState.images.length}`}
+              </p>
+            </div>
+          </div>
+
+          {/* Next Image Button */}
+          {lightboxState.images.length > 1 && (
+            <button
+              type="button"
+              onClick={nextImage}
+              aria-label="Sljedeća slika"
+              className="absolute right-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:right-8"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          )}
+        </div>
+      )}
     </section>
   )
 }

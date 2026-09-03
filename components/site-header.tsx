@@ -2,7 +2,7 @@ import { RoseMark } from '@/components/rosa-marks'
 
 const links = [
   { label: 'Ponuda', href: '#collections' },
-  // { label: 'Personaliziraj', href: '#customization' },
+  { label: 'Personaliziraj', href: '#customization' },
   { label: 'Kako naručiti', href: '#how-it-works' },
   { label: 'Kontakt', href: '#contact' },
 ]
