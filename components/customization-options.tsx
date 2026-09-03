@@ -285,14 +285,15 @@ export function CustomizationOptions() {
           )}
 
           {/* Image Container */}
-          <div className="relative flex max-h-[85vh] max-w-[90vw] flex-col items-center justify-center">
-            <div className="relative aspect-auto max-h-[75vh] w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl">
+          <div className="relative flex flex-col items-center justify-center">
+            <div className="relative flex h-[75vh] w-[85vw] max-w-5xl items-center justify-center overflow-hidden rounded-2xl">
               <Image
                 src={lightboxState.images[lightboxState.currentIndex].src}
                 alt={lightboxState.images[lightboxState.currentIndex].alt}
-                width={1200}
-                height={900}
-                className="max-h-[75vh] w-auto rounded-2xl object-contain"
+                fill
+                sizes="85vw"
+                className="object-contain rounded-2xl"
+                priority
               />
             </div>
             <div className="mt-4 flex flex-col items-center text-center text-white">

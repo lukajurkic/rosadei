@@ -5,9 +5,10 @@ import sharp from 'sharp'
 const IMAGES_DIR = path.join(process.cwd(), 'public', 'images')
 const GALLERY_COMPONENT_PATH = path.join(process.cwd(), 'components', 'category-galleries.tsx')
 const CUSTOMIZATION_COMPONENT_PATH = path.join(process.cwd(), 'components', 'customization-options.tsx')
+const GALLERY_MODAL_PATH = path.join(process.cwd(), 'components', 'gallery-modal.tsx')
 
 // Supported image extensions to convert
-const SUPPORTED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.tiff', '.bmp'])
+const SUPPORTED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.tiff', '.bmp', '.heic', '.heif'])
 
 async function processSubfolder(folderName, subfolderName = null) {
   const relativeFolderPath = subfolderName ? path.join(folderName, subfolderName) : folderName
@@ -193,6 +194,30 @@ function updateCustomizationComponent(folderResults) {
   }
 }
 
+function updateGalleryModalComponent(folderResults) {
+  if (!fs.existsSync(GALLERY_MODAL_PATH)) return
+
+  let content = fs.readFileSync(GALLERY_MODAL_PATH, 'utf-8')
+  let updated = false
+
+  for (const res of folderResults) {
+    if (!res || !res.files || res.subfolderName || res.folderName !== 'gallery') continue
+
+    const formatArray = res.files.length > 0 ? res.files.map((f) => `  '${f}',`).join('\n') : ''
+
+    content = content.replace(
+      /const galleryFiles = \[\s*[\s\S]*?\s*\];/m,
+      `const galleryFiles = [\n${formatArray}${formatArray ? '\n' : ''}];`
+    )
+    updated = true
+  }
+
+  if (updated) {
+    fs.writeFileSync(GALLERY_MODAL_PATH, content, 'utf-8')
+    console.log(`\n✨ Automatically updated components/gallery-modal.tsx with clean, deduplicated webp paths.`)
+  }
+}
+
 async function main() {
   console.log('🖼️  Starting Rosa Dei Image Optimization & Renaming Script...')
 
@@ -224,6 +249,7 @@ async function main() {
 
   updateGalleryComponent(results)
   updateCustomizationComponent(results)
+  updateGalleryModalComponent(results)
 
   console.log('\n🎉 Image processing completed successfully!')
 }
