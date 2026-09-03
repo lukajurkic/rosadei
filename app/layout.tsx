@@ -1,6 +1,8 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Jost } from 'next/font/google'
+import { SiteHeader } from '@/components/site-header'
+import { ContactFooter } from '@/components/contact-footer'
 import './globals.css'
 
 const display = Cormorant_Garamond({
@@ -64,7 +66,15 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} bg-background`}
     >
       <body className="antialiased">
-        {children}
+        <div id="top" className="rosa-canvas rosa-grain relative min-h-screen">
+          <div className="relative z-10 flex min-h-screen flex-col justify-between">
+            <div>
+              <SiteHeader />
+              {children}
+            </div>
+            <ContactFooter />
+          </div>
+        </div>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
