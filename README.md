@@ -1,6 +1,6 @@
 # Rosa Dei — Web Presentation
 
-Official repository for the **Rosa Dei** web presentation (`rosadei.hr`), an artisan craft business based in Garešnica, Croatia, specializing in handcrafted flower bouquets, rosaries, and custom gift arrangements.
+Official repository for the **Rosa Dei** web presentation (`rosadei.hr`), an artisan craft business based in Garešnica, Croatia, specializing in handcrafted flower bouquets, rosaries, custom gift arrangements, and bespoke event favors.
 
 For complete architectural details, technology rationale, deployment setup, and developer guidelines, refer to [Documentation.md](./Documentation.md).
 
@@ -8,7 +8,7 @@ For complete architectural details, technology rationale, deployment setup, and 
 
 ## About the Project
 
-Rosa Dei (Obrt Za Usluge, owner Željka Jurkić) provides custom handcrafted floral arrangements and religious art items created with high-quality materials. The website functions as a clean, responsive single-page web presentation serving as an interactive catalog and inquiry channel.
+Rosa Dei (Obrt Za Usluge, owner Željka Jurkić) provides custom handcrafted floral arrangements and religious art items created with high-quality materials. The website is engineered as a responsive multi-page web application serving as an interactive catalog, customization preview, and customer inquiry portal.
 
 - **Live Site**: [https://rosadei.hr](https://rosadei.hr)
 - **Location**: Đurđice Rijetković 9, 43280 Garešnica, Hrvatska
@@ -16,17 +16,21 @@ Rosa Dei (Obrt Za Usluge, owner Željka Jurkić) provides custom handcrafted flo
 
 ---
 
-## Site Functionalities
+## Site Pages & Functionalities
 
-1. **Header & Navigation**: Sticky navigation header with official branding logo and responsive navigation links.
-2. **Hero Presentation**: Primary showcase highlighting handmade quality and brand values with direct call-to-action.
-3. **Product Category Showcase**:
-   - **Buketi (Bouquets)**: Handcrafted flower arrangements.
-   - **Krunice (Rosaries)**: Handcrafted rosaries sold individually or in gift packages.
-   - **Box Buketi (Box Bouquets)**: Bouquet arrangements packaged in gift boxes.
-4. **Customization Options Module**: Preset showcase for silk ribbons, wrapping paper tones, and botanical accents.
-5. **Order Process Guide**: 3-step customer guide explaining how to choose, contact, and receive custom orders.
-6. **Contact & Legal Footer**: Direct email, telephone, Instagram contact links, operating hours, and business details.
+1. **Header & Navigation**: Sticky navigation header with official branding logo, active route highlighting, and smooth multi-page navigation.
+2. **Home Page (`/`)**:
+   - **Hero Showcase**: Brand introduction with "Istraži ponudu" and "Pogledaj galeriju" actions.
+   - **Full Image Gallery Overlay (`GalleryModal`)**: Fullscreen modal opening a randomized 30-image 4:3 grid with lightbox viewer.
+   - **Product Categories (`CategoryGalleries`)**: Slideshows for Buketi, Krunice, Box Buketi, and specialized items.
+   - **Personalization CTA (`PersonalizeCtaBanner`)**: Feature banner linking to `/personaliziraj`.
+   - **Order CTA (`OrderCtaBanner`)**: Feature banner linking to `/kontakti-i-narudzbe`.
+3. **Personalization Subpage (`/personaliziraj`)**:
+   - **Customization Options (`CustomizationOptions`)**: Categorized preview for *Dodatci*, *Boje traka*, *Papir za zamatanje*, and *Box kutije* with interactive filter tabs and lightbox viewer.
+4. **Ordering & Contact Subpage (`/kontakti-i-narudzbe`)**:
+   - **Order Process Guide (`OrderingJourney`)**: 3-step guide explaining how to choose, contact, and receive custom orders.
+   - **Contact Section (`ContactSection`)**: Business card with direct contact channels (Email, Phone, Instagram), location, and operating hours.
+5. **Global Footer (`ContactFooter`)**: Shared footer bar displayed across all pages featuring developer contact, branding mark, and legal copyright details.
 
 ---
 
@@ -35,6 +39,7 @@ Rosa Dei (Obrt Za Usluge, owner Željka Jurkić) provides custom handcrafted flo
 - **Framework**: Next.js 16 (App Router, Static HTML Export)
 - **Library**: React 19
 - **Styling**: Tailwind CSS 4
+- **Image Pipeline**: Custom `sharp`-powered optimization script (`scripts/process-images.mjs`)
 - **Hosting**: GitHub Pages
 - **CDN & DNS**: Cloudflare (SSL/HTTPS and custom domain proxying)
 
@@ -44,9 +49,9 @@ For full technical specifications and stack rationale, see [Documentation.md](./
 
 ## Project Status
 
-**Current Phase**: Maintenance Phase
+**Current Phase**: Active Maintenance & Feature Enhancement Phase
 
-The website is active, stable, and in operational maintenance mode.
+The website is active, stable, and features dynamic subpage routing and automated image management.
 
 ---
 
@@ -61,4 +66,4 @@ The website is active, stable, and in operational maintenance mode.
 
 ## Documentation Link
 
-Detailed documentation covering local development, component breakdown, CI/CD pipeline, and future roadmap is available in [Documentation.md](./Documentation.md).
+Detailed documentation covering local development, component breakdown, image scripts, CI/CD pipeline, and future roadmap is available in [Documentation.md](./Documentation.md).
