@@ -5,26 +5,12 @@ import Image from 'next/image'
 import { Sparkles, Ribbon, Layers, Box, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 import type { ComponentType } from 'react'
 
-const additionsFiles = [
-  'customization-additions_1.webp',
-  'customization-additions_2.webp',
-  'customization-additions_3.webp',
-];
-
-const ribbonsFiles = [
-];
-
-const decorativePaperFiles = [
-];
-
-const boxesFiles = [
-  'customization-boxes_1.webp',
-  'customization-boxes_2.webp',
-  'customization-boxes_3.webp',
-  'customization-boxes_4.webp',
-  'customization-boxes_5.webp',
-  'customization-boxes_6.webp',
-];
+export type CustomizationImages = {
+  additions?: string[]
+  ribbons?: string[]
+  decorative_paper?: string[]
+  boxes?: string[]
+}
 
 type CustomizationCategory = {
   id: string
@@ -36,7 +22,11 @@ type CustomizationCategory = {
   files: string[]
 }
 
-export function CustomizationOptions() {
+type CustomizationOptionsProps = {
+  images?: CustomizationImages
+}
+
+export function CustomizationOptions({ images = {} }: CustomizationOptionsProps) {
   const categories: CustomizationCategory[] = [
     {
       id: 'additions',
@@ -45,7 +35,7 @@ export function CustomizationOptions() {
       description: 'Posebni detalji i dodaci koji daju personalizirani i jedinstven pečat svakom aranžmanu.',
       icon: Sparkles,
       subfolder: 'additions',
-      files: additionsFiles,
+      files: images.additions || [],
     },
     {
       id: 'ribbons',
@@ -54,7 +44,7 @@ export function CustomizationOptions() {
       description: 'Svilene, satenske i baršunaste trake u pažljivo odabranim nijansama za savršen finiš.',
       icon: Ribbon,
       subfolder: 'ribbons',
-      files: ribbonsFiles,
+      files: images.ribbons || [],
     },
     {
       id: 'decorative-paper',
@@ -63,7 +53,7 @@ export function CustomizationOptions() {
       description: 'Ukrasni papiri i omoti u suptilnim tonovima koji ističu ljepotu cvijeća.',
       icon: Layers,
       subfolder: 'decorative_paper',
-      files: decorativePaperFiles,
+      files: images.decorative_paper || [],
     },
     {
       id: 'boxes',
@@ -72,7 +62,7 @@ export function CustomizationOptions() {
       description: 'Elegantne kutije u raznim oblicima i dimenzijama za luksuzan dojam.',
       icon: Box,
       subfolder: 'boxes',
-      files: boxesFiles,
+      files: images.boxes || [],
     },
   ]
 

@@ -147,35 +147,39 @@ rosadei/
 
 ## Image Processing & Optimization Pipeline
 
-The project includes an automated script (`scripts/process-images.mjs`) powered by `sharp` for batch image optimization, standardized renaming, and component array synchronization.
+The project includes automated image discovery at build/runtime and a script (`scripts/process-images.mjs`) powered by `sharp` for batch image optimization and standardized naming.
 
 ### Supported Formats & Naming Standards
 
 - **Supported Formats**: `.jpg`, `.jpeg`, `.png`, `.webp`, `.avif`, `.tiff`, `.bmp`, `.heic`, `.heif`.
 - **Image Conversion**: Converts all raw images to lightweight WebP format (`quality: 82`).
 - **Naming Pattern**:
-  - Main categories: `bouquets_1.webp`, `rosaries_1.webp`, `box_bouquets_1.webp`, `gallery_1.webp`.
+  - Main categories: `bouquets_1.webp`, `rosaries_1.webp`, `box_bouquets_1.webp`, `gallery_1.webp`, `wedding_lapels_1.webp`, etc.
   - Nested subfolders: `customization-additions_1.webp`, `customization-boxes_1.webp`, etc.
 
-### Automated Component Synchronization
+### Automated Image Discovery
 
-Running `npm run process-images` automatically scans `/public/images/` and updates the following components:
-1. `components/category-galleries.tsx` (updates `bouquetFiles`, `rosaryFiles`, `boxBouquetsFiles`, etc.)
-2. `components/customization-options.tsx` (updates `additionsFiles`, `boxesFiles`, `ribbonsFiles`, `decorativePaperFiles`)
-3. `components/gallery-modal.tsx` (updates `galleryFiles`)
+Next.js Server Components dynamically scan the subfolders in `/public/images/` at build time (and during development) using `lib/images.ts`.
+- **No hardcoded image lists**: The components automatically pull and display all images present in each category folder.
+- **Zero code changes needed**: Source code files are never modified when images are added or removed.
 
 ### How to Add New Images
 
-1. Place raw photos inside the target directory:
+1. Place raw photos (JPEG, PNG, WebP, etc.) inside the target directory:
    - `public/images/bouquets/`
    - `public/images/rosaries/`
+   - `public/images/box_bouquets/`
+   - `public/images/combo/`
+   - `public/images/hair_clip_and_bow/`
+   - `public/images/wedding_lapels/`
    - `public/images/gallery/`
    - `public/images/customization/<additions|boxes|ribbons|decorative_paper>/`
-2. Run terminal command:
+2. Run the naming & optimization script:
    ```bash
    npm run process-images
    ```
-3. The script will convert, format, rename, delete original raw files, and update component arrays automatically.
+3. That is all! The script optimizes each image to WebP format, numbers them sequentially, removes raw originals, and Next.js immediately pulls and displays them across the website.
+
 
 ---
 

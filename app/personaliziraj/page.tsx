@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { CustomizationOptions } from '@/components/customization-options'
 import { OrderCtaBanner } from '@/components/order-cta-banner'
+import { getImagesFromFolder } from '@/lib/images'
 
 export const metadata: Metadata = {
   title: 'Personaliziraj - Rosa Dei',
@@ -9,10 +10,18 @@ export const metadata: Metadata = {
 }
 
 export default function PersonalizirajPage() {
+  const images = {
+    additions: getImagesFromFolder('customization/additions'),
+    ribbons: getImagesFromFolder('customization/ribbons'),
+    decorative_paper: getImagesFromFolder('customization/decorative_paper'),
+    boxes: getImagesFromFolder('customization/boxes'),
+  }
+
   return (
     <main className="py-8 sm:py-12">
-      <CustomizationOptions />
+      <CustomizationOptions images={images} />
       <OrderCtaBanner />
     </main>
   )
 }
+
