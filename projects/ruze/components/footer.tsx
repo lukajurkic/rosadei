@@ -1,5 +1,5 @@
 import { Clock, Mail, MapPin, Phone, Info } from 'lucide-react'
-import { InstagramGlyph } from '@/components/rosa-marks'
+import { InstagramGlyph } from './rosa-marks'
 
 const channels = [
   {
@@ -96,7 +96,7 @@ export function ContactSection() {
   )
 }
 
-export function ContactFooter() {
+export function RuzeFooter() {
   return (
     <footer className="border-t border-rose-200/50 px-5 py-8 sm:px-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row sm:gap-4">
@@ -104,7 +104,13 @@ export function ContactFooter() {
         <div className="flex flex-col text-center text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase sm:text-left">
           <span>web version 2.0.0</span>
           <span>
-            developer: <a href="mailto:lukajurkic1@gmail.com" className="transition-colors hover:text-foreground">lukajurkic1@gmail.com</a>
+            developer:{' '}
+            <a
+              href="mailto:lukajurkic1@gmail.com"
+              className="transition-colors hover:text-foreground"
+            >
+              lukajurkic1@gmail.com
+            </a>
           </span>
         </div>
 

@@ -36,7 +36,7 @@ export function PersonalizeCtaBanner() {
             </div>
 
             <Link
-              href="/personaliziraj"
+              href="/ruze/personaliziraj"
               className="group inline-flex shrink-0 items-center gap-2.5 rounded-full border border-gold/70 bg-white/90 px-8 py-3.5 text-[0.7rem] tracking-[0.22em] text-foreground uppercase shadow-md transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-white hover:shadow-lg focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
             >
               Istraži opcije

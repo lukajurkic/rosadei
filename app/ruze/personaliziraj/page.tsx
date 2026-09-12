@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { CustomizationOptions } from '@/components/customization-options'
-import { OrderCtaBanner } from '@/components/order-cta-banner'
+import { CustomizationOptions } from '@/projects/ruze/components/customization-options'
+import { OrderCtaBanner } from '@/projects/ruze/components/order-cta-banner'
 import { getImagesFromFolder } from '@/lib/images'
 
 export const metadata: Metadata = {
-  title: 'Personaliziraj - Rosa Dei',
+  title: 'Personaliziraj Ruže - Rosa Dei',
   description:
     'Odaberite svilene trake, ukrasni papir, kutije i posebne dodatke za vaš unikatan aranžman.',
 }
@@ -24,4 +24,3 @@ export default function PersonalizirajPage() {
     </main>
   )
 }
-

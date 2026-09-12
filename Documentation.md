@@ -53,28 +53,44 @@ rosadei/
 │       └── deploy.yml           # GitHub Pages deployment workflow
 ├── app/
 │   ├── globals.css              # Custom styling, fonts, and theme tokens
-│   ├── layout.tsx               # Shared RootLayout (canvas styling, SiteHeader, ContactFooter)
-│   ├── page.tsx                 # Home page (HeroSection, CategoryGalleries, CTA Banners)
-│   ├── personaliziraj/
-│   │   └── page.tsx             # Personalization subpage (CustomizationOptions, CTA Banner)
-│   └── kontakti-i-narudzbe/
-│       └── page.tsx             # Ordering & Contact subpage (OrderingJourney, ContactSection)
+│   ├── layout.tsx               # RootLayout (neutral HTML shell, fonts, analytics)
+│   ├── page.tsx                 # Starting Page Layer / Multi-Area Hub (auto-redirects to /ruze)
+│   └── ruze/
+│       ├── layout.tsx           # Ruže Layout (canvas styling, RuzeHeader, RuzeFooter)
+│       ├── page.tsx             # Satin Roses & Bouquets Catalog
+│       ├── personaliziraj/
+│       │   └── page.tsx         # Personalization subpage (CustomizationOptions, CTA Banner)
+│       └── kontakti-i-narudzbe/
+│           └── page.tsx         # Ordering & Contact subpage (OrderingJourney, ContactSection)
+├── projects/
+│   ├── landing/                 # Project: Landing Portal / Hub
+│   │   └── components/
+│   │       ├── header.tsx       # Landing header
+│   │       ├── footer.tsx       # Landing footer
+│   │       └── root-redirect.tsx# Instant redirect to /ruze
+│   └── ruze/                    # Project: Satin Roses & Bouquets
+│       └── components/
+│           ├── header.tsx       # Ruže navigation header
+│           ├── footer.tsx       # Ruže footer & ContactSection
+│           ├── hero-section.tsx # Ruže hero banner & gallery trigger
+│           ├── category-galleries.tsx # Ruže category collections container
+│           ├── category-slideshow.tsx # Ruže click-to-advance slideshow
+│           ├── customization-options.tsx # Ruže customization drawer
+│           ├── gallery-modal.tsx# Ruže fullscreen image gallery
+│           ├── order-cta-banner.tsx # Ruže order banner
+│           ├── ordering-journey.tsx # Ruže 3-step order process
+│           ├── personalize-cta-banner.tsx # Ruže personalization banner
+│           └── rosa-marks.tsx   # Ruže SVG marks & icons
+├── docs/
+│   └── V0_INTEGRATION_GUIDE.md  # Tutorial for generating & merging v0 by Vercel designs
+├── lib/
+│   └── images.ts                # Dynamic filesystem image loader and category scanner
 ├── components/
-│   ├── category-galleries.tsx   # Product category slideshows (Buketi, Krunice, Box Buketi)
-│   ├── contact-footer.tsx       # ContactSection card & global ContactFooter bar
-│   ├── customization-options.tsx# Categorized customization options (Dodatci, Trake, Papir, Kutije)
-│   ├── gallery-modal.tsx        # Fullscreen 30-image randomized gallery overlay with lightbox
-│   ├── hero-section.tsx         # Hero section with primary brand message and gallery trigger
-│   ├── order-cta-banner.tsx     # Order call-to-action banner linking to /kontakti-i-narudzbe
-│   ├── ordering-journey.tsx     # 3-step order process section
-│   ├── personalize-cta-banner.tsx# Personalization call-to-action banner linking to /personaliziraj
-│   ├── rosa-marks.tsx           # SVG brand marks and social icons
-│   ├── site-header.tsx          # Sticky navigation header with active route highlighting
-│   └── ui/                      # Base reusable UI primitives
+│   └── ui/                      # Base reusable UI primitives (shadcn / Radix)
 ├── public/
 │   └── images/                  # Product and customization images organized by subfolders
 ├── scripts/
-│   └── process-images.mjs       # Image optimization and component array synchronization script
+│   └── process-images.mjs       # Image optimization and standardized naming script
 ├── next.config.mjs              # Next.js configuration (static export enabled)
 ├── package.json                 # Node.js dependencies and scripts
 └── tsconfig.json                # TypeScript configuration
@@ -88,7 +104,7 @@ rosadei/
 
 2. **`SiteHeader` (`components/site-header.tsx`)**:
    - Sticky glassmorphic navigation header.
-   - Client-side navigation (`Link` & `usePathname()`) connecting `/`, `/personaliziraj`, and `/kontakti-i-narudzbe`.
+   - Client-side navigation (`Link` & `usePathname()`) connecting `/ruze`, `/ruze/personaliziraj`, and `/ruze/kontakti-i-narudzbe`.
 
 3. **`HeroSection` (`components/hero-section.tsx`)**:
    - Brand showcase featuring slogan *"Po slici prirode - Napravljeno da traje"*.
@@ -100,10 +116,10 @@ rosadei/
    - Includes fullscreen lightbox viewer with previous/next image navigation and Escape key handling.
 
 5. **`CustomizationOptions` (`components/customization-options.tsx`)**:
-   - Categorized customization drawer on `/personaliziraj` covering *Dodatci*, *Boje traka*, *Papir za zamatanje*, and *Box kutije*.
+   - Categorized customization drawer on `/ruze/personaliziraj` covering *Dodatci*, *Boje traka*, *Papir za zamatanje*, and *Box kutije*.
    - Includes interactive tab filtering and image lightbox preview.
 
-6. **`OrderingJourney` & `ContactSection` (`app/kontakti-i-narudzbe/page.tsx`)**:
+6. **`OrderingJourney` & `ContactSection` (`app/ruze/kontakti-i-narudzbe/page.tsx`)**:
    - 3-step customer guide explaining the ordering flow, accompanied by the `ContactSection` card with direct telephone, email, Instagram, operating hours, and location details.
 
 7. **CTA Banners (`PersonalizeCtaBanner` & `OrderCtaBanner`)**:
@@ -141,7 +157,7 @@ rosadei/
    ```bash
    npm run build
    ```
-   Output static HTML routes (`/`, `/personaliziraj`, `/kontakti-i-narudzbe`) will be compiled in `./out`.
+   Output static HTML routes (`/`, `/ruze`, `/ruze/personaliziraj`, `/ruze/kontakti-i-narudzbe`) will be compiled in `./out`.
 
 ---
 

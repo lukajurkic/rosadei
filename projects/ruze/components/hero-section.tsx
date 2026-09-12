@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Sparkles, Images } from 'lucide-react'
-import { GalleryModal } from '@/components/gallery-modal'
+import { GalleryModal } from './gallery-modal'
 
 type HeroSectionProps = {
   galleryImages?: string[]
