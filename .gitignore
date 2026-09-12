@@ -58,3 +58,5 @@ coverage/
 .eslintcache
 .stylelintcache
 .turbo/
+
+next-env.d.ts
