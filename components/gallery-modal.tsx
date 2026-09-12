@@ -4,57 +4,29 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { X, ChevronLeft, ChevronRight, ZoomIn, Images } from 'lucide-react'
 
-const galleryFiles = [
-  'gallery_1.webp',
-  'gallery_2.webp',
-  'gallery_3.webp',
-  'gallery_4.webp',
-  'gallery_5.webp',
-  'gallery_6.webp',
-  'gallery_7.webp',
-  'gallery_8.webp',
-  'gallery_9.webp',
-  'gallery_10.webp',
-  'gallery_11.webp',
-  'gallery_12.webp',
-  'gallery_13.webp',
-  'gallery_14.webp',
-  'gallery_19.webp',
-  'gallery_20.webp',
-  'gallery_21.webp',
-  'gallery_22.webp',
-  'gallery_23.webp',
-  'gallery_24.webp',
-  'gallery_25.webp',
-  'gallery_26.webp',
-  'gallery_27.webp',
-  'gallery_28.webp',
-  'gallery_29.webp',
-  'gallery_30.webp',
-];
-
 type GalleryModalProps = {
   isOpen: boolean
   onClose: () => void
+  images?: string[]
 }
 
-export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
+export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps) {
   const [shuffledFiles, setShuffledFiles] = useState<string[]>([])
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   // Shuffle images randomly on open
   useEffect(() => {
-    if (isOpen && galleryFiles.length > 0) {
-      const copy = [...galleryFiles]
+    if (isOpen && images.length > 0) {
+      const copy = [...images]
       for (let i = copy.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
           ;[copy[i], copy[j]] = [copy[j], copy[i]]
       }
       setShuffledFiles(copy)
     } else {
-      setShuffledFiles(galleryFiles)
+      setShuffledFiles(images)
     }
-  }, [isOpen])
+  }, [isOpen, images])
 
   // Handle ESC key to close modal or lightbox
   const handleKeyDown = useCallback(

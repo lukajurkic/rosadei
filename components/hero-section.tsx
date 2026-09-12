@@ -4,7 +4,11 @@ import { useState } from 'react'
 import { Sparkles, Images } from 'lucide-react'
 import { GalleryModal } from '@/components/gallery-modal'
 
-export function HeroSection() {
+type HeroSectionProps = {
+  galleryImages?: string[]
+}
+
+export function HeroSection({ galleryImages = [] }: HeroSectionProps) {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
 
   return (
@@ -68,6 +72,7 @@ export function HeroSection() {
       <GalleryModal
         isOpen={isGalleryOpen}
         onClose={() => setIsGalleryOpen(false)}
+        images={galleryImages}
       />
     </section>
   )
