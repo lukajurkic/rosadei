@@ -82,6 +82,7 @@ rosadei/
 │           ├── personalize-cta-banner.tsx # Ruže personalization banner
 │           └── rosa-marks.tsx   # Ruže SVG marks & icons
 ├── docs/
+│   ├── LOVABLE_INTEGRATION_GUIDE.md # Tutorial for generating & merging Lovable.dev designs
 │   └── V0_INTEGRATION_GUIDE.md  # Tutorial for generating & merging v0 by Vercel designs
 ├── lib/
 │   └── images.ts                # Dynamic filesystem image loader and category scanner
@@ -96,11 +97,14 @@ rosadei/
 └── tsconfig.json                # TypeScript configuration
 ```
 
-### Key Subpages & Components
+### Key Subpages & Layouts
 
 1. **Root Layout (`app/layout.tsx`)**:
-   - Wraps all subpages in a canvas background wrapper (`rosa-canvas rosa-grain relative min-h-screen`).
-   - Renders `SiteHeader` at top and `ContactFooter` bar at bottom globally across all pages.
+   - Neutral HTML shell containing typography (`Cormorant_Garamond`, `Jost`), global metadata, and analytics.
+   - Allows each project (`projects/landing`, `projects/ruze`) to control its own canvas, styling, header, and footer.
+
+2. **Ruže Layout (`app/ruze/layout.tsx`)**:
+   - Wraps all `/ruze/*` subpages with `rosa-canvas`, `rosa-grain`, `RuzeHeader` (`projects/ruze/components/header.tsx`), and `RuzeFooter` (`projects/ruze/components/footer.tsx`).
 
 2. **`SiteHeader` (`components/site-header.tsx`)**:
    - Sticky glassmorphic navigation header.
