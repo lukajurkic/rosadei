@@ -14,10 +14,9 @@ import {
 import { BrandMark } from "./BrandMark";
 
 const links = [
-  ["About", "#about"],
-  ["Divisions", "#divisions"],
-  ["Leadership", "#leadership"],
-  ["Contact", "#contact"],
+  ["Djelatnosti", "#divisions"],
+  ["O nama", "#about"],
+  ["Kontakti", "#contact"],
 ];
 
 export function Navbar() {
@@ -25,7 +24,7 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-border/80 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8">
         <BrandMark />
-        <nav aria-label="Primary navigation" className="hidden items-center gap-9 md:flex">
+        <nav aria-label="Glavna navigacija" className="hidden items-center gap-9 md:flex">
           {links.map(([label, href]) => (
             <a
               key={label}
@@ -38,12 +37,12 @@ export function Navbar() {
         </nav>
         <div className="hidden md:block">
           <Button variant="corporate" size="corporate" asChild>
-            <a href="mailto:corporate@axiom.group">Contact Corporate</a>
+            <a href="mailto:corporate@axiom.group">Kontaktirajte nas</a>
           </Button>
         </div>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open navigation">
+            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Otvori navigaciju">
               <Menu />
             </Button>
           </SheetTrigger>
@@ -52,9 +51,9 @@ export function Navbar() {
               <SheetTitle>
                 <BrandMark />
               </SheetTitle>
-              <SheetDescription>Three disciplines. One operating standard.</SheetDescription>
+              <SheetDescription>Četiri discipline. Jedan operativni standard.</SheetDescription>
             </SheetHeader>
-            <nav className="mt-10 flex flex-col" aria-label="Mobile navigation">
+            <nav className="mt-10 flex flex-col" aria-label="Mobilna navigacija">
               {links.map(([label, href], index) => (
                 <SheetClose asChild key={label}>
                   <a
@@ -68,7 +67,7 @@ export function Navbar() {
               ))}
             </nav>
             <Button variant="corporate" size="corporate" className="mt-10 w-full" asChild>
-              <a href="mailto:corporate@axiom.group">Contact Corporate</a>
+              <a href="mailto:corporate@axiom.group">Kontaktirajte nas</a>
             </Button>
           </SheetContent>
         </Sheet>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default function RuzePage() {
-  const galleryImages = getImagesFromFolder('gallery')
+  const galleryImages = getImagesFromFolder('roses/gallery')
 
   return (
     <main>

@@ -37,11 +37,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/tab_icon_black.png',
+        url: '/icon_black.webp',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/tab_icon_white.png',
+        url: '/icon_white.webp',
         media: '(prefers-color-scheme: dark)',
       },
     ],

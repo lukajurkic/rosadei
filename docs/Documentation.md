@@ -186,14 +186,14 @@ Next.js Server Components dynamically scan the subfolders in `/public/images/` a
 ### How to Add New Images
 
 1. Place raw photos (JPEG, PNG, WebP, etc.) inside the target directory:
-   - `public/images/bouquets/`
-   - `public/images/rosaries/`
-   - `public/images/box_bouquets/`
-   - `public/images/combo/`
-   - `public/images/hair_clip_and_bow/`
-   - `public/images/wedding_lapels/`
-   - `public/images/gallery/`
-   - `public/images/customization/<additions|boxes|ribbons|decorative_paper>/`
+   - `public/images/roses/bouquets/`
+   - `public/images/roses/rosaries/`
+   - `public/images/roses/box_bouquets/`
+   - `public/images/roses/combo/`
+   - `public/images/roses/hair_clip_and_bow/`
+   - `public/images/roses/wedding_lapels/`
+   - `public/images/roses/gallery/`
+   - `public/images/roses/customization/<additions|boxes|ribbons|decorative_paper>/`
 2. Run the naming & optimization script:
    ```bash
    npm run process-images

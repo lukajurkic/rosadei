@@ -10,23 +10,23 @@ const leaders = [
   {
     initials: "EM",
     name: "Elena Maren",
-    role: "Managing Partner",
-    oversight: "Group Operations",
-    bio: "Directs group strategy, governance, and the operating systems shared across all divisions.",
+    role: "Upravljačka partnerica",
+    oversight: "Operativno poslovanje grupe",
+    bio: "Vodi strategiju grupe, upravljanje i zajedničke operativne sustave u svim djelatnostima.",
   },
   {
     initials: "DR",
     name: "Daniel Rook",
-    role: "Operating Partner",
-    oversight: "Craft & Property",
-    bio: "Leads physical operations with two decades of experience in fabrication and estate stewardship.",
+    role: "Operativni partner",
+    oversight: "Ručna izrada i nekretnine",
+    bio: "Vodi fizičke operacije s dva desetljeća iskustva u proizvodnji i upravljanju posjedima.",
   },
   {
     initials: "AK",
     name: "Amir Kovač",
-    role: "Technology Partner",
-    oversight: "Digital Solutions",
-    bio: "Guides product engineering, digital infrastructure, and long-term technical partnerships.",
+    role: "Tehnološki partner",
+    oversight: "Digitalna rješenja",
+    bio: "Usmjerava inženjering digitalnih proizvoda, infrastrukturu i dugoročna tehnička partnerstva.",
   },
 ];
 
@@ -37,16 +37,16 @@ export function Leadership() {
         <div className="grid gap-5 lg:grid-cols-2">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-              Direct accountability
+              Izravna odgovornost
             </p>
             <h2 className="mt-5 text-3xl font-semibold sm:text-4xl">
-              Corporate Governance
+              Korporativno upravljanje
               <br />
-              & Leadership
+              & vodstvo
             </h2>
           </div>
           <p className="max-w-lg self-end text-sm leading-7 text-muted-foreground lg:justify-self-end">
-            Every operating arm receives direct partner oversight, ensuring that expertise remains close to execution and decisions remain accountable.
+            Svaka operativna cjelina pod izravnim je nadzorom partnera, osiguravajući da stručnost ostane povezana s izvedbom, a odluke potpuno transparentne.
           </p>
         </div>
         <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-3">
@@ -60,7 +60,7 @@ export function Leadership() {
                   href="https://www.linkedin.com"
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`${leader.name} on LinkedIn`}
+                  aria-label={`${leader.name} na LinkedInu`}
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <Linkedin className="h-5 w-5" />

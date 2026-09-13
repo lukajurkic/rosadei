@@ -52,6 +52,12 @@ async function processDirectory(relativeFolderPath) {
   }
 
   const normalizedName = relativeFolderPath.replace(/\\/g, '/')
+
+  // Skip landing folder from sequential numbering
+  if (normalizedName === 'landing' || normalizedName.startsWith('landing/')) {
+    return null
+  }
+
   console.log(`\n📁 Processing folder: public/images/${normalizedName}`)
 
   const files = fs.readdirSync(folderPath).filter((file) => {
@@ -60,8 +66,9 @@ async function processDirectory(relativeFolderPath) {
     return SUPPORTED_EXTENSIONS.has(ext)
   })
 
-  // Target prefix based on path (e.g. 'customization/additions' -> 'customization-additions', 'bouquets' -> 'bouquets')
-  const targetPrefix = relativeFolderPath.replace(/[\\/]/g, '-')
+  // Target prefix based on path (strip 'roses/' prefix so 'roses/bouquets' -> 'bouquets')
+  const cleanPath = normalizedName.replace(/^roses\//, '')
+  const targetPrefix = cleanPath.replace(/\//g, '-')
   const exactFormattedPattern = new RegExp(`^${targetPrefix}_(\\d+)\\.webp$`, 'i')
 
   if (files.length === 0) {

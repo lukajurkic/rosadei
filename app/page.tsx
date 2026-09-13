@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import { Navbar } from '@/projects/landing/components/Navbar'
 import { Hero } from '@/projects/landing/components/Hero'
-import { AboutOverview } from '@/projects/landing/components/AboutOverview'
 import { DivisionsShowcase } from '@/projects/landing/components/DivisionsShowcase'
+import { AboutOverview } from '@/projects/landing/components/AboutOverview'
 import { Leadership } from '@/projects/landing/components/Leadership'
 import { Footer } from '@/projects/landing/components/footer'
 
 export const metadata: Metadata = {
-  title: 'Axiom Group — One Standard Across Every Discipline',
+  title: 'RosaDei Grupa — Jedinstven standard kroz svaku disciplinu',
   description:
-    'A multi-disciplinary operating group uniting craft, property care, and digital engineering under one exacting standard.',
+    'Multidisciplinarna poslovna grupa koja ujedinjuje unikatnu ručnu izradu, održavanje posjeda, digitalna rješenja i organizacijske usluge.',
 }
 
 export default function HomePage() {
@@ -18,8 +18,8 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <AboutOverview />
         <DivisionsShowcase />
+        <AboutOverview />
         <Leadership />
       </main>
       <Footer />

@@ -4,20 +4,20 @@ const pillars = [
   {
     icon: Compass,
     number: "01",
-    title: "Meticulous Craftsmanship",
-    text: "Every detail is considered, tested, and finished by skilled practitioners.",
+    title: "Beskompromisna izrada",
+    text: "Svaki detalj pažljivo je osmišljen, provjeren i dovršen rukama iskusnih majstora.",
   },
   {
     icon: Layers3,
     number: "02",
-    title: "Reliable Infrastructure",
-    text: "Systems, tools, and teams are designed for consistent long-term performance.",
+    title: "Pouzdana infrastruktura",
+    text: "Sustavi, alati i procesi projektirani su za postojanu i dugoročnu učinkovitost.",
   },
   {
     icon: ShieldCheck,
     number: "03",
-    title: "Long-term Accountability",
-    text: "Direct oversight keeps responsibility clear from first brief to final delivery.",
+    title: "Dugoročna odgovornost",
+    text: "Izravan nadzor jamči potpunu odgovornost od početne ideje do konačne isporuke.",
   },
 ];
 
@@ -27,23 +27,23 @@ export function AboutOverview() {
       <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-[.85fr_1.15fr] lg:gap-24 lg:px-8">
         <div>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-            Built across generations
+            Gradimo kroz generacije
           </p>
           <h2 className="font-display text-3xl font-semibold leading-tight sm:text-4xl">
-            Different expertise.
+            Različita stručnost.
             <br />
-            Shared governance.
+            Zajedničko vodstvo.
           </h2>
           <div className="mt-8 space-y-5 text-[15px] leading-7 text-muted-foreground">
             <p>
-              Axiom Group began with a simple conviction: highly specialized work performs best when it is supported by disciplined operations and personal accountability.
+              RosaDei Grupa započela je s jednostavnim uvjerenjem: visokospecijalizirani rad postiže najbolje rezultate kada iza njega stoje disciplinirano poslovanje i osobna odgovornost.
             </p>
             <p>
-              Over a decade, that principle grew from physical craft into property stewardship and digital infrastructure. Each division remains specialist-led while sharing quality systems, commercial standards, and direct partner oversight.
+              Tijekom desetljeća, to se načelo proširilo s ručne izrade na upravljanje posjedima, digitalnu infrastrukturu te poslovnu administraciju i planiranje. Svaki odjel vode stručnjaci svog područja, dijeleći zajedničke sustave kvalitete, visoke komercijalne standarde i izravan nadzor partnera.
             </p>
           </div>
           <div className="mt-10 border-l-2 border-foreground pl-5 font-display text-lg font-medium leading-7">
-            “Built to endure” is not a campaign line. It is the standard applied to every object, place, and system we touch.
+            „Napravljeno da traje” za nas nije samo marketinška fraza. To je mjerilo koje primjenjujemo na svaki predmet, prostor i sustav koji stvaramo.
           </div>
         </div>
         <div className="divide-y divide-border border-y border-border">

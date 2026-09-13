@@ -100,7 +100,7 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
         {shuffledFiles.length > 0 ? (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {shuffledFiles.map((file, index) => {
-              const src = `/images/gallery/${file}`
+              const src = `/images/roses/gallery/${file}`
               return (
                 <button
                   key={file}
@@ -169,7 +169,7 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
           <div className="relative flex flex-col items-center justify-center">
             <div className="relative flex h-[75vh] w-[85vw] max-w-5xl items-center justify-center overflow-hidden rounded-2xl">
               <Image
-                src={`/images/gallery/${shuffledFiles[lightboxIndex]}`}
+                src={`/images/roses/gallery/${shuffledFiles[lightboxIndex]}`}
                 alt={`Rosa Dei galerija radova - slika ${lightboxIndex + 1}`}
                 fill
                 sizes="85vw"

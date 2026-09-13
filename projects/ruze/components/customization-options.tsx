@@ -170,7 +170,7 @@ export function CustomizationOptions({ images = {} }: CustomizationOptionsProps)
           {filteredCategories.map((category) => {
             const Icon = category.icon
             const imageList = category.files.map((file, idx) => ({
-              src: `/images/customization/${category.subfolder}/${file}`,
+              src: `/images/roses/customization/${category.subfolder}/${file}`,
               alt: `${category.title} opcija ${idx + 1} - Rosa Dei`,
             }))
 

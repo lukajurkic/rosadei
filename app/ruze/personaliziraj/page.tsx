@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 
 export default function PersonalizirajPage() {
   const images = {
-    additions: getImagesFromFolder('customization/additions'),
-    ribbons: getImagesFromFolder('customization/ribbons'),
-    decorative_paper: getImagesFromFolder('customization/decorative_paper'),
-    boxes: getImagesFromFolder('customization/boxes'),
+    additions: getImagesFromFolder('roses/customization/additions'),
+    ribbons: getImagesFromFolder('roses/customization/ribbons'),
+    decorative_paper: getImagesFromFolder('roses/customization/decorative_paper'),
+    boxes: getImagesFromFolder('roses/customization/boxes'),
   }
 
   return (

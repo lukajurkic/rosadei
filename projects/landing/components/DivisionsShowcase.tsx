@@ -1,60 +1,90 @@
 import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Check } from "lucide-react";
 
 export const divisions = [
   {
     id: "creative",
-    name: "Creative & Handcrafted Production",
-    tagline: "Bespoke Manual Fabrication & Physical Craft",
+    name: "Ruže & Unikatne Rukotvorine",
+    tagline: "Po slici prirode — Napravljeno da traje",
     description:
-      "Custom physical builds, artisan woodworking, hand-shaped goods, and tailored production delivered with exacting material judgment.",
+      "Ručno rađeni buketi od najfinijih satenskih traka, elegantni flower boxovi, vječne krunice i personalizirani darovi stvoreni da traju vječno. Svaki komad izrađuje se ručno s posebnom pažnjom prema detaljima.",
     capabilities: [
-      "Custom furniture and joinery",
-      "Small-batch artisan production",
-      "Material prototyping and finishing",
-      "Bespoke installation and repair",
+      "Unikatni buketi i flower box aranžmani",
+      "Personalizirane satenske trake s tiskom",
+      "Ručno pletene krunice od satena",
+      "Reveri i prigodni pokloni za svečanosti",
     ],
-    route: "creative",
-    containerClass: "bg-craft",
-    accentClass: "text-craft-accent border-craft-accent/25",
-    image: "/images/landing/division-craft.jpg",
-    imagePlaceholder: "Craftsperson shaping a precision oak joint",
+    route: "ruze",
+    href: "/ruze",
+    buttonLabel: "Istraži kolekciju ruža",
+    containerClass: "bg-[#fdf8f5] border-y border-rose-200/60",
+    accentClass: "text-gold border-gold/40 bg-white/80",
+    image: "/images/roses/combo/combo_2.webp",
+    imagePlaceholder: "Rosa Dei unikatni buket i ručno rađeni aranžman od satena",
+    isRuze: true,
   },
   {
     id: "maintenance",
-    name: "Home & Grounds Maintenance",
-    tagline: "Complete Estate & Facility Care",
+    name: "Održavanje doma i posjeda",
+    tagline: "Kompletna briga o imanjima i objektima",
     description:
-      "Comprehensive exterior landscaping, groundskeeping, seasonal property management, and structural preservation for places made to last.",
+      "Sveobuhvatno hortikulturno uređenje eksterijera, održavanje posjeda, sezonski programi i očuvanje infrastrukture prostora napravljenih da traju.",
     capabilities: [
-      "Landscape and grounds stewardship",
-      "Seasonal property programs",
-      "Exterior fabric maintenance",
-      "Responsive facility support",
+      "Hortikultura i uređenje okoliša",
+      "Sezonski programi održavanja posjeda",
+      "Zaštita i obnova vanjskih struktura",
+      "Pouzdan operativni servis objekata",
     ],
     route: "maintenance",
+    href: "#divisions",
+    buttonLabel: "Saznajte više o održavanju posjeda",
     containerClass: "bg-grounds",
     accentClass: "text-grounds-accent border-grounds-accent/25",
     image: "/images/landing/division-grounds.jpg",
-    imagePlaceholder: "Immaculately maintained contemporary estate grounds",
+    imagePlaceholder: "Besprijekorno održavano suvremeno imanje",
+    isRuze: false,
   },
   {
     id: "digital",
-    name: "IT & Digital Solutions",
-    tagline: "Full-Stack Development & Digital Infrastructure",
+    name: "IT & Digitalna rješenja",
+    tagline: "Full-Stack razvoj i digitalna infrastruktura",
     description:
-      "Modern web application design, performant cloud deployment, UI/UX systems, and ongoing technical maintenance built for dependable growth.",
+      "Inženjering modernih web aplikacija, skalabilna cloud rješenja, UI/UX sustavi dizajna i kontinuirano tehničko održavanje stvoreno za pouzdan rast.",
     capabilities: [
-      "Web application engineering",
-      "Cloud systems and deployment",
-      "Product design and UX systems",
-      "Technical care and optimization",
+      "Inženjering modernih web aplikacija",
+      "Cloud sustavi i implementacija",
+      "Dizajn digitalnih proizvoda i UX sustavi",
+      "Tehnička podrška i optimizacija performansi",
     ],
     route: "digital",
+    href: "#divisions",
+    buttonLabel: "Saznajte više o digitalnim rješenjima",
     containerClass: "bg-digital",
     accentClass: "text-digital-accent border-digital-accent/25",
     image: "/images/landing/division-digital.jpg",
-    imagePlaceholder: "Modern software engineering workspace",
+    imagePlaceholder: "Radni prostor modernog softverskog inženjeringa",
+    isRuze: false,
+  },
+  {
+    id: "administration",
+    name: "Administracija, planiranje i organizacija",
+    tagline: "Strateško planiranje i organizacijske usluge",
+    description:
+      "Strukturirana administrativna podrška, operativno i projektno planiranje te cjelovita organizacijska rješenja za uredno, pouzdano i efikasno poslovanje.",
+    capabilities: [
+      "Strateško i operativno planiranje",
+      "Administrativna i uredska podrška",
+      "Koordinacija i upravljanje projektima",
+      "Organizacija poslovnih procesa i dokumentacije",
+    ],
+    route: "administration",
+    href: "#divisions",
+    buttonLabel: "Saznajte više o administraciji i planiranju",
+    containerClass: "bg-admin",
+    accentClass: "text-admin-accent border-admin-accent/25",
+    image: "/images/landing/division-admin.jpg",
+    imagePlaceholder: "Moderno radno okruženje za administraciju i planiranje",
+    isRuze: false,
   },
 ] as const;
 
@@ -64,17 +94,17 @@ export function DivisionsShowcase() {
       <div className="bg-charcoal py-16 text-primary-foreground lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-charcoal-muted">
-            Our operating companies
+            Naše djelatnosti
           </p>
           <div className="mt-5 grid gap-5 lg:grid-cols-2 lg:items-end">
             <h2 id="divisions-heading" className="text-4xl font-semibold sm:text-5xl">
-              Three disciplines.
+              Četiri discipline.
               <br />
-              One commitment.
+              Jedna predanost.
             </h2>
             <p className="max-w-xl text-sm leading-7 text-charcoal-muted lg:justify-self-end">
-              Each division is independently specialized and collectively strengthened by the
-              group’s operational systems, leadership, and standards.
+              Svaki odjel samostalno je specijaliziran, a zajedno su osnaženi operativnim sustavima,
+              vodstvom i zajedničkim standardima kvalitete.
             </p>
           </div>
         </div>
@@ -95,40 +125,66 @@ export function DivisionsShowcase() {
                 height={950}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
               />
-              <div className="absolute left-5 top-5 bg-background/90 px-3 py-2 font-display text-xs font-semibold backdrop-blur-sm">
-                0{index + 1} / 03
+              <div
+                className={`absolute left-5 top-5 px-3.5 py-2 text-xs font-semibold backdrop-blur-sm ${
+                  division.isRuze
+                    ? "bg-white/90 text-foreground border border-rose-200/60 font-serif tracking-wider shadow-sm"
+                    : "bg-background/90 font-display"
+                }`}
+              >
+                0{index + 1} / 0{divisions.length} {division.isRuze ? "— Rosa Dei Ruže" : ""}
               </div>
             </div>
             <div className="flex items-center px-5 py-16 sm:px-10 lg:px-16 lg:py-24 xl:px-24">
               <div className="max-w-xl">
                 <span
-                  className={`inline-flex border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] ${division.accentClass}`}
+                  className={`inline-flex border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] ${division.accentClass}`}
                 >
                   {division.tagline}
                 </span>
-                <h3 className="mt-7 text-3xl font-semibold leading-tight sm:text-4xl">
+                <h3
+                  className={`mt-7 leading-tight ${
+                    division.isRuze
+                      ? "font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-foreground"
+                      : "text-3xl sm:text-4xl font-semibold"
+                  }`}
+                >
                   {division.name}
                 </h3>
-                <p className="mt-6 text-[15px] leading-7 text-muted-foreground">
+                <p
+                  className={`mt-6 text-[15px] leading-7 ${
+                    division.isRuze ? "text-foreground/75" : "text-muted-foreground"
+                  }`}
+                >
                   {division.description}
                 </p>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
                   {division.capabilities.map((item) => (
                     <div key={item} className="flex items-start gap-3 text-sm">
                       <Check
-                        className={`mt-0.5 h-4 w-4 shrink-0 ${division.accentClass.split(" ")[0]}`}
+                        className={`mt-0.5 h-4 w-4 shrink-0 ${
+                          division.isRuze ? "text-gold" : division.accentClass.split(" ")[0]
+                        }`}
                       />
-                      <span>{item}</span>
+                      <span className={division.isRuze ? "text-foreground/85" : ""}>{item}</span>
                     </div>
                   ))}
                 </div>
-                <Link
-                  href={`#divisions`}
-                  className="mt-10 inline-flex items-center gap-2 border-b border-foreground pb-1.5 text-sm font-semibold transition-opacity hover:opacity-60"
-                >
-                  Visit {index === 0 ? "Creative" : index === 1 ? "Maintenance" : "IT & Web"}{" "}
-                  Division <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                {division.isRuze ? (
+                  <Link
+                    href={division.href}
+                    className="mt-10 inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-3.5 text-xs font-semibold tracking-[0.16em] text-primary-foreground uppercase shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-rose-900/20"
+                  >
+                    {division.buttonLabel} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ) : (
+                  <Link
+                    href={division.href}
+                    className="mt-10 inline-flex items-center gap-2 border-b border-foreground pb-1.5 text-sm font-semibold transition-opacity hover:opacity-60"
+                  >
+                    {division.buttonLabel} <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                )}
               </div>
             </div>
           </div>

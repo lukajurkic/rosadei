@@ -39,6 +39,8 @@
   --color-grounds-accent: var(--grounds-accent);
   --color-digital: var(--digital);
   --color-digital-accent: var(--digital-accent);
+  --color-admin: var(--admin);
+  --color-admin-accent: var(--admin-accent);
   --color-charcoal: var(--charcoal);
   --color-charcoal-muted: var(--charcoal-muted);
 
@@ -88,6 +90,8 @@
   --grounds-accent: oklch(0.45 0.09 151);
   --digital: oklch(0.974 0.009 250);
   --digital-accent: oklch(0.48 0.14 258);
+  --admin: oklch(0.972 0.008 220);
+  --admin-accent: oklch(0.46 0.10 225);
   --charcoal: oklch(0.16 0.006 286);
   --charcoal-muted: oklch(0.69 0.01 286);
 
