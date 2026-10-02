@@ -39,7 +39,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer id="contact" className="scroll-mt-18 bg-charcoal text-charcoal-muted">
+    <footer id="footer" className="scroll-mt-18 bg-charcoal text-charcoal-muted">
       <div className="mx-auto max-w-7xl px-5 pb-8 pt-16 lg:px-8 lg:pt-20">
         <div className="grid gap-12 border-b border-primary-foreground/10 pb-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)_1.3fr]">
           <div>

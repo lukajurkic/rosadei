@@ -11,7 +11,7 @@ export const divisions = [
     capabilities: [
       "Unikatni buketi i flower box aranžmani",
       "Personalizirane satenske trake s tiskom",
-      "Ručno pletene krunice od satena",
+      "Ručno rađene krunice od različitih materijala",
       "Reveri i prigodni pokloni za svečanosti",
     ],
     route: "ruze",
