@@ -1,3 +1,5 @@
+import { Mail, Phone } from "lucide-react";
+
 function Linkedin({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -12,6 +14,10 @@ interface Leader {
   oversight: string;
   bio: string;
   linkedin?: string;
+  email: string;
+  emailSubject?: string;
+  phone: string;
+  displayPhone: string;
 }
 
 const leaders: Leader[] = [
@@ -20,18 +26,30 @@ const leaders: Leader[] = [
     role: "Vlasnica obrta",
     oversight: "Upravljanje poslovanjem & RosaDei ruže",
     bio: "Osnivačica i glavna odgovorna osoba obrta te primarni kontakt za kupce i suradnike. Zadužena za cjelokupno vođenje poslovanja, izdavanje računa, zaprimanje narudžbi te završnu izradu i kontrolu kvalitete RosaDei ruža.",
+    email: "rosadeihr@gmail.com",
+    emailSubject: "Upit za bukete i krunice",
+    phone: "0981857755",
+    displayPhone: "098 185 7755",
   },
   {
     name: "Ana Jurkić",
     role: "Kreativna suradnica",
     oversight: "Ručna izrada & promocija",
     bio: "Ključna suradnica u kreativnom stvaralaštvu i većinskoj izradi ruža. Zadužena za osmišljavanje novih dizajnerskih ideja, marketing, vizualnu promociju brenda te vođenje komunikacije na društvenim mrežama.",
+    email: "rosadeihr@gmail.com",
+    emailSubject: "Upit za bukete i krunice",
+    phone: "0981857755",
+    displayPhone: "098 185 7755",
   },
   {
     name: "Zoran Jurkić",
     role: "Voditelj terenskih radova",
     oversight: "Održavanje okućnica",
     bio: "Glavna osoba za sve usluge održavanja okućnica i zelenih površina. S klijentima izravno dogovara detalje i planira radove na terenu te osobno vodi i izvršava sve dogovorene narudžbe.",
+    email: "rosadeihr@gmail.com",
+    emailSubject: "Upit za odrzavanje",
+    phone: "0981992888",
+    displayPhone: "098 199 2888",
   },
   {
     name: "Luka Jurkić",
@@ -40,6 +58,9 @@ const leaders: Leader[] = [
     bio: "Glavni pozadinski administrator i softverski programer obrta. Zadužen za IT razvoj i web rješenja, strateško planiranje i organizaciju poslovanja te pravna pitanja obrta.",
     linkedin:
       "https://www.linkedin.com/in/luka-jurki%C4%87-496381327/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUbGgEahARiC%2Bg53WhKcnqA%3D%3D",
+    email: "lukajurkic1@gmail.com",
+    phone: "0995792662",
+    displayPhone: "099 579 2662",
   },
 ];
 
@@ -81,6 +102,27 @@ export function Leadership() {
                   {leader.oversight}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">{leader.bio}</p>
+              </div>
+
+              <div className="mt-6 border-t border-border pt-5 space-y-2 text-xs">
+                <a
+                  href={`mailto:${leader.email}${
+                    leader.emailSubject
+                      ? `?subject=${encodeURIComponent(leader.emailSubject)}`
+                      : ""
+                  }`}
+                  className="group flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Mail className="h-3.5 w-3.5 shrink-0 text-muted-foreground group-hover:text-foreground" />
+                  <span className="truncate">{leader.email}</span>
+                </a>
+                <a
+                  href={`tel:${leader.phone}`}
+                  className="group flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-mono"
+                >
+                  <Phone className="h-3.5 w-3.5 shrink-0 text-muted-foreground group-hover:text-foreground" />
+                  <span>{leader.displayPhone}</span>
+                </a>
               </div>
             </article>
           ))}

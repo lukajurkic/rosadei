@@ -14,8 +14,9 @@ import { Button } from "@/components/ui/button";
 export interface ComingSoonOptions {
   title?: string;
   subtitle?: string;
-  description?: string;
+  description?: React.ReactNode;
   badge?: string;
+  contactEmail?: string;
 }
 
 interface ComingSoonContextType {
@@ -67,6 +68,7 @@ export function ComingSoonProvider({
         subtitle={options.subtitle}
         description={options.description}
         badge={options.badge}
+        contactEmail={options.contactEmail}
       />
     </ComingSoonContext.Provider>
   );
@@ -77,8 +79,9 @@ export interface ComingSoonModalProps {
   onClose: () => void;
   title?: string;
   subtitle?: string;
-  description?: string;
+  description?: React.ReactNode;
   badge?: string;
+  contactEmail?: string;
 }
 
 export function ComingSoonModal({
@@ -88,6 +91,7 @@ export function ComingSoonModal({
   subtitle,
   description,
   badge = "U pripremi • Uskoro dostupno",
+  contactEmail,
 }: ComingSoonModalProps) {
   const handleContactClick = () => {
     onClose();
@@ -132,20 +136,26 @@ export function ComingSoonModal({
             </div>
 
             {/* Description building suspense and desire to return */}
-            <DialogDescription className="text-[15px] leading-relaxed text-muted-foreground pt-1 space-y-3">
-              {description ? (
-                <span>{description}</span>
-              ) : (
-                <>
-                  <span className="block">
-                    Ova stranica i cjeloviti prikaz naših rješenja trenutno su u fazi pažljivog i preciznog razvoja.
-                    Gradimo digitalno iskustvo po najvišim standardima — jer vjerujemo da pravi rezultati vrijede trenutka čekanja.
-                  </span>
-                  <span className="block text-foreground/90 font-medium">
-                    Uskoro otkrivamo sve detalje, metodologiju i mogućnosti suradnje. Vratite se uskoro ili nas posjetite ponovno kako biste među prvima vidjeli novitete!
-                  </span>
-                </>
-              )}
+            <DialogDescription asChild>
+              <div className="text-[15px] leading-relaxed text-muted-foreground pt-1 space-y-3">
+                {description ? (
+                  typeof description === "string" ? (
+                    <span>{description}</span>
+                  ) : (
+                    description
+                  )
+                ) : (
+                  <>
+                    <span className="block">
+                      Ova stranica i cjeloviti prikaz naših rješenja trenutno su u fazi pažljivog i preciznog razvoja.
+                      Gradimo digitalno iskustvo po najvišim standardima — jer vjerujemo da pravi rezultati vrijede trenutka čekanja.
+                    </span>
+                    <span className="block text-foreground/90 font-medium">
+                      Uskoro otkrivamo sve detalje, metodologiju i mogućnosti suradnje. Vratite se uskoro ili nas posjetite ponovno kako biste među prvima vidjeli novitete!
+                    </span>
+                  </>
+                )}
+              </div>
             </DialogDescription>
           </DialogHeader>
 
@@ -154,9 +164,24 @@ export function ComingSoonModal({
             <div className="flex items-start gap-2.5">
               <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <div>
-                <span className="font-semibold text-foreground">Trebate informacije ili ponudu već sada?</span>
+                <span className="font-semibold text-foreground">
+                  {contactEmail ? "Zanima vas točna cijena ili ponuda?" : "Trebate informacije ili ponudu već sada?"}
+                </span>
                 <p className="mt-0.5 text-muted-foreground">
-                  Iako je stranica u izradi, naš tim je u potpunosti operativan i dostupan za izravan dogovor i suradnju.
+                  {contactEmail ? (
+                    <>
+                      Javite nam se izravno na{" "}
+                      <a
+                        href={`mailto:${contactEmail}?subject=Upit%20za%20cjenik`}
+                        className="font-medium text-foreground underline underline-offset-2 hover:text-gold"
+                      >
+                        {contactEmail}
+                      </a>{" "}
+                      i poslat ćemo vam sve specifikacije i ponudu u najkraćem roku.
+                    </>
+                  ) : (
+                    "Iako je stranica u izradi, naš tim je u potpunosti operativan i dostupan za izravan dogovor i suradnju."
+                  )}
                 </p>
               </div>
             </div>
@@ -172,14 +197,27 @@ export function ComingSoonModal({
             >
               Pričekat ću, zatvori
             </Button>
-            <Button
-              variant="corporate"
-              type="button"
-              onClick={handleContactClick}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase"
-            >
-              Javite nam se izravno <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
+            {contactEmail ? (
+              <Button
+                variant="corporate"
+                type="button"
+                asChild
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase"
+              >
+                <a href={`mailto:${contactEmail}?subject=Upit%20za%20cjenik`}>
+                  Pošaljite e-mail <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </Button>
+            ) : (
+              <Button
+                variant="corporate"
+                type="button"
+                onClick={handleContactClick}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase"
+              >
+                Javite nam se izravno <ArrowRight className="h-3.5 w-3.5" />
+              </Button>
+            )}
           </div>
         </div>
       </DialogContent>
