@@ -1,6 +1,6 @@
-# Technical Documentation — Rosa Dei Web Presentation
+# Technical Documentation — RosaDei Grupa Web Presentation
 
-This document provides complete technical documentation for the Rosa Dei web application, including architecture decisions, subpage structure, component design, technology rationale, development setup, CI/CD pipeline, image management scripts, and future development roadmap.
+This document provides comprehensive technical documentation for the RosaDei Grupa web application (`rosadei.hr`), covering system architecture, routing layers, component design, state management, technology rationale, development setup, CI/CD pipeline, automated image workflows, versioning, and future development roadmaps.
 
 ---
 
@@ -9,125 +9,252 @@ This document provides complete technical documentation for the Rosa Dei web app
 1. [Project Overview](#project-overview)
 2. [Technology Stack and Rationale](#technology-stack-and-rationale)
 3. [Architecture & Component Breakdown](#architecture--component-breakdown)
-4. [Development Environment & Setup](#development-environment--setup)
-5. [Image Processing & Optimization Pipeline](#image-processing--optimization-pipeline)
-6. [CI/CD Deployment Pipeline](#cicd-deployment-pipeline)
-7. [Maintenance & Operational Procedures](#maintenance--operational-procedures)
-8. [Future Features & Technical Roadmap](#future-features--technical-roadmap)
+4. [Routing & Page Structure](#routing--page-structure)
+5. [Key Components & Features](#key-components--features)
+   - [Landing Hub Layer (`/`)](#landing-hub-layer-)
+   - [Rosa Dei Roses & Crafts Layer (`/ruze`)](#rosa-dei-roses--crafts-layer-ruze)
+   - [Coming Soon Modal & Context (`ComingSoonModal`)](#coming-soon-modal--context-comingsoonmodal)
+   - [Centralized Versioning & CI/CD Tagging](#centralized-versioning--cicd-tagging)
+6. [Team & Leadership Directory](#team--leadership-directory)
+7. [Development Environment & Setup](#development-environment--setup)
+8. [Image Processing & Optimization Pipeline](#image-processing--optimization-pipeline)
+9. [CI/CD Deployment Pipeline](#cicd-deployment-pipeline)
+10. [Future Features & Technical Roadmap](#future-features--technical-roadmap)
 
 ---
 
 ## Project Overview
 
-Rosa Dei (`rosadei.hr`) is an artisan business based in Garešnica, Croatia (Obrt Za Usluge, vl. Željka Jurkić), specializing in handcrafted floral arrangements, rosaries, customized gift arrangements, and event favors.
+**RosaDei Grupa** (`rosadei.hr`) is a multidisciplinary family business based in Garešnica, Croatia (Obrt Za Usluge, vl. Željka Jurkić), operating across four interconnected disciplines:
 
-The web application is engineered as a modern multi-page static application hosted on GitHub Pages and served through Cloudflare for global caching, SSL security, and DNS resolution.
+1. **Ruže & Unikatne Rukotvorine (Rosa Dei)**: Handcrafted bouquets made from satin ribbons, flower boxes, everlasting rosaries from various materials, and personalized gifts.
+2. **Održavanje doma i posjeda**: Grounds maintenance, horticulture, exterior landscaping, seasonal care programs, and estate upkeep.
+3. **IT & Digitalna rješenja**: Full-stack web application development, scalable cloud systems, UI/UX design, and continuous technical maintenance.
+4. **Administracija, planiranje i organizacija**: Business operations, project coordination, strategic planning, and administrative documentation.
+
+The web application is engineered as a high-performance multi-page static site with Next.js 16 App Router, hosted on **GitHub Pages**, and distributed globally via **Cloudflare** for SSL/TLS encryption, edge caching, and DDoS mitigation.
+
+- **Production URL**: [https://rosadei.hr](https://rosadei.hr)
+- **Headquarters**: Đurđice Rijetković 9, 43280 Garešnica, Hrvatska
+- **Owner**: Željka Jurkić (OIB: 76565059947)
 
 ---
 
 ## Technology Stack and Rationale
 
-The project leverages a modern web technology stack optimized for speed, maintainability, zero server overhead, and high visual standards.
+The project leverages modern web technologies optimized for speed, zero server runtime overhead, maximum accessibility, and visual elegance.
 
 | Layer | Technology | Rationale |
 | :--- | :--- | :--- |
-| **Framework** | Next.js 16 (App Router) | Enables static HTML export (`output: 'export'`), producing static HTML/CSS/JS assets for routes (`/`, `/personaliziraj`, `/kontakti-i-narudzbe`). Provides optimal SEO performance, page load speed, and static optimization. |
-| **UI Library** | React 19 | Latest version of React delivering efficient state handling, interactive lightbox modals, and client-side slideshow components. |
-| **Styling** | Tailwind CSS 4 | Utility-first CSS framework with custom design tokens (`gold`, `primary`), smooth glassmorphic backdrops, and responsive grid layouts. |
-| **Icons & UI** | Lucide React | Lightweight, accessible SVG icon library providing clean iconography (`Images`, `Sparkles`, `Palette`, `ArrowRight`, `X`, `ZoomIn`). |
-| **Image Engine** | Sharp | High-performance image processing library used in `scripts/process-images.mjs` for WebP conversion and automatic component array updates. |
-| **Hosting** | GitHub Pages | Zero-cost, high-reliability static hosting directly linked to the GitHub repository source code. |
-| **CDN & DNS** | Cloudflare | Provides free TLS/SSL encryption, edge caching, DDoS mitigation, and custom domain mapping (`rosadei.hr`). |
+| **Framework** | Next.js 16 (App Router) | Enables static HTML export (`output: 'export'`), producing static assets for `/`, `/ruze`, `/ruze/personaliziraj`, and `/ruze/kontakti-i-narudzbe`. Delivers top-tier SEO performance, fast TTFB, and zero backend maintenance. |
+| **UI Library** | React 19 | Provides modern component primitives, hooks, context providers, and fast rendering. |
+| **Styling** | Tailwind CSS 4 | Modern utility-first CSS framework with tailored color schemes, glassmorphic backdrops, smooth transitions, and responsive grid layouts. |
+| **UI Primitives & Modals** | Radix UI (`@radix-ui/react-dialog`) | Accessible primitives powering `Dialog` (used by `ComingSoonModal`) and `Sheet` (used by mobile `Navbar`). Handles focus trapping, Escape key, and backdrop clicks. |
+| **Icons** | Lucide React | Lightweight SVG icon library providing icons (`Mail`, `Phone`, `ArrowUpRight`, `ArrowRight`, `Sparkles`, `Clock`, `Menu`, `X`, `Check`). |
+| **Image Engine** | Sharp | High-performance image processor in `scripts/process-images.mjs` for batch WebP conversion and automated file normalization. |
+| **Hosting** | GitHub Pages | Reliable static hosting directly linked to the GitHub repository. |
+| **CDN & DNS** | Cloudflare | Provides edge caching, automatic HTTPS/SSL, HTTP/2 & HTTP/3 support, and custom domain proxying (`rosadei.hr`). |
 
 ---
 
 ## Architecture & Component Breakdown
 
-The codebase is organized following the Next.js App Router structure with shared layouts and subpages:
+The codebase is organized into modular project directories separating the multidisciplinary landing layer (`projects/landing/`) from the specialized craft boutique layer (`projects/ruze/`):
 
 ```
 rosadei/
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml               # PR build validation workflow
-│       └── deploy.yml           # GitHub Pages deployment workflow
+│       ├── ci.yml                 # PR build validation workflow
+│       └── deploy.yml             # GitHub Pages deployment workflow
 ├── app/
-│   ├── globals.css              # Custom styling, fonts, and theme tokens
-│   ├── layout.tsx               # RootLayout (neutral HTML shell, fonts, analytics)
-│   ├── page.tsx                 # Starting Page Layer / Multi-Area Hub (auto-redirects to /ruze)
+│   ├── globals.css                # Custom styling, fonts, and theme tokens
+│   ├── layout.tsx                 # RootLayout with ComingSoonProvider, fonts, analytics
+│   ├── page.tsx                   # Main Landing Hub (RosaDei Grupa)
 │   └── ruze/
-│       ├── layout.tsx           # Ruže Layout (canvas styling, RuzeHeader, RuzeFooter)
-│       ├── page.tsx             # Satin Roses & Bouquets Catalog
+│       ├── layout.tsx             # Ruže Layout (canvas styling, RuzeHeader, RuzeFooter)
+│       ├── page.tsx               # Satin Roses & Bouquets Catalog
 │       ├── personaliziraj/
-│       │   └── page.tsx         # Personalization subpage (CustomizationOptions, CTA Banner)
+│       │   └── page.tsx           # Customization subpage (CustomizationOptions, CTA)
 │       └── kontakti-i-narudzbe/
-│           └── page.tsx         # Ordering & Contact subpage (OrderingJourney, ContactSection)
+│           └── page.tsx           # Ordering & Contact subpage (OrderingJourney, ContactSection)
 ├── projects/
-│   ├── landing/                 # Project: Landing Portal / Hub
+│   ├── landing/                   # Project: Landing Portal / Hub
 │   │   └── components/
-│   │       ├── header.tsx       # Landing header
-│   │       ├── footer.tsx       # Landing footer
-│   │       └── root-redirect.tsx# Instant redirect to /ruze
-│   └── ruze/                    # Project: Satin Roses & Bouquets
+│   │       ├── AboutOverview.tsx  # Editorial full-width statement („Napravljeno da traje”)
+│   │       ├── BrandMark.tsx      # RosaDei Grupa logo & typography mark
+│   │       ├── DivisionsShowcase.tsx # 4-division showcase with ComingSoon triggers
+│   │       ├── Hero.tsx           # Multidisciplinary hero banner
+│   │       ├── Leadership.tsx     # Team section (Upravljanje & Vodstvo) with 4 contacts
+│   │       ├── Navbar.tsx         # Main sticky navigation with mobile Sheet
+│   │       └── footer.tsx         # Landing footer with ComingSoon triggers & version
+│   └── ruze/                      # Project: Satin Roses & Bouquets
 │       └── components/
-│           ├── header.tsx       # Ruže navigation header
-│           ├── footer.tsx       # Ruže footer & ContactSection
-│           ├── hero-section.tsx # Ruže hero banner & gallery trigger
+│           ├── header.tsx         # Ruže navigation header
+│           ├── footer.tsx         # Ruže footer (RuzeFooter) & ContactSection
+│           ├── hero-section.tsx   # Ruže hero banner & gallery trigger
 │           ├── category-galleries.tsx # Ruže category collections container
 │           ├── category-slideshow.tsx # Ruže click-to-advance slideshow
 │           ├── customization-options.tsx # Ruže customization drawer
-│           ├── gallery-modal.tsx# Ruže fullscreen image gallery
+│           ├── gallery-modal.tsx  # Ruže fullscreen image gallery
 │           ├── order-cta-banner.tsx # Ruže order banner
 │           ├── ordering-journey.tsx # Ruže 3-step order process
 │           ├── personalize-cta-banner.tsx # Ruže personalization banner
-│           └── rosa-marks.tsx   # Ruže SVG marks & icons
-├── docs/
-│   ├── LOVABLE_INTEGRATION_GUIDE.md # Tutorial for generating & merging Lovable.dev designs
-│   └── V0_INTEGRATION_GUIDE.md  # Tutorial for generating & merging v0 by Vercel designs
-├── lib/
-│   └── images.ts                # Dynamic filesystem image loader and category scanner
+│           └── rosa-marks.tsx     # Ruže SVG marks & icons
 ├── components/
-│   └── ui/                      # Base reusable UI primitives (shadcn / Radix)
+│   ├── ComingSoonModal.tsx        # Reusable coming soon popup with context & hook
+│   └── ui/
+│       ├── button.tsx             # Reusable button with variants (corporate, corporateOutline, ghost)
+│       ├── dialog.tsx             # Radix Dialog primitive component
+│       └── sheet.tsx              # Radix Sheet mobile menu primitive
+├── docs/
+│   ├── Documentation.md           # Master technical documentation
+│   ├── AGENTS.md                  # Next.js agent rules & configuration notes
+│   ├── CLAUDE.md                  # Assistant guidance link
+│   ├── LOVABLE_INTEGRATION_GUIDE.md # Guide for generating & merging Lovable.dev designs
+│   └── V0_INTEGRATION_GUIDE.md    # Guide for generating & merging v0 by Vercel designs
+├── lib/
+│   ├── images.ts                  # Dynamic filesystem image loader and category scanner
+│   ├── utils.ts                   # Tailwind cn() utility function
+│   └── version.ts                 # Centralized APP_VERSION constant
 ├── public/
-│   └── images/                  # Product and customization images organized by subfolders
+│   ├── images/
+│   │   ├── landing/               # High-res photography for landing divisions
+│   │   └── roses/                 # Product and customization images organized by category
+│   ├── icon_black.webp
+│   ├── icon_white.webp
+│   └── rosadei_logo_white.webp
 ├── scripts/
-│   └── process-images.mjs       # Image optimization and standardized naming script
-├── next.config.mjs              # Next.js configuration (static export enabled)
-├── package.json                 # Node.js dependencies and scripts
-└── tsconfig.json                # TypeScript configuration
+│   └── process-images.mjs         # Image optimization and standardized naming script
+├── next.config.mjs                # Next.js configuration (static export enabled)
+├── package.json                   # Node.js dependencies and scripts
+└── tsconfig.json                  # TypeScript configuration
 ```
 
-### Key Subpages & Layouts
+---
 
-1. **Root Layout (`app/layout.tsx`)**:
-   - Neutral HTML shell containing typography (`Cormorant_Garamond`, `Jost`), global metadata, and analytics.
-   - Allows each project (`projects/landing`, `projects/ruze`) to control its own canvas, styling, header, and footer.
+## Routing & Page Structure
 
-2. **Ruže Layout (`app/ruze/layout.tsx`)**:
-   - Wraps all `/ruze/*` subpages with `rosa-canvas`, `rosa-grain`, `RuzeHeader` (`projects/ruze/components/header.tsx`), and `RuzeFooter` (`projects/ruze/components/footer.tsx`).
+1. **`app/page.tsx` (`/`)**:
+   - The primary gateway for **RosaDei Grupa**.
+   - Contains `Navbar`, `Hero`, `DivisionsShowcase`, `AboutOverview`, `Leadership`, and `Footer`.
 
-2. **`SiteHeader` (`components/site-header.tsx`)**:
-   - Sticky glassmorphic navigation header.
-   - Client-side navigation (`Link` & `usePathname()`) connecting `/ruze`, `/ruze/personaliziraj`, and `/ruze/kontakti-i-narudzbe`.
+2. **`app/ruze/page.tsx` (`/ruze`)**:
+   - Dedicated portal for **Ruže & Unikatne Rukotvorine**.
+   - Contains `HeroSection`, `CategoryGalleries` (with interactive slideshows for Buketi, Krunice, Box Buketi, Paketi, Kopče i mašne, Reveri), `PersonalizeCtaBanner`, and `OrderCtaBanner`.
 
-3. **`HeroSection` (`components/hero-section.tsx`)**:
-   - Brand showcase featuring slogan *"Po slici prirode - Napravljeno da traje"*.
-   - Includes **"Istraži ponudu"** scroll button and **"Pogledaj galeriju"** modal trigger button.
+3. **`app/ruze/personaliziraj/page.tsx` (`/ruze/personaliziraj`)**:
+   - Interactive customization catalog (`CustomizationOptions`) showcasing options for additions (*Dodatci*), ribbons (*Boje traka*), paper (*Papir za zamatanje*), and gift boxes (*Box kutije*).
 
-4. **`GalleryModal` (`components/gallery-modal.tsx`)**:
-   - Fullscreen overlay modal displaying 30 gallery images in a 4:3 aspect ratio grid (`aspect-[4/3]`).
-   - Automatically randomizes image sequence on every open.
-   - Includes fullscreen lightbox viewer with previous/next image navigation and Escape key handling.
+4. **`app/ruze/kontakti-i-narudzbe/page.tsx` (`/ruze/kontakti-i-narudzbe`)**:
+   - Step-by-step ordering workflow (`OrderingJourney`) and official contact details (`ContactSection`).
 
-5. **`CustomizationOptions` (`components/customization-options.tsx`)**:
-   - Categorized customization drawer on `/ruze/personaliziraj` covering *Dodatci*, *Boje traka*, *Papir za zamatanje*, and *Box kutije*.
-   - Includes interactive tab filtering and image lightbox preview.
+---
 
-6. **`OrderingJourney` & `ContactSection` (`app/ruze/kontakti-i-narudzbe/page.tsx`)**:
-   - 3-step customer guide explaining the ordering flow, accompanied by the `ContactSection` card with direct telephone, email, Instagram, operating hours, and location details.
+## Key Components & Features
 
-7. **CTA Banners (`PersonalizeCtaBanner` & `OrderCtaBanner`)**:
-   - Glassmorphic call-to-action cards connecting the homepage and personalization subpage seamlessly to ordering.
+### Landing Hub Layer (`/`)
+
+- **`Navbar` (`projects/landing/components/Navbar.tsx`)**:
+  - Sticky glassmorphic navigation with links to `Djelatnosti (#divisions)`, `O nama (#about)`, and `Kontakti (#contact)`.
+  - Includes a mobile sheet drawer for small screens.
+- **`Hero` (`projects/landing/components/Hero.tsx`)**:
+  - Highlights *„Različite discipline. Jedinstven standard rada.”* and guides visitors to explore divisions or learn about the group's work.
+- **`DivisionsShowcase` (`projects/landing/components/DivisionsShowcase.tsx`)**:
+  - Displays all 4 operational branches with capabilities and photography.
+  - Division 1 (*Ruže & Unikatne Rukotvorine*) links directly to `/ruze`.
+  - Divisions 2, 3, and 4 (*Održavanje doma i posjeda*, *IT & Digitalna rješenja*, *Administracija, planiranje i organizacija*) trigger the `ComingSoonModal`.
+  - Includes updated capability: *„Ručno rađene krunice od različitih materijala”*.
+- **`AboutOverview` (`projects/landing/components/AboutOverview.tsx`)**:
+  - Clean full-width editorial statement: *„Napravljeno da traje za nas nije samo marketinška fraza. To je mjerilo koje primjenjujemo na svaki predmet, prostor i sustav koji stvaramo.”*
+- **`Leadership` (`projects/landing/components/Leadership.tsx`)**:
+  - Section heading: *„Upravljanje & Vodstvo”* in a single line.
+  - Grid of 4 cards without image placeholders, featuring names, roles, areas of responsibility, detailed bios, and direct contact details (email with pre-filled subject lines, telephone, and LinkedIn for Luka Jurkić).
+- **`Footer` (`projects/landing/components/footer.tsx`)**:
+  - Centered 5-column layout without legacy office columns.
+  - Links under *Održavanje*, *Digitalno*, and *Administracija* open the `ComingSoonModal`.
+  - Bottom bar displays copyright, centralized version tag (`APP_VERSION`), and interactive modal links for *Cjenik*, *Privatnost*, and *Uvjeti poslovanja*.
+
+---
+
+### Rosa Dei Roses & Crafts Layer (`/ruze`)
+
+- **`RuzeHeader` (`projects/ruze/components/header.tsx`)**:
+  - Artisan navigation header with official branding, cart/inquiry links, and active page highlighting.
+- **`HeroSection` & `GalleryModal` (`projects/ruze/components/hero-section.tsx`, `gallery-modal.tsx`)**:
+  - Fullscreen modal opening a randomized 30-image 4:3 grid with lightbox viewer and keyboard navigation.
+- **`CategoryGalleries` & `CategorySlideshow` (`projects/ruze/components/category-galleries.tsx`, `category-slideshow.tsx`)**:
+  - Multi-category slideshows dynamically loaded via `lib/images.ts`.
+- **`RuzeFooter` (`projects/ruze/components/footer.tsx`)**:
+  - Matches the structure of the landing footer while retaining the rose color palette and typography.
+  - Displays `© 2026 RosaDei Grupa. Sva prava pridržana.`, `APP_VERSION`, `Cjenik`, `Privatnost`, and `Uvjeti poslovanja`.
+
+---
+
+### Coming Soon Modal & Context (`ComingSoonModal`)
+
+A versatile, accessible popup modal that builds anticipation and directs users to contact channels for upcoming sections.
+
+- **Component**: [ComingSoonModal.tsx](file:///e:/RosaDei%20Web/components/ComingSoonModal.tsx)
+- **Context Provider**: `ComingSoonProvider` wrapped globally in [app/layout.tsx](file:///e:/RosaDei%20Web/app/layout.tsx).
+- **Hook**: `useComingSoonModal()`
+
+#### Usage Example:
+```tsx
+import { useComingSoonModal } from "@/components/ComingSoonModal";
+
+export function MyComponent() {
+  const { openComingSoon } = useComingSoonModal();
+
+  return (
+    <button
+      type="button"
+      onClick={() =>
+        openComingSoon({
+          title: "Naziv sekcije",
+          subtitle: "Podnaslov ili djelatnost",
+          description: "Opcionalni prilagođeni opis...",
+          contactEmail: "rosadeihr@gmail.com",
+        })
+      }
+    >
+      Saznajte više
+    </button>
+  );
+}
+```
+
+- **Features**:
+  - Closes on top-right **X**, clicking the **backdrop**, pressing **Escape**, or clicking the *„Pričekat ću, zatvori”* button.
+  - Animated pulsing status badge: `✦ U pripremi • Uskoro dostupno`.
+  - Direct inquiry callout box with a primary button linking to `#contact` or generating a pre-filled `mailto:` when `contactEmail` is passed.
+
+---
+
+### Centralized Versioning & CI/CD Tagging
+
+To allow easy version bumping and automated git tagging in deployment pipelines, the version string is isolated in a single configuration file:
+
+- **File**: [lib/version.ts](file:///e:/RosaDei%20Web/lib/version.ts)
+```ts
+export const APP_VERSION = "v2.0.0";
+```
+
+- Used directly in both [projects/landing/components/footer.tsx](file:///e:/RosaDei%20Web/projects/landing/components/footer.tsx) and [projects/ruze/components/footer.tsx](file:///e:/RosaDei%20Web/projects/ruze/components/footer.tsx).
+- In automated CI/CD pipelines, release scripts can update this constant or derive it from the latest git tag.
+
+---
+
+## Team & Leadership Directory
+
+The *„Upravljanje & Vodstvo”* section showcases the 4 key persons responsible for business operations, craft production, field services, and technology infrastructure:
+
+| Ime i Prezime | Funkcija (Uloga) | Nadležnost | Kontakt e-mail | Telefon | LinkedIn |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Željka Jurkić** | Vlasnica obrta | Upravljanje poslovanjem & RosaDei ruže | `rosadeihr@gmail.com`<br>*(Predmet: Upit za bukete i krunice)* | `098 185 7755` | — |
+| **Ana Jurkić** | Kreativna suradnica | Ručna izrada & promocija | `rosadeihr@gmail.com`<br>*(Predmet: Upit za bukete i krunice)* | `098 185 7755` | — |
+| **Zoran Jurkić** | Voditelj terenskih radova | Održavanje okućnica | `rosadeihr@gmail.com`<br>*(Predmet: Upit za odrzavanje)* | `098 199 2888` | — |
+| **Luka Jurkić** | IT razvoj & administracija | Digitalni sustavi & organizacija | `lukajurkic1@gmail.com` | `099 579 2662` | [Profil](https://www.linkedin.com/in/luka-jurki%C4%87-496381327/) |
 
 ---
 
@@ -140,28 +267,21 @@ rosadei/
 
 ### Installation & Local Run
 
-1. **Clone Repository**:
-   ```bash
-   git clone https://github.com/lukajurkic/rosadei.git
-   cd rosadei
-   ```
+```bash
+# 1. Clone repository
+git clone https://github.com/lukajurkic/rosadei.git
+cd rosadei
 
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+# 2. Install dependencies
+npm install
 
-3. **Start Local Development Server**:
-   ```bash
-   npm run dev
-   ```
-   The application will be accessible at `http://localhost:3001` (or `http://localhost:3000`).
+# 3. Start local development server
+npm run dev
 
-4. **Build Production Static Export**:
-   ```bash
-   npm run build
-   ```
-   Output static HTML routes (`/`, `/ruze`, `/ruze/personaliziraj`, `/ruze/kontakti-i-narudzbe`) will be compiled in `./out`.
+# 4. Type check and build static production export
+npm run build
+```
+Static production output will be generated in `./out`.
 
 ---
 
@@ -179,8 +299,7 @@ The project includes automated image discovery at build/runtime and a script (`s
 
 ### Automated Image Discovery
 
-Next.js Server Components dynamically scan the subfolders in `/public/images/` at build time (and during development) using `lib/images.ts`.
-- **No hardcoded image lists**: The components automatically pull and display all images present in each category folder.
+Next.js Server Components dynamically scan the subfolders in `/public/images/roses/` at build time using `lib/images.ts`.
 - **Zero code changes needed**: Source code files are never modified when images are added or removed.
 
 ### How to Add New Images
@@ -198,8 +317,7 @@ Next.js Server Components dynamically scan the subfolders in `/public/images/` a
    ```bash
    npm run process-images
    ```
-3. That is all! The script optimizes each image to WebP format, numbers them sequentially, removes raw originals, and Next.js immediately pulls and displays them across the website.
-
+3. The script optimizes each image to WebP format, numbers them sequentially, and removes raw originals.
 
 ---
 
@@ -218,18 +336,13 @@ Next.js Server Components dynamically scan the subfolders in `/public/images/` a
 
 ---
 
-## Maintenance & Operational Procedures
-
-- Run `npm run process-images` whenever new photos are added.
-- Run `npm run build` locally to verify static page generation before committing.
-
----
-
 ## Future Features & Technical Roadmap
 
-1. **Content Expansion**:
-   - Add dedicated FAQ section (*Česta pitanja*) on `/kontakti-i-narudzbe`.
-2. **Interactive Customization Builder**:
-   - Enable interactive bouquet configuration preview in `/personaliziraj`.
-3. **Multi-language Support (i18n)**:
-   - Optional Croatian / English language toggle in header.
+1. **Automated Pipeline Git Tagging**:
+   - Integrate GitHub Actions release workflow reading `APP_VERSION` from `lib/version.ts` and generating release tags automatically.
+2. **Dedicated Division Subpages**:
+   - Transitioning `ComingSoonModal` triggers into dedicated presentation subpages for *Održavanje doma i posjeda*, *IT & Digitalna rješenja*, and *Administracija*.
+3. **Official Price List (`Cjenik`) Page**:
+   - Converting the Cjenik popup into an interactive structured price list and package builder.
+4. **FAQ Section (*Česta pitanja*)**:
+   - Adding a dedicated FAQ section on `/ruze/kontakti-i-narudzbe`.
