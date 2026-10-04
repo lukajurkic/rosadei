@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Jost } from 'next/font/google'
+import { ComingSoonProvider } from '@/components/ComingSoonModal'
 import './globals.css'
 
 const display = Cormorant_Garamond({
@@ -64,7 +65,9 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} bg-background`}
     >
       <body className="antialiased min-h-screen">
-        {children}
+        <ComingSoonProvider>
+          {children}
+        </ComingSoonProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

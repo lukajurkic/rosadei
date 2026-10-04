@@ -53,9 +53,7 @@ export function Leadership() {
             Izravna odgovornost
           </p>
           <h2 className="mt-5 text-3xl font-semibold sm:text-4xl">
-            Korporativno upravljanje
-            <br />
-            & vodstvo
+            Upravljanje & Vodstvo
           </h2>
         </div>
         <div className="mt-14 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">

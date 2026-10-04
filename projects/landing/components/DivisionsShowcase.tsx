@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Check } from "lucide-react";
+import { useComingSoonModal } from "@/components/ComingSoonModal";
 
 export const divisions = [
   {
@@ -89,6 +92,8 @@ export const divisions = [
 ] as const;
 
 export function DivisionsShowcase() {
+  const { openComingSoon } = useComingSoonModal();
+
   return (
     <section id="divisions" className="scroll-mt-18" aria-labelledby="divisions-heading">
       <div className="bg-charcoal py-16 text-primary-foreground lg:py-20">
@@ -178,12 +183,18 @@ export function DivisionsShowcase() {
                     {division.buttonLabel} <ArrowRight className="h-4 w-4" />
                   </Link>
                 ) : (
-                  <Link
-                    href={division.href}
-                    className="mt-10 inline-flex items-center gap-2 border-b border-foreground pb-1.5 text-sm font-semibold transition-opacity hover:opacity-60"
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openComingSoon({
+                        title: division.name,
+                        subtitle: division.tagline,
+                      })
+                    }
+                    className="mt-10 inline-flex items-center gap-2 border-b border-foreground pb-1.5 text-sm font-semibold transition-opacity hover:opacity-60 cursor-pointer text-left"
                   >
                     {division.buttonLabel} <ArrowUpRight className="h-4 w-4" />
-                  </Link>
+                  </button>
                 )}
               </div>
             </div>
