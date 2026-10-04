@@ -4,13 +4,19 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const links = [
-  { label: 'Ponuda', href: '/' },
-  { label: 'Personaliziraj', href: '/personaliziraj' },
-  { label: 'Kontaktiraj nas i naruči', href: '/kontakti-i-narudzbe' },
+  { label: 'Ruže', href: '/ruze' },
+  { label: 'Personaliziraj', href: '/ruze/personaliziraj' },
+  { label: 'Kontaktiraj nas i naruči', href: '/ruze/kontakti-i-narudzbe' },
 ]
 
-export function SiteHeader() {
+export function RuzeHeader() {
   const pathname = usePathname()
+
+  const checkIsActive = (href: string) => {
+    if (pathname === href) return true
+    if (href === '/ruze' && (pathname === '/' || pathname === '/ruze')) return true
+    return false
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-rose-100/60 bg-white/40 backdrop-blur-md">
@@ -27,10 +33,10 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label="Ruze navigation" className="hidden md:block">
           <ul className="flex items-center gap-8">
             {links.map((link) => {
-              const isActive = pathname === link.href
+              const isActive = checkIsActive(link.href)
               return (
                 <li key={link.href}>
                   <Link
@@ -50,9 +56,9 @@ export function SiteHeader() {
         </nav>
 
         {/* Mobile Navigation */}
-        <nav aria-label="Main mobile" className="flex items-center gap-3 sm:gap-4 md:hidden">
+        <nav aria-label="Ruze mobile navigation" className="flex items-center gap-3 sm:gap-4 md:hidden">
           {links.map((link) => {
-            const isActive = pathname === link.href
+            const isActive = checkIsActive(link.href)
             return (
               <Link
                 key={link.href}

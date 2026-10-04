@@ -19,7 +19,7 @@ export function OrderCtaBanner() {
           </div>
 
           <Link
-            href="/kontakti-i-narudzbe"
+            href="/ruze/kontakti-i-narudzbe"
             className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-[0.7rem] tracking-[0.22em] text-primary-foreground uppercase shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-rose-900/15"
           >
             Kontaktiraj nas i naruči

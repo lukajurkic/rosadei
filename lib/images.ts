@@ -7,10 +7,15 @@ const SUPPORTED_EXTENSIONS = new Set(['.webp', '.jpg', '.jpeg', '.png', '.avif']
 
 /**
  * Reads all image filenames from a given subfolder under `public/images/`.
+ * Supports subfolder paths (e.g. 'roses/bouquets' or 'bouquets' with automatic fallback to 'roses/bouquets').
  * Sorts them numerically by ID (e.g. bouquets_1.webp, bouquets_2.webp, bouquets_10.webp).
  */
 export function getImagesFromFolder(subfolder: string): string[] {
-  const folderPath = path.join(IMAGES_ROOT, subfolder)
+  let folderPath = path.join(IMAGES_ROOT, subfolder)
+
+  if (!fs.existsSync(folderPath) && fs.existsSync(path.join(IMAGES_ROOT, 'roses', subfolder))) {
+    folderPath = path.join(IMAGES_ROOT, 'roses', subfolder)
+  }
 
   if (!fs.existsSync(folderPath) || !fs.statSync(folderPath).isDirectory()) {
     return []
@@ -47,14 +52,14 @@ export type CategoryData = {
 export const CATEGORY_DEFINITIONS: Omit<CategoryData, 'slides'>[] = [
   {
     id: 'bouquets',
-    folder: 'bouquets',
+    folder: 'roses/bouquets',
     title: 'Buketi',
     description: 'Naš prepoznatljivi stil izrade — čvrstoća, kvaliteta, kreativnost i ručna izrada.',
     alt: 'Buket - Rosa Dei',
   },
   {
     id: 'krunice',
-    folder: 'rosaries',
+    folder: 'roses/rosaries',
     title: 'Krunice',
     description:
       'Pogledajte krunice koje možete već danas naručiti zasebno ili kombinirati u paketu s buketom za predivan poklon za razne prilike.',
@@ -62,7 +67,7 @@ export const CATEGORY_DEFINITIONS: Omit<CategoryData, 'slides'>[] = [
   },
   {
     id: 'box-bouquets',
-    folder: 'box_bouquets',
+    folder: 'roses/box_bouquets',
     title: 'Box Buketi',
     description:
       'Naši box buketi, slični kao buketi, ali zanimljiviji i drugačiji. Pogledajte našu ponudu box buketa i naručite svoj danas.',
@@ -70,21 +75,21 @@ export const CATEGORY_DEFINITIONS: Omit<CategoryData, 'slides'>[] = [
   },
   {
     id: 'combo',
-    folder: 'combo',
+    folder: 'roses/combo',
     title: 'Paketi',
     description: 'Prekrasne kombinacije buketa, krunica i dodataka u usklađenim paketima.',
     alt: 'Komplet - Rosa Dei',
   },
   {
     id: 'hair-clip-and-bow',
-    folder: 'hair_clip_and_bow',
+    folder: 'roses/hair_clip_and_bow',
     title: 'Kopče i Mašne za kosu',
     description: 'Ručno rađene kopče i elegantne mašne za svečane prilike.',
     alt: 'Kopče i Mašne za kosu - Rosa Dei',
   },
   {
     id: 'wedding-lapels',
-    folder: 'wedding_lapels',
+    folder: 'roses/wedding_lapels',
     title: 'Reveri i Svadbeni Ukrasi',
     description: 'Personalizirani reveri i cvjetni ukrasi za vjenčanja.',
     alt: 'Reveri - Rosa Dei',

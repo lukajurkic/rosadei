@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { OrderingJourney } from '@/components/ordering-journey'
-import { ContactSection } from '@/components/contact-footer'
+import { OrderingJourney } from '@/projects/ruze/components/ordering-journey'
+import { ContactSection } from '@/projects/ruze/components/footer'
 
 export const metadata: Metadata = {
   title: 'Kontakt i Narudžbe - Rosa Dei',

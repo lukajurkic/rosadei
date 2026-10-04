@@ -1,5 +1,5 @@
 import { getCategoryGalleriesData } from '@/lib/images'
-import { CategorySlideshow } from '@/components/category-slideshow'
+import { CategorySlideshow } from './category-slideshow'
 
 export function CategoryGalleries() {
   const categories = getCategoryGalleriesData()

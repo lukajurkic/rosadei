@@ -1,18 +1,28 @@
-import { CategoryGalleries } from '@/components/category-galleries'
-import { HeroSection } from '@/components/hero-section'
-import { PersonalizeCtaBanner } from '@/components/personalize-cta-banner'
-import { OrderCtaBanner } from '@/components/order-cta-banner'
-import { getImagesFromFolder } from '@/lib/images'
+import type { Metadata } from 'next'
+import { Navbar } from '@/projects/landing/components/Navbar'
+import { Hero } from '@/projects/landing/components/Hero'
+import { DivisionsShowcase } from '@/projects/landing/components/DivisionsShowcase'
+import { AboutOverview } from '@/projects/landing/components/AboutOverview'
+import { Leadership } from '@/projects/landing/components/Leadership'
+import { Footer } from '@/projects/landing/components/footer'
 
-export default function Page() {
-  const galleryImages = getImagesFromFolder('gallery')
+export const metadata: Metadata = {
+  title: 'RosaDei Grupa — Jedinstven standard kroz svaku disciplinu',
+  description:
+    'Multidisciplinarna poslovna grupa koja ujedinjuje unikatnu ručnu izradu, održavanje posjeda, digitalna rješenja i organizacijske usluge.',
+}
 
+export default function HomePage() {
   return (
-    <main>
-      <HeroSection galleryImages={galleryImages} />
-      <CategoryGalleries />
-      <PersonalizeCtaBanner />
-      <OrderCtaBanner />
-    </main>
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <Navbar />
+      <main>
+        <Hero />
+        <DivisionsShowcase />
+        <AboutOverview />
+        <Leadership />
+      </main>
+      <Footer />
+    </div>
   )
 }

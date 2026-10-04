@@ -30,6 +30,20 @@
   --color-glow: var(--glow);
   --color-gold: var(--gold);
 
+  --font-display: var(--font-display), Georgia, serif;
+  --color-primary-hover: var(--primary-hover);
+  --color-border-strong: var(--border-strong);
+  --color-craft: var(--craft);
+  --color-craft-accent: var(--craft-accent);
+  --color-grounds: var(--grounds);
+  --color-grounds-accent: var(--grounds-accent);
+  --color-digital: var(--digital);
+  --color-digital-accent: var(--digital-accent);
+  --color-admin: var(--admin);
+  --color-admin-accent: var(--admin-accent);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-muted: var(--charcoal-muted);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -56,6 +70,7 @@
   --popover-foreground: #1e1b18;
   --primary: #1e1b18;
   --primary-foreground: #fdf6f1;
+  --primary-hover: oklch(0.28 0.008 286);
   --secondary: #f7e7e9;
   --secondary-foreground: #1e1b18;
   --muted: #f3e8e4;
@@ -64,8 +79,21 @@
   --accent-foreground: #1e1b18;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #ecd9d6;
+  --border-strong: oklch(0.76 0.008 286);
   --input: #ecd9d6;
   --ring: #d4af37;
+
+  /* corporate landing tokens */
+  --craft: oklch(0.978 0.011 72);
+  --craft-accent: oklch(0.53 0.11 60);
+  --grounds: oklch(0.975 0.011 150);
+  --grounds-accent: oklch(0.45 0.09 151);
+  --digital: oklch(0.974 0.009 250);
+  --digital-accent: oklch(0.48 0.14 258);
+  --admin: oklch(0.972 0.008 220);
+  --admin-accent: oklch(0.46 0.10 225);
+  --charcoal: oklch(0.16 0.006 286);
+  --charcoal-muted: oklch(0.69 0.01 286);
 
   --radius: 0.75rem;
 }
