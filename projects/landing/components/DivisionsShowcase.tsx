@@ -26,6 +26,7 @@ export const divisions = [
     imagePlaceholder: "Rosa Dei unikatni buket i ručno rađeni aranžman od satena",
     isRuze: true,
   },
+  /*
   {
     id: "maintenance",
     name: "Održavanje doma i posjeda",
@@ -47,6 +48,7 @@ export const divisions = [
     imagePlaceholder: "Besprijekorno održavano suvremeno imanje",
     isRuze: false,
   },
+  */
   {
     id: "digital",
     name: "IT & Digitalna rješenja",
@@ -103,7 +105,7 @@ export function DivisionsShowcase() {
           </p>
           <div className="mt-5 grid gap-5 lg:grid-cols-2 lg:items-end">
             <h2 id="divisions-heading" className="text-4xl font-semibold sm:text-5xl">
-              Četiri discipline.
+              Tri discipline.
               <br />
               Jedna predanost.
             </h2>

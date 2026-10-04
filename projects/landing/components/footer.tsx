@@ -26,6 +26,7 @@ const columns: FooterColumn[] = [
       { label: "Kontakt i narudžbe", href: "/ruze/kontakti-i-narudzbe" },
     ],
   },
+  /*
   {
     title: "Održavanje",
     divisionName: "Održavanje doma i posjeda",
@@ -36,6 +37,7 @@ const columns: FooterColumn[] = [
       { label: "Sezonsko održavanje" },
     ],
   },
+  */
   {
     title: "Digitalno",
     divisionName: "IT & Digitalna rješenja",
@@ -145,7 +147,7 @@ export function Footer() {
   return (
     <footer id="footer" className="scroll-mt-18 bg-charcoal text-charcoal-muted">
       <div className="mx-auto max-w-7xl px-5 pb-8 pt-16 lg:px-8 lg:pt-20">
-        <div className="grid gap-10 border-b border-primary-foreground/10 pb-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.3fr_repeat(4,1fr)] lg:gap-8 xl:gap-12">
+        <div className="grid gap-10 border-b border-primary-foreground/10 pb-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.3fr_repeat(3,1fr)] lg:gap-8 xl:gap-12">
           <div>
             <div className="text-primary-foreground">
               <BrandMark inverse />
