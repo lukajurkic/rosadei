@@ -2,4 +2,4 @@
  * Application version
  * Easily updated manually or automatically via CI/CD pipeline git tagging.
  */
-export const APP_VERSION = "v2.0.0";
+export const APP_VERSION = "v2.0.1";

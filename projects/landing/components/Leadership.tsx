@@ -41,6 +41,7 @@ const leaders: Leader[] = [
     phone: "0981857755",
     displayPhone: "098 185 7755",
   },
+  /*
   {
     name: "Zoran Jurkić",
     role: "Voditelj terenskih radova",
@@ -51,6 +52,7 @@ const leaders: Leader[] = [
     phone: "0981992888",
     displayPhone: "098 199 2888",
   },
+  */
   {
     name: "Luka Jurkić",
     role: "IT razvoj & administracija",
@@ -77,7 +79,7 @@ export function Leadership() {
             Upravljanje & Vodstvo
           </h2>
         </div>
-        <div className="mt-14 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {leaders.map((leader) => (
             <article key={leader.name} className="flex flex-col justify-between bg-background p-7 lg:p-8">
               <div>

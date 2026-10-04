@@ -9,7 +9,7 @@ export function Hero() {
           <div>
             <p className="mb-7 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
               <span className="h-px w-8 bg-foreground" />
-              Obiteljsko poslovanje - 4 djelatnosti
+              Obiteljsko poslovanje - 3 djelatnosti
             </p>
             <h1 className="max-w-4xl font-display text-5xl font-semibold leading-[1.02] sm:text-6xl lg:text-[5.2rem]">
               Različite discipline.

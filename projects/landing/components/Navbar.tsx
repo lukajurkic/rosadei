@@ -51,7 +51,7 @@ export function Navbar() {
               <SheetTitle>
                 <BrandMark />
               </SheetTitle>
-              <SheetDescription>Četiri discipline. Jedan operativni standard.</SheetDescription>
+              <SheetDescription>Tri discipline. Jedan operativni standard.</SheetDescription>
             </SheetHeader>
             <nav className="mt-10 flex flex-col" aria-label="Mobilna navigacija">
               {links.map(([label, href], index) => (
