@@ -1,5 +1,9 @@
+"use client";
+
 import { Clock, Mail, MapPin, Phone, Info } from 'lucide-react'
 import { InstagramGlyph } from './rosa-marks'
+import { useComingSoonModal } from '@/components/ComingSoonModal'
+import { APP_VERSION } from '@/lib/version'
 
 const channels = [
   {
@@ -97,34 +101,120 @@ export function ContactSection() {
 }
 
 export function RuzeFooter() {
+  const { openComingSoon } = useComingSoonModal()
+
+  const handleCjenikClick = () => {
+    openComingSoon({
+      title: 'Cjenik u izradi',
+      subtitle: 'Službeni cjenik • RosaDei Grupa',
+      description: (
+        <div className="space-y-3">
+          <p>
+            Službeni cjenik naših aranžmana i proizvoda trenutno je u fazi završne izrade i formiranja paketa.
+          </p>
+          <p>
+            Za sve detalje oko cijena, ponuda te individualnih narudžbi, slobodno nam se javite putem e-maila:{' '}
+            <a
+              href="mailto:rosadeihr@gmail.com?subject=Upit%20za%20cjenik"
+              className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
+            >
+              rosadeihr@gmail.com
+            </a>
+          </p>
+        </div>
+      ),
+      badge: 'U pripremi • Cjenik',
+      contactEmail: 'rosadeihr@gmail.com',
+    })
+  }
+
+  const handlePrivacyClick = () => {
+    openComingSoon({
+      title: 'Pravila privatnosti',
+      subtitle: 'Zaštita osobnih podataka • Pravni uvjeti',
+      description: (
+        <div className="space-y-3">
+          <p>
+            Dokument pravila privatnosti i zaštite osobnih podataka trenutno je u fazi pravnog usklađivanja i izrade.
+          </p>
+          <p>
+            Vaša privatnost i podaci kod nas su u potpunosti zaštićeni te se koriste isključivo za potrebe realizacije narudžbi i izravne komunikacije.
+          </p>
+          <p>
+            Za sva dodatna pitanja o načinu obrade podataka slobodno nam se obratite na{' '}
+            <a
+              href="mailto:rosadeihr@gmail.com?subject=Upit%20o%20privatnosti"
+              className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
+            >
+              rosadeihr@gmail.com
+            </a>.
+          </p>
+        </div>
+      ),
+      badge: 'U pripremi • Privatnost',
+      contactEmail: 'rosadeihr@gmail.com',
+    })
+  }
+
+  const handleTermsClick = () => {
+    openComingSoon({
+      title: 'Uvjeti poslovanja',
+      subtitle: 'Opći uvjeti poslovanja • Pravni okvir',
+      description: (
+        <div className="space-y-3">
+          <p>
+            Službeni opći uvjeti poslovanja obrta trenutno su u fazi pripreme i pravnog usklađivanja.
+          </p>
+          <p>
+            Sve narudžbe, rokovi isporuke, načini plaćanja i uvjeti suradnje trenutno se dogovaraju izravno i transparentno s ovlaštenim osobama obrta.
+          </p>
+          <p>
+            Za sve informacije o uvjetima poslovanja javite nam se na{' '}
+            <a
+              href="mailto:rosadeihr@gmail.com?subject=Upit%20za%20uvjete%20poslovanja"
+              className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
+            >
+              rosadeihr@gmail.com
+            </a>.
+          </p>
+        </div>
+      ),
+      badge: 'U pripremi • Uvjeti poslovanja',
+      contactEmail: 'rosadeihr@gmail.com',
+    })
+  }
+
   return (
     <footer className="border-t border-rose-200/50 px-5 py-8 sm:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row sm:gap-4">
-        {/* Left section: 2 rows */}
-        <div className="flex flex-col text-center text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase sm:text-left">
-          <span>web version 2.0.0</span>
-          <span>
-            developer:{' '}
-            <a
-              href="mailto:lukajurkic1@gmail.com"
-              className="transition-colors hover:text-foreground"
-            >
-              lukajurkic1@gmail.com
-            </a>
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 text-xs sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-foreground/60">
+          © 2026 RosaDei Grupa. Sva prava pridržana.
+        </p>
+        <div className="flex items-center gap-6">
+          <span className="font-mono text-[0.7rem] tracking-wider text-foreground/45 uppercase">
+            {APP_VERSION}
           </span>
-        </div>
-
-        {/* Middle section: ROSA DEI */}
-        <div className="flex items-center text-foreground/70">
-          <span className="font-serif text-sm tracking-[0.2em] uppercase">
-            ROSA DEI
-          </span>
-        </div>
-
-        {/* Right section: Legal text */}
-        <div className="flex flex-col text-center text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase sm:text-right">
-          <span>&copy; {new Date().getFullYear()} Rosa Dei Obrt Za Usluge</span>
-          <span>vl. Željka Jurkić, OIB: 76565059947</span>
+          <button
+            type="button"
+            onClick={handleCjenikClick}
+            className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
+          >
+            Cjenik
+          </button>
+          <button
+            type="button"
+            onClick={handlePrivacyClick}
+            className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
+          >
+            Privatnost
+          </button>
+          <button
+            type="button"
+            onClick={handleTermsClick}
+            className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
+          >
+            Uvjeti poslovanja
+          </button>
         </div>
       </div>
     </footer>

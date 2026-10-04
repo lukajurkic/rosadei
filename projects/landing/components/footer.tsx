@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 import { useComingSoonModal } from "@/components/ComingSoonModal";
+import { APP_VERSION } from "@/lib/version";
 
 interface FooterLink {
   label: string;
@@ -196,6 +197,9 @@ export function Footer() {
         <div className="flex flex-col gap-4 pt-7 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 RosaDei Grupa. Sva prava pridržana.</p>
           <div className="flex items-center gap-6">
+            <span className="font-mono text-[0.7rem] tracking-wider text-charcoal-muted/70 uppercase">
+              {APP_VERSION}
+            </span>
             <button
               type="button"
               onClick={handleCjenikClick}
