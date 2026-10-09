@@ -210,6 +210,17 @@ export function RuzeFooter() {
           </button>
           <button
             type="button"
+            onClick={() => {
+              if (typeof window !== "undefined" && window.openCookieConsent) {
+                window.openCookieConsent();
+              }
+            }}
+            className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
+          >
+            Kolačići
+          </button>
+          <button
+            type="button"
             onClick={handleTermsClick}
             className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
           >
