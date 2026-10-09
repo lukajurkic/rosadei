@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Sparkles, ArrowRight, Clock } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +10,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface ComingSoonOptions {
   title?: string;
@@ -90,9 +91,15 @@ export function ComingSoonModal({
   title,
   subtitle,
   description,
-  badge = "U pripremi • Uskoro dostupno",
+  badge,
   contactEmail,
 }: ComingSoonModalProps) {
+  const { language } = useLanguage();
+  const isEn = language === "en";
+
+  const defaultBadge = badge || (isEn ? "In Preparation • Coming Soon" : "U pripremi • Uskoro dostupno");
+  const defaultTitle = title || (isEn ? "Something extraordinary is in the works..." : "Nešto izvanredno je u pripremi...");
+
   const handleContactClick = () => {
     onClose();
     // Scroll smoothly to contact section if present
@@ -119,7 +126,7 @@ export function ComingSoonModal({
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
                 </span>
-                {badge}
+                {defaultBadge}
               </span>
             </div>
 
@@ -131,11 +138,11 @@ export function ComingSoonModal({
                 </p>
               )}
               <DialogTitle className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-foreground leading-snug">
-                {title ? `${title}` : "Nešto izvanredno je u pripremi..."}
+                {defaultTitle}
               </DialogTitle>
             </div>
 
-            {/* Description building suspense and desire to return */}
+            {/* Description */}
             <DialogDescription asChild>
               <div className="text-[15px] leading-relaxed text-muted-foreground pt-1 space-y-3">
                 {description ? (
@@ -144,6 +151,16 @@ export function ComingSoonModal({
                   ) : (
                     description
                   )
+                ) : isEn ? (
+                  <>
+                    <span className="block">
+                      This page and our full suite of solutions are currently undergoing careful and precise development.
+                      We build digital experiences to the highest standards — because we believe lasting quality is worth the wait.
+                    </span>
+                    <span className="block text-foreground/90 font-medium">
+                      All details and collaboration opportunities will be unveiled soon. Stay tuned!
+                    </span>
+                  </>
                 ) : (
                   <>
                     <span className="block">
@@ -165,20 +182,41 @@ export function ComingSoonModal({
               <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <div>
                 <span className="font-semibold text-foreground">
-                  {contactEmail ? "Zanima vas točna cijena ili ponuda?" : "Trebate informacije ili ponudu već sada?"}
+                  {contactEmail
+                    ? isEn
+                      ? "Interested in exact pricing or an inquiry?"
+                      : "Zanima vas točna cijena ili ponuda?"
+                    : isEn
+                    ? "Need information or a quote right away?"
+                    : "Trebate informacije ili ponudu već sada?"}
                 </span>
                 <p className="mt-0.5 text-muted-foreground">
                   {contactEmail ? (
-                    <>
-                      Javite nam se izravno na{" "}
-                      <a
-                        href={`mailto:${contactEmail}?subject=Upit%20za%20cjenik`}
-                        className="font-medium text-foreground underline underline-offset-2 hover:text-gold"
-                      >
-                        {contactEmail}
-                      </a>{" "}
-                      i poslat ćemo vam sve specifikacije i ponudu u najkraćem roku.
-                    </>
+                    isEn ? (
+                      <>
+                        Contact us directly at{" "}
+                        <a
+                          href={`mailto:${contactEmail}?subject=Price%20Inquiry`}
+                          className="font-medium text-foreground underline underline-offset-2 hover:text-gold"
+                        >
+                          {contactEmail}
+                        </a>{" "}
+                        and we will send full specifications and offer promptly.
+                      </>
+                    ) : (
+                      <>
+                        Javite nam se izravno na{" "}
+                        <a
+                          href={`mailto:${contactEmail}?subject=Upit%20za%20cjenik`}
+                          className="font-medium text-foreground underline underline-offset-2 hover:text-gold"
+                        >
+                          {contactEmail}
+                        </a>{" "}
+                        i poslat ćemo vam sve specifikacije i ponudu u najkraćem roku.
+                      </>
+                    )
+                  ) : isEn ? (
+                    "While this page is being completed, our team is fully operational and available for direct consultation."
                   ) : (
                     "Iako je stranica u izradi, naš tim je u potpunosti operativan i dostupan za izravan dogovor i suradnju."
                   )}
@@ -195,7 +233,7 @@ export function ComingSoonModal({
               onClick={onClose}
               className="w-full sm:w-auto text-xs font-medium tracking-wide"
             >
-              Pričekat ću, zatvori
+              {isEn ? "Close" : "Pričekat ću, zatvori"}
             </Button>
             {contactEmail ? (
               <Button
@@ -204,8 +242,8 @@ export function ComingSoonModal({
                 asChild
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase"
               >
-                <a href={`mailto:${contactEmail}?subject=Upit%20za%20cjenik`}>
-                  Pošaljite e-mail <ArrowRight className="h-3.5 w-3.5" />
+                <a href={`mailto:${contactEmail}?subject=${isEn ? "Price%20Inquiry" : "Upit%20za%20cjenik"}`}>
+                  {isEn ? "Send an email" : "Pošaljite e-mail"} <ArrowRight className="h-3.5 w-3.5" />
                 </a>
               </Button>
             ) : (
@@ -215,7 +253,7 @@ export function ComingSoonModal({
                 onClick={handleContactClick}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase"
               >
-                Javite nam se izravno <ArrowRight className="h-3.5 w-3.5" />
+                {isEn ? "Contact us directly" : "Javite nam se izravno"} <ArrowRight className="h-3.5 w-3.5" />
               </Button>
             )}
           </div>

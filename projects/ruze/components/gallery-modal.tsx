@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { X, ChevronLeft, ChevronRight, ZoomIn, Images } from 'lucide-react'
+import { useLanguage } from '@/context/LanguageContext'
+import { ruzeTranslations } from '../translations'
 
 type GalleryModalProps = {
   isOpen: boolean
@@ -13,6 +15,8 @@ type GalleryModalProps = {
 export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps) {
   const [shuffledFiles, setShuffledFiles] = useState<string[]>([])
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const { language } = useLanguage()
+  const t = ruzeTranslations[language]
 
   // Shuffle images randomly on open
   useEffect(() => {
@@ -20,7 +24,7 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
       const copy = [...images]
       for (let i = copy.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-          ;[copy[i], copy[j]] = [copy[j], copy[i]]
+        ;[copy[i], copy[j]] = [copy[j], copy[i]]
       }
       setShuffledFiles(copy)
     } else {
@@ -64,7 +68,7 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Galerija radova"
+      aria-label={t.galleryModal.title}
       className="fixed inset-0 z-50 overflow-y-auto bg-black/90 backdrop-blur-md p-4 sm:p-8 animate-in fade-in duration-300"
     >
       {/* Floating Top Bar / Close Button */}
@@ -75,12 +79,12 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
           </div>
           <div>
             <h2 className="font-serif text-xl font-light text-white sm:text-2xl">
-              Galerija Radova
+              {t.galleryModal.title}
             </h2>
             <p className="text-xs text-white/60">
               {shuffledFiles.length > 0
-                ? `${shuffledFiles.length} fotografija u našoj ponudi`
-                : 'Učitavanje galerije...'}
+                ? `${shuffledFiles.length} ${t.galleryModal.photosSuffix}`
+                : t.galleryModal.loading}
             </p>
           </div>
         </div>
@@ -88,8 +92,8 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
         <button
           type="button"
           onClick={onClose}
-          aria-label="Zatvori galeriju"
-          className="flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+          aria-label={t.galleryModal.closeAria}
+          className="flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
         >
           <X className="size-6" />
         </button>
@@ -106,11 +110,11 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
                   key={file}
                   type="button"
                   onClick={() => setLightboxIndex(index)}
-                  className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-xl hover:shadow-rose-900/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+                  className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-xl hover:shadow-rose-900/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
                 >
                   <Image
                     src={src}
-                    alt={`Rosa Dei galerija radova ${index + 1}`}
+                    alt={`${t.galleryModal.itemAlt} ${index + 1}`}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -125,78 +129,78 @@ export function GalleryModal({ isOpen, onClose, images = [] }: GalleryModalProps
             })}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-20 text-center text-white/70">
-            <p>Učitavanje galerije radova...</p>
+          <div className="flex h-64 items-center justify-center rounded-2xl border border-white/10 text-sm text-white/50">
+            {t.galleryModal.loading}
           </div>
         )}
       </div>
 
-      {/* Lightbox Focus View when image is clicked */}
-      {lightboxIndex !== null && shuffledFiles.length > 0 && (
+      {/* Fullscreen Lightbox View */}
+      {lightboxIndex !== null && shuffledFiles[lightboxIndex] && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Uvećani prikaz slike"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-lg p-4 sm:p-8"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-black/95 p-4 sm:p-8 animate-in fade-in duration-200"
+          onClick={() => setLightboxIndex(null)}
         >
-          {/* Lightbox Close button */}
           <button
             type="button"
             onClick={() => setLightboxIndex(null)}
-            aria-label="Zatvori uvećani prikaz"
-            className="absolute top-4 right-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+            aria-label={t.galleryModal.closeAria}
+            className="absolute top-4 right-4 z-50 flex size-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
           >
             <X className="size-6" />
           </button>
 
-          {/* Previous Button */}
           {shuffledFiles.length > 1 && (
-            <button
-              type="button"
-              onClick={() =>
-                setLightboxIndex((prev) =>
-                  prev !== null ? (prev - 1 + shuffledFiles.length) % shuffledFiles.length : 0
-                )
-              }
-              aria-label="Prethodna slika"
-              className="absolute left-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:left-8"
-            >
-              <ChevronLeft className="size-6" />
-            </button>
+            <>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setLightboxIndex(
+                    (lightboxIndex - 1 + shuffledFiles.length) % shuffledFiles.length
+                  )
+                }}
+                aria-label="Prethodna slika"
+                className="absolute left-4 z-50 flex size-14 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer sm:left-8"
+              >
+                <ChevronLeft className="size-8" />
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setLightboxIndex((lightboxIndex + 1) % shuffledFiles.length)
+                }}
+                aria-label="Sljedeća slika"
+                className="absolute right-4 z-50 flex size-14 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer sm:right-8"
+              >
+                <ChevronRight className="size-8" />
+              </button>
+            </>
           )}
 
-          {/* Image Display */}
-          <div className="relative flex flex-col items-center justify-center">
-            <div className="relative flex h-[75vh] w-[85vw] max-w-5xl items-center justify-center overflow-hidden rounded-2xl">
+          <div
+            className="relative flex max-h-[90vh] max-w-5xl flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative aspect-[4/3] w-[88vw] max-w-4xl overflow-hidden rounded-2xl shadow-2xl">
               <Image
                 src={`/images/roses/gallery/${shuffledFiles[lightboxIndex]}`}
-                alt={`Rosa Dei galerija radova - slika ${lightboxIndex + 1}`}
+                alt={`${t.galleryModal.itemAlt} ${lightboxIndex + 1}`}
                 fill
-                sizes="85vw"
-                className="object-contain rounded-2xl"
+                sizes="(max-width: 1200px) 90vw, 1024px"
+                className="object-contain"
                 priority
               />
             </div>
-            <p className="mt-4 text-xs tracking-wider font-medium text-white/80">
+
+            <p className="mt-4 text-xs tracking-widest text-white/70 uppercase">
               {`${lightboxIndex + 1} / ${shuffledFiles.length}`}
             </p>
           </div>
-
-          {/* Next Button */}
-          {shuffledFiles.length > 1 && (
-            <button
-              type="button"
-              onClick={() =>
-                setLightboxIndex((prev) =>
-                  prev !== null ? (prev + 1) % shuffledFiles.length : 0
-                )
-              }
-              aria-label="Sljedeća slika"
-              className="absolute right-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:right-8"
-            >
-              <ChevronRight className="size-6" />
-            </button>
-          )}
         </div>
       )}
     </div>

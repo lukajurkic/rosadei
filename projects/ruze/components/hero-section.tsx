@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { Sparkles, Images } from 'lucide-react'
 import { GalleryModal } from './gallery-modal'
+import { useLanguage } from '@/context/LanguageContext'
+import { ruzeTranslations } from '../translations'
 
 type HeroSectionProps = {
   galleryImages?: string[]
@@ -10,6 +12,8 @@ type HeroSectionProps = {
 
 export function HeroSection({ galleryImages = [] }: HeroSectionProps) {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+  const { language } = useLanguage()
+  const t = ruzeTranslations[language]
 
   return (
     <section className="relative overflow-hidden px-5 pt-20 pb-24 sm:px-8 sm:pt-28 sm:pb-32">
@@ -22,18 +26,16 @@ export function HeroSection({ galleryImages = [] }: HeroSectionProps) {
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
         <span className="mb-8 inline-flex items-center gap-2 rounded-full border border-rose-200/50 bg-white/50 px-4 py-1.5 text-[0.65rem] tracking-[0.28em] text-foreground/70 uppercase backdrop-blur-sm">
           <Sparkles className="size-3.5 text-gold" />
-          RosaDei obrt
+          {t.hero.badge}
         </span>
 
         <h1 className="font-serif text-4xl leading-[1.1] font-light tracking-tight text-balance text-foreground sm:text-6xl lg:text-7xl">
-          Po slici prirode
-          <span className="block italic">Napravljeno da traje</span>
+          {t.hero.titleLine1}
+          <span className="block italic">{t.hero.titleLine2}</span>
         </h1>
 
         <p className="mt-7 max-w-xl leading-relaxed text-pretty text-foreground/70 sm:text-lg">
-          Načini kako razveseliti velike i male, stare i mlade, žene i muškarce.
-          Svaki od naših proizvoda je ručno izrađen od visokokvalitenih materijala.
-          Razni pokloni za razne prigode.
+          {t.hero.description}
         </p>
 
         {/* Action Buttons */}
@@ -42,7 +44,7 @@ export function HeroSection({ galleryImages = [] }: HeroSectionProps) {
             href="#collections"
             className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-3.5 text-[0.7rem] tracking-[0.22em] text-primary-foreground uppercase shadow-lg shadow-rose-900/10 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-rose-900/15"
           >
-            Istraži ponudu
+            {t.hero.exploreBtn}
             <span
               aria-hidden="true"
               className="transition-transform group-hover:translate-x-1"
@@ -54,16 +56,16 @@ export function HeroSection({ galleryImages = [] }: HeroSectionProps) {
           <button
             type="button"
             onClick={() => setIsGalleryOpen(true)}
-            className="group inline-flex items-center gap-2 rounded-full border border-rose-300/60 bg-white/70 px-7 py-3.5 text-[0.7rem] tracking-[0.22em] text-foreground uppercase shadow-md backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-white hover:shadow-lg focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+            className="group inline-flex items-center gap-2 rounded-full border border-rose-300/60 bg-white/70 px-7 py-3.5 text-[0.7rem] tracking-[0.22em] text-foreground uppercase shadow-md backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-white hover:shadow-lg focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
           >
             <Images className="size-4 text-gold transition-transform group-hover:scale-110" />
-            Pogledaj galeriju
+            {t.hero.galleryBtn}
           </button>
         </div>
 
         <div className="mt-14 flex items-center gap-3 text-[0.62rem] tracking-[0.24em] text-foreground/45 uppercase">
           <span className="h-px w-8 bg-foreground/20" />
-          Svaki pojedinačno i ručno rađen
+          {t.hero.tagline}
           <span className="h-px w-8 bg-foreground/20" />
         </div>
       </div>

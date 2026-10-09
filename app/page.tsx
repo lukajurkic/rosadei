@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { LanguageProvider } from '@/projects/landing/context/LanguageContext'
 import { Navbar } from '@/projects/landing/components/Navbar'
 import { Hero } from '@/projects/landing/components/Hero'
 import { DivisionsShowcase } from '@/projects/landing/components/DivisionsShowcase'
@@ -15,17 +14,15 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <LanguageProvider>
-      <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-        <Navbar />
-        <main>
-          <Hero />
-          <DivisionsShowcase />
-          <AboutOverview />
-          <Leadership />
-        </main>
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <Navbar />
+      <main>
+        <Hero />
+        <DivisionsShowcase />
+        <AboutOverview />
+        <Leadership />
+      </main>
+      <Footer />
+    </div>
   )
 }

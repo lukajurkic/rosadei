@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useState, useRef } from 'react'
 import type { CategoryData } from '@/lib/images'
+import { useLanguage } from '@/context/LanguageContext'
+import { ruzeTranslations } from '../translations'
 
 type CategorySlideshowProps = {
   category: CategoryData
@@ -11,6 +13,8 @@ type CategorySlideshowProps = {
 export function CategorySlideshow({ category }: CategorySlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
+  const { language } = useLanguage()
+  const t = ruzeTranslations[language]
   const total = category.slides.length
 
   // Touch tracking for swipe gestures on mobile
@@ -61,7 +65,7 @@ export function CategorySlideshow({ category }: CategorySlideshowProps) {
   if (total === 0) {
     return (
       <div className="mx-auto flex aspect-[4/3] max-w-2xl items-center justify-center rounded-2xl border border-rose-200/50 bg-rose-50/20 text-xs tracking-wider text-foreground/40 uppercase">
-        Trenutno nema slika u ovoj kategoriji
+        {t.collections.slideshow.noImages}
       </div>
     )
   }
@@ -79,7 +83,7 @@ export function CategorySlideshow({ category }: CategorySlideshowProps) {
       <button
         type="button"
         onClick={advance}
-        aria-label={`Prikaži sljedeću sliku u ${category.title}`}
+        aria-label={`${t.collections.slideshow.nextImageAria} ${category.title}`}
         className="relative block aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl border border-rose-200/50 shadow-lg shadow-rose-900/10 transition-shadow duration-300 hover:shadow-xl hover:shadow-rose-900/15 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:outline-none"
       >
         {category.slides.map((slide, index) => (
@@ -116,7 +120,7 @@ export function CategorySlideshow({ category }: CategorySlideshowProps) {
               key={slide.src}
               type="button"
               onClick={() => setCurrentSlide(index)}
-              aria-label={`Idi na sliku ${index + 1} od ${category.title}`}
+              aria-label={`${t.collections.slideshow.goToImageAria} ${index + 1} (${category.title})`}
               aria-current={index === currentSlide}
               className={`h-1.5 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:outline-none ${
                 index === currentSlide

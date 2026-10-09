@@ -2,15 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-const links = [
-  { label: 'Ruže', href: '/ruze' },
-  { label: 'Personaliziraj', href: '/ruze/personaliziraj' },
-  { label: 'Kontaktiraj nas i naruči', href: '/ruze/kontakti-i-narudzbe' },
-]
+import { useLanguage } from '@/context/LanguageContext'
+import { ruzeTranslations } from '../translations'
 
 export function RuzeHeader() {
   const pathname = usePathname()
+  const { language } = useLanguage()
+  const t = ruzeTranslations[language]
 
   const checkIsActive = (href: string) => {
     if (pathname === href) return true
@@ -35,7 +33,7 @@ export function RuzeHeader() {
         {/* Desktop Navigation */}
         <nav aria-label="Ruze navigation" className="hidden md:block">
           <ul className="flex items-center gap-8">
-            {links.map((link) => {
+            {t.header.links.map((link) => {
               const isActive = checkIsActive(link.href)
               return (
                 <li key={link.href}>
@@ -57,7 +55,7 @@ export function RuzeHeader() {
 
         {/* Mobile Navigation */}
         <nav aria-label="Ruze mobile navigation" className="flex items-center gap-3 sm:gap-4 md:hidden">
-          {links.map((link) => {
+          {t.header.links.map((link) => {
             const isActive = checkIsActive(link.href)
             return (
               <Link
