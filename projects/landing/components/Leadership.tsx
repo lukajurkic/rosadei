@@ -1,4 +1,8 @@
+"use client";
+
 import { Mail, Phone } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
+import { landingTranslations } from "../translations";
 
 function Linkedin({ className }: { className?: string }) {
   return (
@@ -8,79 +12,63 @@ function Linkedin({ className }: { className?: string }) {
   );
 }
 
-interface Leader {
+interface LeaderStatic {
   name: string;
-  role: string;
-  oversight: string;
-  bio: string;
-  linkedin?: string;
   email: string;
-  emailSubject?: string;
   phone: string;
   displayPhone: string;
+  linkedin?: string;
 }
 
-const leaders: Leader[] = [
+const staticLeaders: LeaderStatic[] = [
   {
     name: "Željka Jurkić",
-    role: "Vlasnica obrta",
-    oversight: "Upravljanje poslovanjem & RosaDei ruže",
-    bio: "Osnivačica i glavna odgovorna osoba obrta te primarni kontakt za kupce i suradnike. Zadužena za cjelokupno vođenje poslovanja, izdavanje računa, zaprimanje narudžbi te završnu izradu i kontrolu kvalitete RosaDei ruža.",
     email: "rosadeihr@gmail.com",
-    emailSubject: "Upit za bukete i krunice",
     phone: "0981857755",
     displayPhone: "098 185 7755",
   },
   {
     name: "Ana Jurkić",
-    role: "Kreativna suradnica",
-    oversight: "Ručna izrada & promocija",
-    bio: "Ključna suradnica u kreativnom stvaralaštvu i većinskoj izradi ruža. Zadužena za osmišljavanje novih dizajnerskih ideja, marketing, vizualnu promociju brenda te vođenje komunikacije na društvenim mrežama.",
     email: "rosadeihr@gmail.com",
-    emailSubject: "Upit za bukete i krunice",
     phone: "0981857755",
     displayPhone: "098 185 7755",
   },
-  /*
-  {
-    name: "Zoran Jurkić",
-    role: "Voditelj terenskih radova",
-    oversight: "Održavanje okućnica",
-    bio: "Glavna osoba za sve usluge održavanja okućnica i zelenih površina. S klijentima izravno dogovara detalje i planira radove na terenu te osobno vodi i izvršava sve dogovorene narudžbe.",
-    email: "rosadeihr@gmail.com",
-    emailSubject: "Upit za odrzavanje",
-    phone: "0981992888",
-    displayPhone: "098 199 2888",
-  },
-  */
   {
     name: "Luka Jurkić",
-    role: "IT razvoj & administracija",
-    oversight: "Digitalni sustavi & organizacija",
-    bio: "Glavni pozadinski administrator i softverski programer obrta. Zadužen za IT razvoj i web rješenja, strateško planiranje i organizaciju poslovanja te pravna pitanja obrta.",
-    linkedin:
-      "https://www.linkedin.com/in/luka-jurki%C4%87-496381327/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUbGgEahARiC%2Bg53WhKcnqA%3D%3D",
     email: "lukajurkic1@gmail.com",
     phone: "0995792662",
     displayPhone: "099 579 2662",
+    linkedin:
+      "https://www.linkedin.com/in/luka-jurki%C4%87-496381327/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUbGgEahARiC%2Bg53WhKcnqA%3D%3D",
   },
 ];
 
 export function Leadership() {
+  const { language } = useLanguage();
+  const t = landingTranslations[language];
+
+  const mergedLeaders = staticLeaders.map((leader) => {
+    const textData = t.leadership.leaders.find((l) => l.name === leader.name)!;
+    return {
+      ...leader,
+      ...textData,
+    };
+  });
+
   return (
     <section id="contact" className="scroll-mt-18 border-y border-border bg-background py-20 lg:py-28">
       <div id="leadership" className="sr-only" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-            Izravna odgovornost
+            {t.leadership.eyebrow}
           </p>
           <h2 className="mt-5 text-3xl font-semibold sm:text-4xl">
-            Upravljanje & Vodstvo
+            {t.leadership.title}
           </h2>
         </div>
         <div className="mt-14 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {leaders.map((leader) => (
+          {mergedLeaders.map((leader) => (
             <article key={leader.name} className="flex flex-col justify-between bg-background p-7 lg:p-8">
               <div>
                 <div className="flex items-start justify-between gap-3">

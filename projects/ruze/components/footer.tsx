@@ -4,29 +4,35 @@ import { Clock, Mail, MapPin, Phone, Info } from 'lucide-react'
 import { InstagramGlyph } from './rosa-marks'
 import { useComingSoonModal } from '@/components/ComingSoonModal'
 import { APP_VERSION } from '@/lib/version'
-
-const channels = [
-  {
-    label: 'Email',
-    value: 'rosadeihr@gmail.com',
-    href: 'mailto:studio@rosadei.co?subject=Bespoke%20Arrangement%20Enquiry',
-    icon: Mail,
-  },
-  {
-    label: 'Telephone',
-    value: '+385 98 185 7755',
-    href: 'tel:+385981857755',
-    icon: Phone,
-  },
-  {
-    label: 'Instagram',
-    value: '@rosadei.hr',
-    href: 'https://instagram.com',
-    icon: InstagramGlyph,
-  },
-]
+import { useLanguage } from '@/context/LanguageContext'
+import { ruzeTranslations } from '../translations'
+import { landingTranslations } from '@/projects/landing/translations'
 
 export function ContactSection() {
+  const { language } = useLanguage()
+  const t = ruzeTranslations[language]
+
+  const channels = [
+    {
+      label: t.contactSection.channels.email,
+      value: 'rosadeihr@gmail.com',
+      href: 'mailto:rosadeihr@gmail.com?subject=Upit%20za%20bukete%20i%20krunice',
+      icon: Mail,
+    },
+    {
+      label: t.contactSection.channels.phone,
+      value: '+385 98 185 7755',
+      href: 'tel:+385981857755',
+      icon: Phone,
+    },
+    {
+      label: t.contactSection.channels.instagram,
+      value: '@rosadei.hr',
+      href: 'https://instagram.com',
+      icon: InstagramGlyph,
+    },
+  ]
+
   return (
     <section id="contact" className="scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-4xl">
@@ -34,28 +40,28 @@ export function ContactSection() {
           <div className="grid gap-10 p-8 sm:p-12 md:grid-cols-[1.1fr_1fr]">
             <div>
               <p className="text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase">
-                Kontaktirajte nas
+                {t.contactSection.eyebrow}
               </p>
               <h2 className="mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-4xl">
-                Javite nam se i započnimo razgovor
+                {t.contactSection.title}
               </h2>
               <p className="mt-4 leading-relaxed text-pretty text-foreground/65">
-                Pošaljite nam što želite, za kada te ako imate kakva dodatna pitanja. Mi ćemo se potruditi da vam odgovorimo u najkraćem mogućem roku.
+                {t.contactSection.description}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 text-sm text-foreground/70">
                 <p className="flex items-start gap-2.5">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
-                  Đurđice Rijetković 9, 43280 Garešnica, Hrvatska
+                  {t.contactSection.address}
                 </p>
                 <p className="flex items-start gap-2.5">
                   <Clock className="mt-0.5 size-4 shrink-0 text-gold" />
-                  Ponedjeljak - Subota: 08:00 - 21:00
+                  {t.contactSection.hours}
                 </p>
                 <p className="flex items-start gap-2.5">
                   <Info className="mt-0.5 size-4 shrink-0 text-gold" />
                   <span>
-                    Narudžbe isključivo po dogovoru. Upiti nisu narudžbe.
+                    {t.contactSection.note}
                   </span>
                 </p>
               </div>
@@ -86,10 +92,10 @@ export function ContactSection() {
 
               <li className="mt-2">
                 <a
-                  href="mailto:studio@rosadei.co?subject=Bespoke%20Arrangement%20Enquiry"
+                  href="mailto:rosadeihr@gmail.com?subject=Upit%20za%20bukete%20i%20krunice"
                   className="flex items-center justify-center rounded-full bg-primary px-6 py-3.5 text-[0.7rem] tracking-[0.22em] text-primary-foreground uppercase transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-rose-900/15"
                 >
-                  Započni razgovor
+                  {t.contactSection.button}
                 </a>
               </li>
             </ul>
@@ -102,18 +108,20 @@ export function ContactSection() {
 
 export function RuzeFooter() {
   const { openComingSoon } = useComingSoonModal()
+  const { language } = useLanguage()
+  const tLanding = landingTranslations[language]
+  const t = ruzeTranslations[language]
 
   const handleCjenikClick = () => {
+    const modalData = tLanding.footer.modals.cjenik
     openComingSoon({
-      title: 'Cjenik u izradi',
-      subtitle: 'Službeni cjenik • RosaDei Grupa',
+      title: modalData.title,
+      subtitle: modalData.subtitle,
       description: (
         <div className="space-y-3">
+          <p>{modalData.p1}</p>
           <p>
-            Službeni cjenik naših aranžmana i proizvoda trenutno je u fazi završne izrade i formiranja paketa.
-          </p>
-          <p>
-            Za sve detalje oko cijena, ponuda te individualnih narudžbi, slobodno nam se javite putem e-maila:{' '}
+            {modalData.p2}{' '}
             <a
               href="mailto:rosadeihr@gmail.com?subject=Upit%20za%20cjenik"
               className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
@@ -123,63 +131,59 @@ export function RuzeFooter() {
           </p>
         </div>
       ),
-      badge: 'U pripremi • Cjenik',
+      badge: modalData.badge,
       contactEmail: 'rosadeihr@gmail.com',
     })
   }
 
   const handlePrivacyClick = () => {
+    const modalData = tLanding.footer.modals.privatnost
     openComingSoon({
-      title: 'Pravila privatnosti',
-      subtitle: 'Zaštita osobnih podataka • Pravni uvjeti',
+      title: modalData.title,
+      subtitle: modalData.subtitle,
       description: (
         <div className="space-y-3">
+          <p>{modalData.p1}</p>
+          <p>{modalData.p2}</p>
           <p>
-            Dokument pravila privatnosti i zaštite osobnih podataka trenutno je u fazi pravnog usklađivanja i izrade.
-          </p>
-          <p>
-            Vaša privatnost i podaci kod nas su u potpunosti zaštićeni te se koriste isključivo za potrebe realizacije narudžbi i izravne komunikacije.
-          </p>
-          <p>
-            Za sva dodatna pitanja o načinu obrade podataka slobodno nam se obratite na{' '}
+            {modalData.p3}{' '}
             <a
               href="mailto:rosadeihr@gmail.com?subject=Upit%20o%20privatnosti"
               className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
             >
               rosadeihr@gmail.com
-            </a>.
+            </a>
+            .
           </p>
         </div>
       ),
-      badge: 'U pripremi • Privatnost',
+      badge: modalData.badge,
       contactEmail: 'rosadeihr@gmail.com',
     })
   }
 
   const handleTermsClick = () => {
+    const modalData = tLanding.footer.modals.uvjeti
     openComingSoon({
-      title: 'Uvjeti poslovanja',
-      subtitle: 'Opći uvjeti poslovanja • Pravni okvir',
+      title: modalData.title,
+      subtitle: modalData.subtitle,
       description: (
         <div className="space-y-3">
+          <p>{modalData.p1}</p>
+          <p>{modalData.p2}</p>
           <p>
-            Službeni opći uvjeti poslovanja obrta trenutno su u fazi pripreme i pravnog usklađivanja.
-          </p>
-          <p>
-            Sve narudžbe, rokovi isporuke, načini plaćanja i uvjeti suradnje trenutno se dogovaraju izravno i transparentno s ovlaštenim osobama obrta.
-          </p>
-          <p>
-            Za sve informacije o uvjetima poslovanja javite nam se na{' '}
+            {modalData.p3}{' '}
             <a
               href="mailto:rosadeihr@gmail.com?subject=Upit%20za%20uvjete%20poslovanja"
               className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
             >
               rosadeihr@gmail.com
-            </a>.
+            </a>
+            .
           </p>
         </div>
       ),
-      badge: 'U pripremi • Uvjeti poslovanja',
+      badge: modalData.badge,
       contactEmail: 'rosadeihr@gmail.com',
     })
   }
@@ -188,7 +192,7 @@ export function RuzeFooter() {
     <footer className="border-t border-rose-200/50 px-5 py-8 sm:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 text-xs sm:flex-row sm:items-center sm:justify-between">
         <p className="text-foreground/60">
-          © 2026 RosaDei Grupa. Sva prava pridržana.
+          {t.footer.copyright}
         </p>
         <div className="flex items-center gap-6">
           <span className="font-mono text-[0.7rem] tracking-wider text-foreground/45 uppercase">
@@ -199,21 +203,32 @@ export function RuzeFooter() {
             onClick={handleCjenikClick}
             className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
           >
-            Cjenik
+            {t.footer.cjenik}
           </button>
           <button
             type="button"
             onClick={handlePrivacyClick}
             className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
           >
-            Privatnost
+            {t.footer.privatnost}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              if (typeof window !== 'undefined' && window.openCookieConsent) {
+                window.openCookieConsent()
+              }
+            }}
+            className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
+          >
+            {t.footer.kolacici}
           </button>
           <button
             type="button"
             onClick={handleTermsClick}
             className="text-foreground/65 transition-colors hover:text-foreground cursor-pointer"
           >
-            Uvjeti poslovanja
+            {t.footer.uvjeti}
           </button>
         </div>
       </div>

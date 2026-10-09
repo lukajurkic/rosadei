@@ -4,6 +4,8 @@ import { useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import { Sparkles, Ribbon, Layers, Box, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 import type { ComponentType } from 'react'
+import { useLanguage } from '@/context/LanguageContext'
+import { ruzeTranslations } from '../translations'
 
 export type CustomizationImages = {
   additions?: string[]
@@ -13,7 +15,7 @@ export type CustomizationImages = {
 }
 
 type CustomizationCategory = {
-  id: string
+  id: 'additions' | 'ribbons' | 'decorative-paper' | 'boxes'
   title: string
   subtitle: string
   description: string
@@ -27,39 +29,42 @@ type CustomizationOptionsProps = {
 }
 
 export function CustomizationOptions({ images = {} }: CustomizationOptionsProps) {
+  const { language } = useLanguage()
+  const t = ruzeTranslations[language]
+
   const categories: CustomizationCategory[] = [
     {
       id: 'additions',
-      title: 'Dodatci',
-      subtitle: 'Bespoke Additions',
-      description: 'Posebni detalji i dodaci koji daju personalizirani i jedinstven pečat svakom aranžmanu.',
+      title: t.customizationOptions.categories.additions.title,
+      subtitle: t.customizationOptions.categories.additions.subtitle,
+      description: t.customizationOptions.categories.additions.description,
       icon: Sparkles,
       subfolder: 'additions',
       files: images.additions || [],
     },
     {
       id: 'ribbons',
-      title: 'Boje traka',
-      subtitle: 'Silk & Satin Ribbons',
-      description: 'Svilene, satenske i baršunaste trake u pažljivo odabranim nijansama za savršen finiš.',
+      title: t.customizationOptions.categories.ribbons.title,
+      subtitle: t.customizationOptions.categories.ribbons.subtitle,
+      description: t.customizationOptions.categories.ribbons.description,
       icon: Ribbon,
       subfolder: 'ribbons',
       files: images.ribbons || [],
     },
     {
       id: 'decorative-paper',
-      title: 'Papir za zamatanje',
-      subtitle: 'Wrapping Paper',
-      description: 'Ukrasni papiri i omoti u suptilnim tonovima koji ističu ljepotu cvijeća.',
+      title: t.customizationOptions.categories['decorative-paper'].title,
+      subtitle: t.customizationOptions.categories['decorative-paper'].subtitle,
+      description: t.customizationOptions.categories['decorative-paper'].description,
       icon: Layers,
       subfolder: 'decorative_paper',
       files: images.decorative_paper || [],
     },
     {
       id: 'boxes',
-      title: 'Box kutije',
-      subtitle: 'Flower Boxes',
-      description: 'Elegantne kutije u raznim oblicima i dimenzijama za luksuzan dojam.',
+      title: t.customizationOptions.categories.boxes.title,
+      subtitle: t.customizationOptions.categories.boxes.subtitle,
+      description: t.customizationOptions.categories.boxes.description,
       icon: Box,
       subfolder: 'boxes',
       files: images.boxes || [],
@@ -126,13 +131,13 @@ export function CustomizationOptions({ images = {} }: CustomizationOptionsProps)
         {/* Section Header */}
         <div className="mb-12 text-center">
           <p className="text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase">
-            Personalizacija
+            {t.customizationOptions.eyebrow}
           </p>
           <h2 className="mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl">
-            Opcije Personalizacije
+            {t.customizationOptions.title}
           </h2>
           <p className="mx-auto mt-4 max-w-lg leading-relaxed text-pretty text-foreground/65">
-            Svaki aranžman možete prilagoditi svojim željama. Odaberite trake, pakiranja i posebne dodatke.
+            {t.customizationOptions.description}
           </p>
 
           {/* Category Filter Tabs */}
@@ -140,20 +145,20 @@ export function CustomizationOptions({ images = {} }: CustomizationOptionsProps)
             <button
               type="button"
               onClick={() => setActiveTab('all')}
-              className={`rounded-full px-4 py-2 text-xs tracking-wider transition-all duration-300 ${
+              className={`rounded-full px-4 py-2 text-xs tracking-wider transition-all duration-300 cursor-pointer ${
                 activeTab === 'all'
                   ? 'bg-gold text-white shadow-md shadow-amber-900/10 font-medium'
                   : 'bg-white/60 text-foreground/70 hover:bg-white hover:text-foreground border border-rose-200/40'
               }`}
             >
-              Sve Opcije
+              {t.customizationOptions.allOptions}
             </button>
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveTab(cat.id)}
-                className={`rounded-full px-4 py-2 text-xs tracking-wider transition-all duration-300 ${
+                className={`rounded-full px-4 py-2 text-xs tracking-wider transition-all duration-300 cursor-pointer ${
                   activeTab === cat.id
                     ? 'bg-gold text-white shadow-md shadow-amber-900/10 font-medium'
                     : 'bg-white/60 text-foreground/70 hover:bg-white hover:text-foreground border border-rose-200/40'
@@ -171,28 +176,28 @@ export function CustomizationOptions({ images = {} }: CustomizationOptionsProps)
             const Icon = category.icon
             const imageList = category.files.map((file, idx) => ({
               src: `/images/roses/customization/${category.subfolder}/${file}`,
-              alt: `${category.title} opcija ${idx + 1} - Rosa Dei`,
+              alt: `${category.title} ${idx + 1} - Rosa Dei`,
             }))
 
             return (
               <div
                 key={category.id}
                 id={category.id}
-                className="rounded-3xl border border-rose-200/50 bg-white/40 p-6 shadow-sm shadow-rose-900/5 backdrop-blur-sm sm:p-8"
+                className="scroll-mt-28 rounded-2xl border border-rose-200/50 bg-white/45 p-6 shadow-sm shadow-rose-900/5 backdrop-blur-sm sm:p-8"
               >
-                {/* Category Card Header */}
-                <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-rose-200/40 pb-5">
+                {/* Category Header */}
+                <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-2xl bg-rose-100/60 text-gold shadow-inner">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-gold/15 text-gold">
                       <Icon className="size-5" />
                     </div>
                     <div>
-                      <span className="text-[0.6rem] tracking-[0.2em] text-foreground/45 uppercase font-medium">
-                        {category.subtitle}
-                      </span>
                       <h3 className="font-serif text-2xl font-light text-foreground sm:text-3xl">
                         {category.title}
                       </h3>
+                      <p className="text-[0.62rem] tracking-[0.2em] text-foreground/50 uppercase">
+                        {category.subtitle}
+                      </p>
                     </div>
                   </div>
                   <p className="max-w-md text-xs leading-relaxed text-foreground/65 sm:text-right">
@@ -200,42 +205,37 @@ export function CustomizationOptions({ images = {} }: CustomizationOptionsProps)
                   </p>
                 </div>
 
-                {/* Category Options Gallery / Placeholders */}
-                {imageList.length > 0 ? (
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                    {imageList.map((img, index) => (
-                      <button
-                        key={img.src}
-                        type="button"
-                        onClick={() => openLightbox(category.title, imageList, index)}
-                        className="group relative aspect-square w-full overflow-hidden rounded-2xl border border-rose-200/60 bg-rose-50/50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-lg hover:shadow-rose-900/10 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
-                      >
-                        <Image
-                          src={img.src}
-                          alt={img.alt}
-                          fill
-                          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                          <div className="flex size-9 items-center justify-center rounded-full bg-white/90 text-foreground shadow-md">
-                            <ZoomIn className="size-4 text-gold" />
+                {/* Images Grid */}
+                {category.files.length > 0 ? (
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                    {category.files.map((file, index) => {
+                      const src = `/images/roses/customization/${category.subfolder}/${file}`
+                      return (
+                        <button
+                          key={file}
+                          type="button"
+                          onClick={() => openLightbox(category.title, imageList, index)}
+                          className="group relative aspect-square overflow-hidden rounded-xl border border-rose-200/40 bg-white/60 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-md hover:shadow-rose-900/10 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
+                        >
+                          <Image
+                            src={src}
+                            alt={`${category.title} ${index + 1}`}
+                            fill
+                            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <div className="flex size-9 items-center justify-center rounded-full bg-white/90 text-foreground shadow-sm">
+                              <ZoomIn className="size-4 text-gold" />
+                            </div>
                           </div>
-                        </div>
-                      </button>
-                    ))}
+                        </button>
+                      )
+                    })}
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-rose-200/80 bg-rose-50/30 px-6 py-10 text-center">
-                    <div className="mb-3 flex size-12 items-center justify-center rounded-full bg-white/80 text-gold/80 shadow-sm">
-                      <Icon className="size-6" />
-                    </div>
-                    <h4 className="font-serif text-lg font-normal text-foreground/80">
-                      Nove opcije dolaze uskoro
-                    </h4>
-                    <p className="mt-1 max-w-sm text-xs text-foreground/55">
-                      Uskoro dodajemo nove nijanse i varijacije za kategoriju {category.title.toLowerCase()}.
-                    </p>
+                  <div className="flex h-36 items-center justify-center rounded-xl border border-dashed border-rose-200/60 bg-rose-50/15 text-xs tracking-wider text-foreground/40 uppercase">
+                    {t.collections.slideshow.noImages}
                   </div>
                 )}
               </div>
@@ -249,64 +249,64 @@ export function CustomizationOptions({ images = {} }: CustomizationOptionsProps)
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`Pregled - ${lightboxState.categoryTitle}`}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 animate-in fade-in duration-200"
+          onClick={closeLightbox}
         >
-          {/* Close button */}
           <button
             type="button"
             onClick={closeLightbox}
-            aria-label="Zatvori pregled"
-            className="absolute top-4 right-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+            aria-label="Zatvori prikaz"
+            className="absolute top-4 right-4 z-50 flex size-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
           >
-            <X className="size-6" />
+            <X className="size-5" />
           </button>
 
-          {/* Previous Image Button */}
           {lightboxState.images.length > 1 && (
-            <button
-              type="button"
-              onClick={prevImage}
-              aria-label="Prethodna slika"
-              className="absolute left-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:left-8"
-            >
-              <ChevronLeft className="size-6" />
-            </button>
+            <>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  prevImage()
+                }}
+                aria-label="Prethodna slika"
+                className="absolute left-4 z-50 flex size-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
+              >
+                <ChevronLeft className="size-6" />
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  nextImage()
+                }}
+                aria-label="Sljedeća slika"
+                className="absolute right-4 z-50 flex size-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none cursor-pointer"
+              >
+                <ChevronRight className="size-6" />
+              </button>
+            </>
           )}
 
-          {/* Image Container */}
-          <div className="relative flex flex-col items-center justify-center">
-            <div className="relative flex h-[75vh] w-[85vw] max-w-5xl items-center justify-center overflow-hidden rounded-2xl">
+          <div
+            className="relative flex max-h-[85vh] max-w-3xl flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative aspect-square w-full max-w-lg overflow-hidden rounded-2xl shadow-2xl sm:max-w-xl">
               <Image
                 src={lightboxState.images[lightboxState.currentIndex].src}
                 alt={lightboxState.images[lightboxState.currentIndex].alt}
                 fill
-                sizes="85vw"
-                className="object-contain rounded-2xl"
+                sizes="(max-width: 768px) 90vw, 600px"
+                className="object-contain"
                 priority
               />
             </div>
-            <div className="mt-4 flex flex-col items-center text-center text-white">
-              <span className="text-[0.65rem] tracking-[0.2em] uppercase text-white/60 font-medium">
-                {lightboxState.categoryTitle}
-              </span>
-              <p className="mt-1 text-xs text-white/80">
-                {`${lightboxState.currentIndex + 1} / ${lightboxState.images.length}`}
-              </p>
-            </div>
+            <p className="mt-4 text-xs tracking-widest text-white/70 uppercase">
+              {`${lightboxState.categoryTitle} • ${lightboxState.currentIndex + 1} / ${lightboxState.images.length}`}
+            </p>
           </div>
-
-          {/* Next Image Button */}
-          {lightboxState.images.length > 1 && (
-            <button
-              type="button"
-              onClick={nextImage}
-              aria-label="Sljedeća slika"
-              className="absolute right-4 z-50 flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:right-8"
-            >
-              <ChevronRight className="size-6" />
-            </button>
-          )}
         </div>
       )}
     </section>

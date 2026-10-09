@@ -88,7 +88,7 @@ npm run build
 
 ## Versioning & CI/CD
 
-- **Current Version**: Defined in `lib/version.ts` (currently `v2.0.0`).
+- **Current Version**: Defined in `lib/version.ts` (currently `v2.1.0`).
 - Displayed across both website footers next to the *Cjenik* link.
 - Ready for automated release workflows to bump versions and create git tags automatically.
 

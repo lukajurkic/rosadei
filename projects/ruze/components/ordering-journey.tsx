@@ -1,27 +1,15 @@
-import { MessagesSquare, PackageCheck, Palette } from 'lucide-react'
+'use client'
 
-const steps = [
-  {
-    number: 'I',
-    title: 'Odaberi i Zamisli',
-    icon: Palette,
-    copy: 'Pregledajte naše proizvode na stranici ili na društvenim mrežama, izaberite stil kojoi vam se sviđa, boje i dodatke.',
-  },
-  {
-    number: 'II',
-    title: 'Kontaktirajte nas i potvrdite s nama',
-    icon: MessagesSquare,
-    copy: 'Kontaktirajte nas putem naših kontaktnih kanala s vašim izborima za potvrdu datuma i proizvoda.',
-  },
-  {
-    number: 'III',
-    title: 'Ručni rad i iščekivanje',
-    icon: PackageCheck,
-    copy: 'Ručno izrađujemo vaš personalizirani proizvod, na vama je da se opustite i čekate da vam javimo da je spreman.',
-  },
-]
+import { MessagesSquare, PackageCheck, Palette } from 'lucide-react'
+import { useLanguage } from '@/context/LanguageContext'
+import { ruzeTranslations } from '../translations'
+
+const stepIcons = [Palette, MessagesSquare, PackageCheck]
 
 export function OrderingJourney() {
+  const { language } = useLanguage()
+  const t = ruzeTranslations[language]
+
   return (
     <section
       id="how-it-works"
@@ -30,16 +18,16 @@ export function OrderingJourney() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">
           <p className="text-[0.62rem] tracking-[0.28em] text-foreground/50 uppercase">
-            Kako radimo
+            {t.orderingJourney.eyebrow}
           </p>
           <h2 className="mt-4 font-serif text-3xl leading-tight font-light text-balance sm:text-5xl">
-            Put do narudžbe
+            {t.orderingJourney.title}
           </h2>
         </div>
 
         <ol className="grid gap-6 md:grid-cols-3">
-          {steps.map((step) => {
-            const Icon = step.icon
+          {t.orderingJourney.steps.map((step, index) => {
+            const Icon = stepIcons[index] || Palette
             return (
               <li
                 key={step.title}

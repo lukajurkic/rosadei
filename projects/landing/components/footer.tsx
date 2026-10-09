@@ -4,76 +4,24 @@ import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 import { useComingSoonModal } from "@/components/ComingSoonModal";
 import { APP_VERSION } from "@/lib/version";
-
-interface FooterLink {
-  label: string;
-  href?: string;
-}
-
-interface FooterColumn {
-  title: string;
-  divisionName?: string;
-  divisionTagline?: string;
-  links: FooterLink[];
-}
-
-const columns: FooterColumn[] = [
-  {
-    title: "Ručna izrada",
-    links: [
-      { label: "Katalog buketa i ruža", href: "/ruze" },
-      { label: "Personalizirani pokloni", href: "/ruze/personaliziraj" },
-      { label: "Kontakt i narudžbe", href: "/ruze/kontakti-i-narudzbe" },
-    ],
-  },
-  /*
-  {
-    title: "Održavanje",
-    divisionName: "Održavanje doma i posjeda",
-    divisionTagline: "Kompletna briga o imanjima i objektima",
-    links: [
-      { label: "Uređenje posjeda" },
-      { label: "Hortikultura i okoliš" },
-      { label: "Sezonsko održavanje" },
-    ],
-  },
-  */
-  {
-    title: "Digitalno",
-    divisionName: "IT & Digitalna rješenja",
-    divisionTagline: "Full-Stack razvoj i digitalna infrastruktura",
-    links: [
-      { label: "Web aplikacije" },
-      { label: "Cloud sustavi" },
-      { label: "Dizajn proizvoda" },
-    ],
-  },
-  {
-    title: "Administracija",
-    divisionName: "Administracija, planiranje i organizacija",
-    divisionTagline: "Strateško planiranje i organizacijske usluge",
-    links: [
-      { label: "Strateško planiranje" },
-      { label: "Uredska podrška" },
-      { label: "Upravljanje projektima" },
-    ],
-  },
-];
+import { useLanguage } from "../context/LanguageContext";
+import { landingTranslations } from "../translations";
 
 export function Footer() {
   const { openComingSoon } = useComingSoonModal();
+  const { language } = useLanguage();
+  const t = landingTranslations[language];
 
   const handleCjenikClick = () => {
+    const modalData = t.footer.modals.cjenik;
     openComingSoon({
-      title: "Cjenik u izradi",
-      subtitle: "Službeni cjenik • RosaDei Grupa",
+      title: modalData.title,
+      subtitle: modalData.subtitle,
       description: (
         <div className="space-y-3">
+          <p>{modalData.p1}</p>
           <p>
-            Službeni cjenik naših usluga i aranžmana trenutno je u fazi završne izrade i formiranja paketa.
-          </p>
-          <p>
-            Za sve detalje oko cijena, ponuda te individualnih narudžbi, slobodno nam se javite putem e-maila:{" "}
+            {modalData.p2}{" "}
             <a
               href="mailto:rosadeihr@gmail.com?subject=Upit%20za%20cjenik"
               className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
@@ -83,63 +31,59 @@ export function Footer() {
           </p>
         </div>
       ),
-      badge: "U pripremi • Cjenik",
+      badge: modalData.badge,
       contactEmail: "rosadeihr@gmail.com",
     });
   };
 
   const handlePrivacyClick = () => {
+    const modalData = t.footer.modals.privatnost;
     openComingSoon({
-      title: "Pravila privatnosti",
-      subtitle: "Zaštita osobnih podataka • Pravni uvjeti",
+      title: modalData.title,
+      subtitle: modalData.subtitle,
       description: (
         <div className="space-y-3">
+          <p>{modalData.p1}</p>
+          <p>{modalData.p2}</p>
           <p>
-            Dokument pravila privatnosti i zaštite osobnih podataka trenutno je u fazi pravnog usklađivanja i izrade.
-          </p>
-          <p>
-            Vaša privatnost i podaci kod nas su u potpunosti zaštićeni te se koriste isključivo za potrebe realizacije narudžbi i izravne komunikacije.
-          </p>
-          <p>
-            Za sva dodatna pitanja o načinu obrade podataka slobodno nam se obratite na{" "}
+            {modalData.p3}{" "}
             <a
               href="mailto:rosadeihr@gmail.com?subject=Upit%20o%20privatnosti"
               className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
             >
               rosadeihr@gmail.com
-            </a>.
+            </a>
+            .
           </p>
         </div>
       ),
-      badge: "U pripremi • Privatnost",
+      badge: modalData.badge,
       contactEmail: "rosadeihr@gmail.com",
     });
   };
 
   const handleTermsClick = () => {
+    const modalData = t.footer.modals.uvjeti;
     openComingSoon({
-      title: "Uvjeti poslovanja",
-      subtitle: "Opći uvjeti poslovanja • Pravni okvir",
+      title: modalData.title,
+      subtitle: modalData.subtitle,
       description: (
         <div className="space-y-3">
+          <p>{modalData.p1}</p>
+          <p>{modalData.p2}</p>
           <p>
-            Službeni opći uvjeti poslovanja obrta trenutno su u fazi pripreme i pravnog usklađivanja.
-          </p>
-          <p>
-            Sve narudžbe, rokovi isporuke, načini plaćanja i uvjeti suradnje trenutno se dogovaraju izravno i transparentno s ovlaštenim osobama obrta.
-          </p>
-          <p>
-            Za sve informacije o uvjetima poslovanja javite nam se na{" "}
+            {modalData.p3}{" "}
             <a
               href="mailto:rosadeihr@gmail.com?subject=Upit%20za%20uvjete%20poslovanja"
               className="font-medium text-foreground underline underline-offset-4 hover:text-gold transition-colors"
             >
               rosadeihr@gmail.com
-            </a>.
+            </a>
+            .
           </p>
         </div>
       ),
-      badge: "U pripremi • Uvjeti poslovanja",
+      badge: modalData.badge,
       contactEmail: "rosadeihr@gmail.com",
     });
   };
@@ -153,15 +97,15 @@ export function Footer() {
               <BrandMark inverse />
             </div>
             <p className="mt-6 max-w-xs text-sm leading-6">
-              Specijalizirani rad ujedinjen discipliniranim poslovanjem i izravnom odgovornošću.
+              {t.footer.brandTagline}
             </p>
             <address className="mt-6 text-xs not-italic leading-5">
-              Sjedište RosaDei Grupe
+              {t.footer.headquartersTitle}
               <br />
-              Središnja Europa
+              {t.footer.headquartersSubtitle}
             </address>
           </div>
-          {columns.map((column) => (
+          {t.footer.columns.map((column) => (
             <div key={column.title}>
               <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground">
                 {column.title}
@@ -197,7 +141,7 @@ export function Footer() {
           ))}
         </div>
         <div className="flex flex-col gap-4 pt-7 text-xs sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 RosaDei Grupa. Sva prava pridržana.</p>
+          <p>{t.footer.copyright}</p>
           <div className="flex items-center gap-6">
             <span className="font-mono text-[0.7rem] tracking-wider text-charcoal-muted/70 uppercase">
               {APP_VERSION}
@@ -207,21 +151,32 @@ export function Footer() {
               onClick={handleCjenikClick}
               className="transition-colors hover:text-primary-foreground cursor-pointer"
             >
-              Cjenik
+              {t.footer.cjenik}
             </button>
             <button
               type="button"
               onClick={handlePrivacyClick}
               className="transition-colors hover:text-primary-foreground cursor-pointer"
             >
-              Privatnost
+              {t.footer.privatnost}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined" && window.openCookieConsent) {
+                  window.openCookieConsent();
+                }
+              }}
+              className="transition-colors hover:text-primary-foreground cursor-pointer"
+            >
+              {t.footer.kolacici}
             </button>
             <button
               type="button"
               onClick={handleTermsClick}
               className="transition-colors hover:text-primary-foreground cursor-pointer"
             >
-              Uvjeti poslovanja
+              {t.footer.uvjeti}
             </button>
           </div>
         </div>

@@ -14,6 +14,7 @@ This document provides comprehensive technical documentation for the RosaDei Gru
    - [Landing Hub Layer (`/`)](#landing-hub-layer-)
    - [Rosa Dei Roses & Crafts Layer (`/ruze`)](#rosa-dei-roses--crafts-layer-ruze)
    - [Coming Soon Modal & Context (`ComingSoonModal`)](#coming-soon-modal--context-comingsoonmodal)
+   - [GDPR Cookie Consent & Google Analytics (`CookieConsent`)](#gdpr-cookie-consent--google-analytics-cookieconsent)
    - [Centralized Versioning & CI/CD Tagging](#centralized-versioning--cicd-tagging)
 6. [Team & Leadership Directory](#team--leadership-directory)
 7. [Development Environment & Setup](#development-environment--setup)
@@ -80,13 +81,17 @@ rosadei/
 │           └── page.tsx           # Ordering & Contact subpage (OrderingJourney, ContactSection)
 ├── projects/
 │   ├── landing/                   # Project: Landing Portal / Hub
+│   │   ├── context/
+│   │   │   └── LanguageContext.tsx # Multi-language provider with auto-detect & persistence
+│   │   ├── translations.ts        # Comprehensive HR/EN dictionaries for landing page
 │   │   └── components/
 │   │       ├── AboutOverview.tsx  # Editorial full-width statement („Napravljeno da traje”)
 │   │       ├── BrandMark.tsx      # RosaDei Grupa logo & typography mark
-│   │       ├── DivisionsShowcase.tsx # 4-division showcase with ComingSoon triggers
+│   │       ├── DivisionsShowcase.tsx # 3-division showcase with ComingSoon triggers
 │   │       ├── Hero.tsx           # Multidisciplinary hero banner
-│   │       ├── Leadership.tsx     # Team section (Upravljanje & Vodstvo) with 4 contacts
-│   │       ├── Navbar.tsx         # Main sticky navigation with mobile Sheet
+│   │       ├── LanguageToggle.tsx # Segmented HR/EN toggle pill
+│   │       ├── Leadership.tsx     # Team section (Upravljanje & Vodstvo) with 3 contacts
+│   │       ├── Navbar.tsx         # Main sticky navigation with LanguageToggle & mobile Sheet
 │   │       └── footer.tsx         # Landing footer with ComingSoon triggers & version
 │   └── ruze/                      # Project: Satin Roses & Bouquets
 │       └── components/
@@ -103,6 +108,7 @@ rosadei/
 │           └── rosa-marks.tsx     # Ruže SVG marks & icons
 ├── components/
 │   ├── ComingSoonModal.tsx        # Reusable coming soon popup with context & hook
+│   ├── CookieConsent.tsx          # GDPR Cookie Consent banner with dynamic GA4 loader
 │   └── ui/
 │       ├── button.tsx             # Reusable button with variants (corporate, corporateOutline, ghost)
 │       ├── dialog.tsx             # Radix Dialog primitive component
@@ -231,13 +237,31 @@ export function MyComponent() {
 
 ---
 
+### GDPR Cookie Consent & Google Analytics (`CookieConsent`)
+
+The web application implements a fully GDPR-compliant, privacy-first Cookie Consent solution coupled with Google Analytics (GA4: `G-EZWYTM74ZX`):
+
+- **Component**: [components/CookieConsent.tsx](file:///e:/RosaDei%20Web/components/CookieConsent.tsx)
+- **Standalone Vanilla Template**: [public/cookie-consent-vanilla.html](file:///e:/RosaDei%20Web/public/cookie-consent-vanilla.html)
+
+#### Privacy & Compliance Rules
+1. **Zero Pre-Consent Tracking**: No tracking cookies or external scripts (`googletagmanager.com/gtag/js`) are loaded or executed prior to affirmative consent.
+2. **Clear Equal Choice**: Users are provided equal prominence for `Prihvati` (Accept) and `Odbij` (Decline).
+3. **Local Persistence**: User preference is stored in `localStorage` under `cookie_consent` (`accepted` | `declined`). The banner is never shown again on subsequent visits unless reset.
+4. **Conditional Dynamic Loading**:
+   - `accepted`: Dynamically injects the `gtag.js` script with `anonymize_ip: true` and configures `G-EZWYTM74ZX`.
+   - `declined`: Tracking is strictly blocked and the official GA disable flag `window['ga-disable-G-EZWYTM74ZX'] = true` is set.
+5. **Revocability**: Users can reopen and change their consent preferences anytime by clicking **„Kolačići”** in either footer or calling `window.openCookieConsent()`.
+
+---
+
 ### Centralized Versioning & CI/CD Tagging
 
 To allow easy version bumping and automated git tagging in deployment pipelines, the version string is isolated in a single configuration file:
 
 - **File**: [lib/version.ts](file:///e:/RosaDei%20Web/lib/version.ts)
 ```ts
-export const APP_VERSION = "v2.0.1";
+export const APP_VERSION = "v2.1.0";
 ```
 
 - Used directly in both [projects/landing/components/footer.tsx](file:///e:/RosaDei%20Web/projects/landing/components/footer.tsx) and [projects/ruze/components/footer.tsx](file:///e:/RosaDei%20Web/projects/ruze/components/footer.tsx).
