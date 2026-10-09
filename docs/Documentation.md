@@ -261,7 +261,7 @@ To allow easy version bumping and automated git tagging in deployment pipelines,
 
 - **File**: [lib/version.ts](file:///e:/RosaDei%20Web/lib/version.ts)
 ```ts
-export const APP_VERSION = "v2.0.1";
+export const APP_VERSION = "v2.1.0";
 ```
 
 - Used directly in both [projects/landing/components/footer.tsx](file:///e:/RosaDei%20Web/projects/landing/components/footer.tsx) and [projects/ruze/components/footer.tsx](file:///e:/RosaDei%20Web/projects/ruze/components/footer.tsx).
