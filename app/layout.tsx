@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Jost } from 'next/font/google'
+import { LanguageProvider } from '@/context/LanguageContext'
 import { ComingSoonProvider } from '@/components/ComingSoonModal'
 import { CookieConsent } from '@/components/CookieConsent'
 import './globals.css'
@@ -66,11 +67,13 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} bg-background`}
     >
       <body className="antialiased min-h-screen">
-        <ComingSoonProvider>
-          {children}
-        </ComingSoonProvider>
-        <CookieConsent />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <LanguageProvider>
+          <ComingSoonProvider>
+            {children}
+          </ComingSoonProvider>
+          <CookieConsent />
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </LanguageProvider>
       </body>
     </html>
   )

@@ -64,9 +64,22 @@ export function CookieConsent() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showDetails, setShowDetails] = React.useState(false);
   const [currentChoice, setCurrentChoice] = React.useState<"accepted" | "declined" | null>(null);
+  const [lang, setLang] = React.useState<"hr" | "en">("hr");
 
   React.useEffect(() => {
     setMounted(true);
+
+    // Sync language from localStorage / browser
+    try {
+      const storedLang = localStorage.getItem("rosadei_lang");
+      if (storedLang === "en" || storedLang === "hr") {
+        setLang(storedLang);
+      } else if (typeof navigator !== "undefined" && navigator.language?.toLowerCase().startsWith("en")) {
+        setLang("en");
+      }
+    } catch {
+      // ignore
+    }
 
     try {
       const stored = localStorage.getItem(CONSENT_STORAGE_KEY) as "accepted" | "declined" | null;
@@ -84,7 +97,6 @@ export function CookieConsent() {
         return () => clearTimeout(timer);
       }
     } catch {
-      // If localStorage is unavailable (e.g. private mode restrictions), fallback to showing banner
       setIsOpen(true);
     }
   }, []);
@@ -94,6 +106,11 @@ export function CookieConsent() {
     if (typeof window === "undefined") return;
 
     window.openCookieConsent = () => {
+      // Refresh current language when opened
+      const storedLang = localStorage.getItem("rosadei_lang");
+      if (storedLang === "en" || storedLang === "hr") {
+        setLang(storedLang);
+      }
       setIsOpen(true);
     };
 
@@ -144,9 +161,11 @@ export function CookieConsent() {
     return null;
   }
 
+  const isEn = lang === "en";
+
   return (
     <aside
-      aria-label="Obavijest o kolačićima"
+      aria-label={isEn ? "Cookie consent notice" : "Obavijest o kolačićima"}
       role="region"
       className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-xl sm:left-auto sm:right-6 sm:bottom-6 transition-all duration-300 ease-out animate-in fade-in slide-in-from-bottom-4"
     >
@@ -162,17 +181,25 @@ export function CookieConsent() {
           <div className="flex-1 space-y-2">
             <div className="flex items-center justify-between gap-2">
               <h3 className="font-serif text-lg font-medium text-foreground tracking-tight sm:text-xl">
-                Privatnost & Kolačići
+                {isEn ? "Privacy & Cookies" : "Privatnost & Kolačići"}
               </h3>
               {currentChoice && (
                 <span className="rounded-full border border-rose-200/70 bg-rose-50/60 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                  {currentChoice === "accepted" ? "Prihvaćeno" : "Odbijeno"}
+                  {currentChoice === "accepted"
+                    ? isEn
+                      ? "Accepted"
+                      : "Prihvaćeno"
+                    : isEn
+                    ? "Declined"
+                    : "Odbijeno"}
                 </span>
               )}
             </div>
 
             <p className="text-xs leading-relaxed text-foreground/75 sm:text-sm">
-              Cijenimo Vašu privatnost. Koristimo analitičke kolačiće (Google Analytics) za anonimno praćenje posjeta i unapređenje korisničkog iskustva. Kolačići se aktiviraju isključivo uz Vaš pristanak.
+              {isEn
+                ? "We respect your privacy. We use analytical cookies (Google Analytics) to anonymously measure visits and enhance your experience. Cookies are activated strictly upon your consent."
+                : "Cijenimo Vašu privatnost. Koristimo analitičke kolačiće (Google Analytics) za anonimno praćenje posjeta i unapređenje korisničkog iskustva. Kolačići se aktiviraju isključivo uz Vaš pristanak."}
             </p>
 
             {/* Expandable cookie breakdown */}
@@ -183,7 +210,15 @@ export function CookieConsent() {
                 className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
                 aria-expanded={showDetails}
               >
-                <span>{showDetails ? "Sakrij detalje" : "Detalji o kolačićima"}</span>
+                <span>
+                  {showDetails
+                    ? isEn
+                      ? "Hide details"
+                      : "Sakrij detalje"
+                    : isEn
+                    ? "Cookie details"
+                    : "Detalji o kolačićima"}
+                </span>
                 {showDetails ? (
                   <ChevronUp className="size-3.5" />
                 ) : (
@@ -197,14 +232,16 @@ export function CookieConsent() {
                     <div>
                       <p className="font-semibold text-foreground flex items-center gap-1.5">
                         <Check className="size-3.5 text-emerald-600" />
-                        Nužni kolačići
+                        {isEn ? "Essential cookies" : "Nužni kolačići"}
                       </p>
                       <p className="text-[11px] text-muted-foreground">
-                        Omogućuju osnovne tehničke funkcije stranice (npr. pamćenje Vašeg odabira).
+                        {isEn
+                          ? "Required for technical operation (e.g. remembering your preference)."
+                          : "Omogućuju osnovne tehničke funkcije stranice (npr. pamćenje Vašeg odabira)."}
                       </p>
                     </div>
                     <span className="shrink-0 rounded bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                      Uvijek aktivni
+                      {isEn ? "Always active" : "Uvijek aktivni"}
                     </span>
                   </div>
 
@@ -212,14 +249,18 @@ export function CookieConsent() {
                     <div>
                       <p className="font-semibold text-foreground flex items-center gap-1.5">
                         <ShieldCheck className="size-3.5 text-gold" />
-                        Analitički kolačići (Google Analytics)
+                        {isEn
+                          ? "Analytics (Google Analytics)"
+                          : "Analitički kolačići (Google Analytics)"}
                       </p>
                       <p className="text-[11px] text-muted-foreground">
-                        Mjere posjećenost i performanse stranice ({GA_TRACKING_ID}). IP adrese se anonimiziraju.
+                        {isEn
+                          ? `Measures visits and performance (${GA_TRACKING_ID}). IP addresses are anonymized.`
+                          : `Mjere posjećenost i performanse stranice (${GA_TRACKING_ID}). IP adrese se anonimiziraju.`}
                       </p>
                     </div>
                     <span className="shrink-0 rounded bg-rose-100/70 px-2 py-0.5 text-[10px] font-medium text-foreground/80">
-                      Opcionalno
+                      {isEn ? "Optional" : "Opcionalno"}
                     </span>
                   </div>
                 </div>
@@ -233,14 +274,14 @@ export function CookieConsent() {
                 onClick={handleDecline}
                 className="inline-flex w-full items-center justify-center rounded-full border border-border bg-white px-4 py-2.5 text-xs font-medium tracking-wide text-foreground/80 transition-all hover:bg-secondary/70 hover:text-foreground active:scale-[0.99] cursor-pointer sm:w-auto"
               >
-                Odbij
+                {isEn ? "Decline" : "Odbij"}
               </button>
               <button
                 type="button"
                 onClick={handleAccept}
                 className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-2.5 text-xs font-medium tracking-wide text-primary-foreground shadow-sm transition-all hover:bg-primary-hover hover:shadow-md hover:-translate-y-0.5 active:scale-[0.99] cursor-pointer sm:w-auto"
               >
-                Prihvati
+                {isEn ? "Accept" : "Prihvati"}
               </button>
             </div>
           </div>
@@ -251,7 +292,7 @@ export function CookieConsent() {
               type="button"
               onClick={() => setIsOpen(false)}
               className="text-muted-foreground hover:text-foreground transition-colors p-1 -mr-2 -mt-2 cursor-pointer"
-              aria-label="Zatvori"
+              aria-label={isEn ? "Close" : "Zatvori"}
             >
               <X className="size-4" />
             </button>
