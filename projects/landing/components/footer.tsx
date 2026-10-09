@@ -218,6 +218,17 @@ export function Footer() {
             </button>
             <button
               type="button"
+              onClick={() => {
+                if (typeof window !== "undefined" && window.openCookieConsent) {
+                  window.openCookieConsent();
+                }
+              }}
+              className="transition-colors hover:text-primary-foreground cursor-pointer"
+            >
+              Kolačići
+            </button>
+            <button
+              type="button"
               onClick={handleTermsClick}
               className="transition-colors hover:text-primary-foreground cursor-pointer"
             >

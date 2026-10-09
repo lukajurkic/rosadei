@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GDPR Cookie Consent Banner — Demo & Vanilla Template</title>
+  <style>
+    /* Demo Page Styles */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #fdf6f1;
+      color: #1e1b18;
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .demo-container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px border #ecd9d6;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-top: 0;
+      color: #1e1b18;
+    }
+    p {
+      color: #555;
+    }
+    .status-box {
+      margin-top: 24px;
+      padding: 16px;
+      background: #f8f6f4;
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+    .demo-btn {
+      display: inline-block;
+      margin-top: 12px;
+      margin-right: 8px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      border: 1px solid #d4af37;
+      background: #fff;
+      color: #1e1b18;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .demo-btn:hover {
+      background: #fbf6ee;
+    }
+  </style>
+
+  <!-- ============================================================ -->
+  <!-- START: GDPR Cookie Consent Banner CSS (Vanilla)              -->
+  <!-- ============================================================ -->
+  <style>
+    :root {
+      --cc-bg: rgba(255, 255, 255, 0.95);
+      --cc-text: #1e1b18;
+      --cc-muted: #66605a;
+      --cc-border: rgba(236, 217, 214, 0.8);
+      --cc-primary: #1e1b18;
+      --cc-primary-hover: #332f2b;
+      --cc-primary-text: #ffffff;
+      --cc-gold: #d4af37;
+      --cc-shadow: 0 20px 40px -10px rgba(30, 27, 24, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .cookie-consent-banner {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      max-width: 480px;
+      margin-left: auto;
+      background: var(--cc-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--cc-text);
+      border: 1px solid var(--cc-border);
+      border-radius: 18px;
+      box-shadow: var(--cc-shadow);
+      padding: 24px;
+      z-index: 999999;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: none;
+    }
+
+    .cookie-consent-banner.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cookie-consent-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      background: linear-gradient(90deg, var(--cc-gold) 0%, #fed6c2 50%, var(--cc-gold) 100%);
+    }
+
+    .cookie-consent-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .cookie-consent-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(212, 175, 55, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--cc-gold);
+    }
+
+    .cookie-consent-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .cookie-consent-body {
+      font-size: 0.875rem;
+      color: var(--cc-muted);
+      line-height: 1.55;
+      margin: 0 0 18px 0;
+    }
+
+    .cookie-consent-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .cookie-btn {
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .cookie-btn-decline {
+      background: #ffffff;
+      color: var(--cc-text);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .cookie-btn-decline:hover {
+      background: #f5f3f0;
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .cookie-btn-accept {
+      background: var(--cc-primary);
+      color: var(--cc-primary-text);
+      border: 1px solid var(--cc-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .cookie-btn-accept:hover {
+      background: var(--cc-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    .cookie-btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .cookie-consent-banner {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 20px;
+      }
+      .cookie-consent-actions {
+        flex-direction: column-reverse;
+      }
+      .cookie-btn {
+        width: 100%;
+      }
+    }
+  </style>
+  <!-- ============================================================ -->
+  <!-- END: GDPR Cookie Consent Banner CSS                          -->
+  <!-- ============================================================ -->
+</head>
+<body>
+
+  <div class="demo-container">
+    <h1>GDPR Cookie Consent Demonstration</h1>
+    <p>
+      Ova stranica demonstrira lagan, responzivan i GDPR-usklađen kolačićki prozor (Cookie Consent banner).
+      Skripte za praćenje (Google Analytics) se <strong>ne učitavaju</strong> dok posjetitelj izričito ne klikne <strong>„Prihvati”</strong>.
+    </p>
+
+    <div class="status-box">
+      <strong>Trenutni status privole u pregledniku:</strong>
+      <div id="consent-status" style="margin-top: 6px; font-family: monospace;">Učitavanje...</div>
+      <div id="ga-status" style="margin-top: 6px; font-family: monospace;">GA status: Provjera...</div>
+      <button class="demo-btn" onclick="resetCookieConsentDemo()">Resetiraj odabir (test ponovnog prikaza)</button>
+      <button class="demo-btn" onclick="openCookieConsent()">Otvori postavke kolačića</button>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- START: GDPR Cookie Consent Banner HTML (Vanilla)             -->
+  <!-- ============================================================ -->
+  <div id="cookie-consent-banner" class="cookie-consent-banner" role="dialog" aria-live="polite" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
+    <div class="cookie-consent-header">
+      <div class="cookie-consent-icon" aria-hidden="true">
+        <!-- SVG Cookie Icon -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+          <path d="M8.5 8.5v.01"></path>
+          <path d="M16 15.5v.01"></path>
+          <path d="M12 12v.01"></path>
+          <path d="M11 17v.01"></path>
+          <path d="M7 14v.01"></path>
+        </svg>
+      </div>
+      <h3 id="cookie-title" class="cookie-consent-title">Privatnost i kolačići</h3>
+    </div>
+    <p id="cookie-desc" class="cookie-consent-body">
+      Koristimo kolačiće za poboljšanje vašeg iskustva i anonimnu analitiku posjećenosti putem alata Google Analytics. Možete odabrati želite li omogućiti analitičko praćenje.
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" id="cookie-decline-btn" class="cookie-btn cookie-btn-decline">Odbij</button>
+      <button type="button" id="cookie-accept-btn" class="cookie-btn cookie-btn-accept">Prihvati</button>
+    </div>
+  </div>
+  <!-- ============================================================ -->
+  <!-- END: GDPR Cookie Consent Banner HTML                         -->
+  <!-- ============================================================ -->
+
+  <!-- ============================================================ -->
+  <!-- START: GDPR Cookie Consent Banner JavaScript (Vanilla)       -->
+  <!-- ============================================================ -->
+  <script>
+    (function () {
+      // Configuration
+      const GA_TRACKING_ID = "G-EZWYTM74ZX";
+      const STORAGE_KEY = "cookie_consent";
+
+      const banner = document.getElementById("cookie-consent-banner");
+      const acceptBtn = document.getElementById("cookie-decline-btn");
+      const declineBtn = document.getElementById("cookie-accept-btn");
+
+      // Dynamically load Google Analytics only after consent
+      function loadGoogleAnalytics(trackingId) {
+        // Prevent loading multiple times
+        if (document.getElementById("ga-gtag-script")) return;
+
+        // Ensure GA is enabled
+        window["ga-disable-" + trackingId] = false;
+
+        // Create script tag for gtag.js
+        const script = document.createElement("script");
+        script.id = "ga-gtag-script";
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=" + trackingId;
+        document.head.appendChild(script);
+
+        // Initialize Google Analytics dataLayer & gtag
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+
+        gtag("js", new Date());
+        gtag("config", trackingId, {
+          anonymize_ip: true // GDPR best practice
+        });
+
+        updateDemoStatus();
+      }
+
+      function disableGoogleAnalytics(trackingId) {
+        window["ga-disable-" + trackingId] = true;
+        updateDemoStatus();
+      }
+
+      function showBanner() {
+        if (!banner) return;
+        banner.style.display = "block";
+        // Force reflow for CSS transition
+        void banner.offsetWidth;
+        banner.classList.add("show");
+      }
+
+      function hideBanner() {
+        if (!banner) return;
+        banner.classList.remove("show");
+        setTimeout(function () {
+          banner.style.display = "none";
+        }, 350);
+      }
+
+      // Public API to allow reopening the banner from a footer link ("Kolačići")
+      window.openCookieConsent = function () {
+        showBanner();
+      };
+
+      // Check stored preference on page load
+      function initConsent() {
+        let storedChoice = null;
+        try {
+          storedChoice = localStorage.getItem(STORAGE_KEY);
+        } catch (e) {
+          console.warn("localStorage is not available:", e);
+        }
+
+        if (storedChoice === "accepted") {
+          loadGoogleAnalytics(GA_TRACKING_ID);
+          hideBanner();
+        } else if (storedChoice === "declined") {
+          disableGoogleAnalytics(GA_TRACKING_ID);
+          hideBanner();
+        } else {
+          // No preference stored: delay display slightly for smooth page entrance
+          setTimeout(showBanner, 500);
+        }
+
+        updateDemoStatus();
+      }
+
+      // Event listener for Accept button
+      document.getElementById("cookie-accept-btn").addEventListener("click", function () {
+        try {
+          localStorage.setItem(STORAGE_KEY, "accepted");
+        } catch (e) {}
+        loadGoogleAnalytics(GA_TRACKING_ID);
+        hideBanner();
+        updateDemoStatus();
+      });
+
+      // Event listener for Decline button
+      document.getElementById("cookie-decline-btn").addEventListener("click", function () {
+        try {
+          localStorage.setItem(STORAGE_KEY, "declined");
+        } catch (e) {}
+        disableGoogleAnalytics(GA_TRACKING_ID);
+        hideBanner();
+        updateDemoStatus();
+      });
+
+      // Helper function for demo display
+      function updateDemoStatus() {
+        const statusEl = document.getElementById("consent-status");
+        const gaStatusEl = document.getElementById("ga-status");
+        if (!statusEl) return;
+
+        const val = localStorage.getItem(STORAGE_KEY);
+        statusEl.innerHTML = val 
+          ? '<span style="color: ' + (val === 'accepted' ? '#15803d' : '#b91c1c') + '; font-weight: bold;">' + val.toUpperCase() + '</span>'
+          : '<span style="color: #666;">NIJE ODABRANO (prikazuje se banner)</span>';
+
+        const scriptExists = !!document.getElementById("ga-gtag-script");
+        gaStatusEl.innerHTML = scriptExists
+          ? '<span style="color: #15803d; font-weight: bold;">Google Analytics (' + GA_TRACKING_ID + ') je UČITAN I AKTIVAN</span>'
+          : '<span style="color: #666;">Google Analytics NIJE učitan (praćenje blokirano)</span>';
+      }
+
+      window.resetCookieConsentDemo = function () {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      };
+
+      // Run on DOM ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initConsent);
+      } else {
+        initConsent();
+      }
+    })();
+  </script>
+  <!-- ============================================================ -->
+  <!-- END: GDPR Cookie Consent Banner JavaScript                   -->
+  <!-- ============================================================ -->
+
+</body>
+</html>
