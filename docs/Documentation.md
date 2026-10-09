@@ -81,13 +81,17 @@ rosadei/
 │           └── page.tsx           # Ordering & Contact subpage (OrderingJourney, ContactSection)
 ├── projects/
 │   ├── landing/                   # Project: Landing Portal / Hub
+│   │   ├── context/
+│   │   │   └── LanguageContext.tsx # Multi-language provider with auto-detect & persistence
+│   │   ├── translations.ts        # Comprehensive HR/EN dictionaries for landing page
 │   │   └── components/
 │   │       ├── AboutOverview.tsx  # Editorial full-width statement („Napravljeno da traje”)
 │   │       ├── BrandMark.tsx      # RosaDei Grupa logo & typography mark
-│   │       ├── DivisionsShowcase.tsx # 4-division showcase with ComingSoon triggers
+│   │       ├── DivisionsShowcase.tsx # 3-division showcase with ComingSoon triggers
 │   │       ├── Hero.tsx           # Multidisciplinary hero banner
-│   │       ├── Leadership.tsx     # Team section (Upravljanje & Vodstvo) with 4 contacts
-│   │       ├── Navbar.tsx         # Main sticky navigation with mobile Sheet
+│   │       ├── LanguageToggle.tsx # Segmented HR/EN toggle pill
+│   │       ├── Leadership.tsx     # Team section (Upravljanje & Vodstvo) with 3 contacts
+│   │       ├── Navbar.tsx         # Main sticky navigation with LanguageToggle & mobile Sheet
 │   │       └── footer.tsx         # Landing footer with ComingSoon triggers & version
 │   └── ruze/                      # Project: Satin Roses & Bouquets
 │       └── components/

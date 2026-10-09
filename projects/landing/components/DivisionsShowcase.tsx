@@ -3,120 +3,82 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Check } from "lucide-react";
 import { useComingSoonModal } from "@/components/ComingSoonModal";
+import { useLanguage } from "../context/LanguageContext";
+import { landingTranslations } from "../translations";
 
-export const divisions = [
+interface DivisionConfig {
+  id: "creative" | "digital" | "administration";
+  route: string;
+  href: string;
+  containerClass: string;
+  accentClass: string;
+  image: string;
+  isRuze: boolean;
+}
+
+const divisionConfigs: DivisionConfig[] = [
   {
     id: "creative",
-    name: "Ruže & Unikatne Rukotvorine",
-    tagline: "Po slici prirode — Napravljeno da traje",
-    description:
-      "Ručno rađeni buketi od najfinijih satenskih traka, elegantni flower boxovi, vječne krunice i personalizirani darovi stvoreni da traju vječno. Svaki komad izrađuje se ručno s posebnom pažnjom prema detaljima.",
-    capabilities: [
-      "Unikatni buketi i flower box aranžmani",
-      "Personalizirane satenske trake s tiskom",
-      "Ručno rađene krunice od različitih materijala",
-      "Reveri i prigodni pokloni za svečanosti",
-    ],
     route: "ruze",
     href: "/ruze",
-    buttonLabel: "Istraži kolekciju ruža",
     containerClass: "bg-[#fdf8f5] border-y border-rose-200/60",
     accentClass: "text-gold border-gold/40 bg-white/80",
     image: "/images/roses/combo/combo_2.webp",
-    imagePlaceholder: "Rosa Dei unikatni buket i ručno rađeni aranžman od satena",
     isRuze: true,
   },
-  /*
-  {
-    id: "maintenance",
-    name: "Održavanje doma i posjeda",
-    tagline: "Kompletna briga o imanjima i objektima",
-    description:
-      "Sveobuhvatno hortikulturno uređenje eksterijera, održavanje posjeda, sezonski programi i očuvanje infrastrukture prostora napravljenih da traju.",
-    capabilities: [
-      "Hortikultura i uređenje okoliša",
-      "Sezonski programi održavanja posjeda",
-      "Zaštita i obnova vanjskih struktura",
-      "Pouzdan operativni servis objekata",
-    ],
-    route: "maintenance",
-    href: "#divisions",
-    buttonLabel: "Saznajte više o održavanju posjeda",
-    containerClass: "bg-grounds",
-    accentClass: "text-grounds-accent border-grounds-accent/25",
-    image: "/images/landing/division-grounds.jpg",
-    imagePlaceholder: "Besprijekorno održavano suvremeno imanje",
-    isRuze: false,
-  },
-  */
   {
     id: "digital",
-    name: "IT & Digitalna rješenja",
-    tagline: "Full-Stack razvoj i digitalna infrastruktura",
-    description:
-      "Inženjering modernih web aplikacija, skalabilna cloud rješenja, UI/UX sustavi dizajna i kontinuirano tehničko održavanje stvoreno za pouzdan rast.",
-    capabilities: [
-      "Inženjering modernih web aplikacija",
-      "Cloud sustavi i implementacija",
-      "Dizajn digitalnih proizvoda i UX sustavi",
-      "Tehnička podrška i optimizacija performansi",
-    ],
     route: "digital",
     href: "#divisions",
-    buttonLabel: "Saznajte više o digitalnim rješenjima",
     containerClass: "bg-digital",
     accentClass: "text-digital-accent border-digital-accent/25",
     image: "/images/landing/division-digital.jpg",
-    imagePlaceholder: "Radni prostor modernog softverskog inženjeringa",
     isRuze: false,
   },
   {
     id: "administration",
-    name: "Administracija, planiranje i organizacija",
-    tagline: "Strateško planiranje i organizacijske usluge",
-    description:
-      "Strukturirana administrativna podrška, operativno i projektno planiranje te cjelovita organizacijska rješenja za uredno, pouzdano i efikasno poslovanje.",
-    capabilities: [
-      "Strateško i operativno planiranje",
-      "Administrativna i uredska podrška",
-      "Koordinacija i upravljanje projektima",
-      "Organizacija poslovnih procesa i dokumentacije",
-    ],
     route: "administration",
     href: "#divisions",
-    buttonLabel: "Saznajte više o administraciji i planiranju",
     containerClass: "bg-admin",
     accentClass: "text-admin-accent border-admin-accent/25",
     image: "/images/landing/division-admin.jpg",
-    imagePlaceholder: "Moderno radno okruženje za administraciju i planiranje",
     isRuze: false,
   },
-] as const;
+];
 
 export function DivisionsShowcase() {
   const { openComingSoon } = useComingSoonModal();
+  const { language } = useLanguage();
+  const t = landingTranslations[language];
+
+  const mergedDivisions = divisionConfigs.map((config) => {
+    const textData = t.divisions.items.find((item) => item.id === config.id)!;
+    return {
+      ...config,
+      ...textData,
+    };
+  });
 
   return (
     <section id="divisions" className="scroll-mt-18" aria-labelledby="divisions-heading">
       <div className="bg-charcoal py-16 text-primary-foreground lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-charcoal-muted">
-            Naše djelatnosti
+            {t.divisions.eyebrow}
           </p>
           <div className="mt-5 grid gap-5 lg:grid-cols-2 lg:items-end">
             <h2 id="divisions-heading" className="text-4xl font-semibold sm:text-5xl">
-              Tri discipline.
+              {t.divisions.headingLine1}
               <br />
-              Jedna predanost.
+              {t.divisions.headingLine2}
             </h2>
             <p className="max-w-xl text-sm leading-7 text-charcoal-muted lg:justify-self-end">
-              Svaki odjel samostalno je specijaliziran, a zajedno su osnaženi operativnim sustavima,
-              vodstvom i zajedničkim standardima kvalitete.
+              {t.divisions.description}
             </p>
           </div>
         </div>
       </div>
-      {divisions.map((division, index) => (
+      {mergedDivisions.map((division, index) => (
         <article key={division.id} className={division.containerClass}>
           <div
             className={`mx-auto grid min-h-[640px] max-w-[1600px] lg:grid-cols-2 ${
@@ -126,7 +88,7 @@ export function DivisionsShowcase() {
             <div className="relative min-h-[360px] overflow-hidden lg:min-h-full">
               <img
                 src={division.image}
-                alt={division.imagePlaceholder}
+                alt={division.name}
                 loading="lazy"
                 width={1400}
                 height={950}
@@ -139,7 +101,8 @@ export function DivisionsShowcase() {
                     : "bg-background/90 font-display"
                 }`}
               >
-                0{index + 1} / 0{divisions.length} {division.isRuze ? "— Rosa Dei Ruže" : ""}
+                0{index + 1} / 0{mergedDivisions.length}{" "}
+                {division.isRuze ? t.divisions.badgeRuzeSuffix : ""}
               </div>
             </div>
             <div className="flex items-center px-5 py-16 sm:px-10 lg:px-16 lg:py-24 xl:px-24">
